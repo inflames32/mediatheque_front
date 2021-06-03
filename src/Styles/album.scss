@@ -1,0 +1,9 @@
+.list-albums {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+    &-element {
+        margin: 0.5em !important;
+    }
+}

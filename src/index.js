@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { render } from "react-dom";
+//import "./Styles/index.css/";
+import { BrowserRouter as Router } from "react-router-dom";
+import App from "./Components/App";
+//import reportWebVitals from "./reportWebVitals";
 
-ReactDOM.render(
-  <React.StrictMode>
+const rootReactElement = (
+  <Router>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Router>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// 2. La cible du DOM (là où la structure doit prendre vie dans le DOM)
+const target = document.getElementById("root");
+// 3. Déclenchement du rendu de React (virtuel) => DOM (page web)
+render(rootReactElement, target);
