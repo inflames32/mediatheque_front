@@ -1,23 +1,27 @@
 import { useState, useEffect } from "react";
-import { useAlbums } from "../../Middleware/albumMiddleware";
-import { Card, Button } from "antd";
+import { getAllAlbums, useAlbums } from "../../Middleware/albumMiddleware";
+import { Card, Button, Spin } from "antd";
 import HN from "../HeaderNavigation";
 import Footer from "../FooterSite";
 import ModalAlbumAdd from "../ModalAlbumAdd";
 import fakesAlbums from "./fakesAlbums";
+import DeleteFilled from "@ant-design/icons";
+import { BsTrash } from "react-icons/bs";
 import "../../Styles/album.scss";
+
 const { Meta } = Card;
-function App() {
+function App({ albumID }) {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const [AddNewAlbum, setAddNewAlbum] = useState(fakesAlbums);
   const [nbrAlbum, setNbrAlbum] = useState(0);
   const [AlbumsList, setAlbumsList] = useState([]);
-  const { getAllAlbums, albums } = useAlbums();
+  const [loading, setLoading] = useState(false);
+  const { getAllAlbums, albums, deleteAlbumID } = useAlbums();
 
-  useEffect(() => {
+  /*   useAlbums(() => {
     console.log(useEffect);
     getAllAlbums();
-  }, []);
+  }, [key]); */
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -25,6 +29,13 @@ function App() {
   const closeModal = () => {
     setModalIsOpen(false);
   };
+
+  const deleteAlbum = (id) => {
+    deleteAlbumID(id);
+  };
+
+  const ImgNotDefined =
+    "https://image.flaticon.com/icons/png/512/376/376819.png";
 
   return (
     <div className="App">
@@ -35,7 +46,7 @@ function App() {
             onClick={openModal}
             className={
               ModalIsOpen
-                ? "button btn-new-album is-disabled"
+                ? "button btn-new-album is-unseen hidden"
                 : "button is-success"
             }
             variant="success"
@@ -51,32 +62,31 @@ function App() {
             setModalIsOpen={setModalIsOpen}
             fakesAlbums={AddNewAlbum}
             setNbrAlbum={setNbrAlbum}
+            laoding={loading}
           />
         )}
         <div>nombre d'albums {nbrAlbum}</div>
+
         <div className="list-albums">
-          {/*{fakesAlbums.length > 0 &&
-            fakesAlbums.map((fakeAlbum) => (
-              <div className="list-albums-element" key={fakeAlbum.id}>
-                   <Card
-                  key={fakeAlbum.id}
-                  hoverable
-                  style={{ width: 240 }}
-                  cover={<img alt="example" src={fakeAlbum.profil} />}
-                >
-                  <Meta title={fakeAlbum.artist} description={fakeAlbum.name} />
-                </Card> */}
-          {albums.length > 0 &&
-            albums.map(({ id, profil, artist, name }) => (
-              <div className="list-albums-element" key={id}>
+          {loading && <Spin />}
+          {!loading &&
+            albums.length > 0 &&
+            albums.map(({ _id, profil, artist, name }) => (
+              <div className="list-albums-element" key={_id}>
                 <Card
-                  //getAllAlbums={getAllAlbums}
-                  key={id}
+                  key={_id}
                   hoverable
                   style={{ width: 240 }}
                   cover={<img alt="example" src={profil} />}
                 >
                   <Meta title={artist} description={name} />
+                  <br />
+                  <span>
+                    <BsTrash
+                      className="trash-icon"
+                      onClick={() => deleteAlbumID(_id)}
+                    />
+                  </span>
                 </Card>
               </div>
             ))}

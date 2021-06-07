@@ -1,4 +1,5 @@
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Breadcrumb, Button } from "antd";
+import { Link } from "react-router-dom";
 
 import "../../Styles/header-navigation.scss";
 const { Header, Content, Footer } = Layout;
@@ -8,12 +9,22 @@ const HeaderNavigation = () => {
       <Header>
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-          <Menu.Item key="1" href="/albums">
+          {/*       <Button type="primary" href="/">
+            Accueil
+          </Button> */}
+          <Link to="/"> Accueil</Link>
+          {/*   <Button type="primary" href="/albums">
             Albums
-          </Menu.Item>
-          <Menu.Item key="2" href="/livre">
+          </Button>
+          <Button type="primary" href="/livre">
             Livres
-          </Menu.Item>
+          </Button> */}
+          <Link type="primary" to="/albums" type="primary" href="/albums">
+            Albums
+          </Link>
+          <Link to="/livres" type="primary" href="/livre">
+            Livres
+          </Link>
           {/* <Menu.Item key="3">nav 3</Menu.Item> */}
         </Menu>
       </Header>

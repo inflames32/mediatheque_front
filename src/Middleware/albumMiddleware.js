@@ -5,6 +5,12 @@ export const useAlbums = () => {
   const url = "http://localhost:5000";
   const [loading, setLoading] = useState(true);
   const [albums, setAlbums] = useState([]);
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    getAllAlbums();
+    console.log("useEffect getAlbums");
+  }, [key]);
 
   const getAllAlbums = async () => {
     try {
@@ -13,11 +19,36 @@ export const useAlbums = () => {
         url: `${url}/api/albums/`,
       });
       setAlbums(res.data);
-      console.log("liste des albums récupérés", albums);
+      console.log(res.data);
     } catch (e) {
       console.error(e);
     }
-    setLoading(false);
+  };
+
+  const getOneAlbum = async (albumID) => {
+    try {
+      const res = await axios({
+        method: "get",
+        url: `${url}/api/albums/${albumID}`,
+      });
+      setAlbums(res.data);
+      console.log(res.data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const deleteAlbumID = async (albumID) => {
+    console.log(albumID);
+    try {
+      await axios({
+        method: "delete",
+        url: `${url}/api/album/${albumID}`,
+      });
+      setKey(key + 1);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const postAlbum = async (albumID, data) => {
@@ -33,10 +64,6 @@ export const useAlbums = () => {
     }
     setLoading(false);
   };
-
-  useEffect(() => {
-    getAllAlbums();
-  });
 
   /* const addAlbum = async (req, res) => {
   try {
@@ -54,5 +81,8 @@ export const useAlbums = () => {
     albums,
     setAlbums,
     getAllAlbums,
+    getOneAlbum,
+    postAlbum,
+    deleteAlbumID,
   };
 };

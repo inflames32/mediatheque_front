@@ -1,4 +1,9 @@
 @import "~antd/dist/antd.css";
+
+body {
+  min-height: 87vh;
+  max-height: auto;
+}
 .title {
   color: white;
 }
