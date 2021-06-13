@@ -25,5 +25,5 @@ yarn-error.log*
 # Local Netlify folder
 .netlify
 
-# dotenv
-/config
+
+.env.development

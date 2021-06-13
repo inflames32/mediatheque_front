@@ -2,7 +2,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const useAlbums = () => {
-  const url = "http://localhost:5000";
+  const url = process.env.REACT_APP_URL_BACK_DEV;
+  const url_prod = process.env.REACT_APP_URL_BACK_PROD;
+
   const [loading, setLoading] = useState(true);
   const [albums, setAlbums] = useState([]);
   const [key, setKey] = useState(0);
@@ -16,7 +18,7 @@ export const useAlbums = () => {
     try {
       const res = await axios({
         method: "get",
-        url: `${url}/api/albums/`,
+        url: `${url_prod}/api/albums/`,
       });
       setAlbums(res.data);
       console.log(res.data);
@@ -64,17 +66,6 @@ export const useAlbums = () => {
     }
     setLoading(false);
   };
-
-  /* const addAlbum = async (req, res) => {
-  try {
-    const res = await axios({
-      method: "post",
-      url: `${url}/api/album/add-album`,
-    });
-  } catch (e) {
-    console.error(e);
-  }
-}; */
 
   return {
     loading,

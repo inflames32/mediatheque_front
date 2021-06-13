@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { getAllAlbums, useAlbums } from "../../Middleware/albumMiddleware";
-import { Card, Button, Spin } from "antd";
+import { Card, Button, Spin, Modal, Space } from "antd";
 import HN from "../HeaderNavigation";
 import Footer from "../FooterSite";
 import ModalAlbumAdd from "../ModalAlbumAdd";
+import ModalDeleteAlbum from "../ModalDeleteAlbum";
 import fakesAlbums from "./fakesAlbums";
-import DeleteFilled from "@ant-design/icons";
+import { DeleteFilled, ExclamationCircleOutlined } from "@ant-design/icons";
 import { BsTrash } from "react-icons/bs";
 import "../../Styles/album.scss";
 
 const { Meta } = Card;
 function App({ albumID }) {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
+  const [ModalDeleteAlbumIsOpen, setModalDeleteAlbumIsOpen] = useState(false);
   const [AddNewAlbum, setAddNewAlbum] = useState(fakesAlbums);
   const [nbrAlbum, setNbrAlbum] = useState(0);
   const [AlbumsList, setAlbumsList] = useState([]);
@@ -32,6 +34,12 @@ function App({ albumID }) {
 
   const deleteAlbum = (id) => {
     deleteAlbumID(id);
+  };
+
+  const handleDeleteAlbum = () => {
+    console.log(`je vais delete l'album`);
+    setModalDeleteAlbumIsOpen(true);
+    //deleteAlbumID(_id);
   };
 
   const ImgNotDefined =
@@ -85,11 +93,13 @@ function App({ albumID }) {
                     <BsTrash
                       className="trash-icon"
                       onClick={() => deleteAlbumID(_id)}
+                      //onClick={handleDeleteAlbum}
                     />
                   </span>
                 </Card>
               </div>
             ))}
+          {setModalDeleteAlbumIsOpen && <ModalDeleteAlbum />}
         </div>
       </body>
       <Footer />
