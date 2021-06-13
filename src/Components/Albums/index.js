@@ -14,7 +14,6 @@ const { Meta } = Card;
 function App({ albumID }) {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const [ModalDeleteAlbumIsOpen, setModalDeleteAlbumIsOpen] = useState(false);
-  const [AddNewAlbum, setAddNewAlbum] = useState(fakesAlbums);
   const [nbrAlbum, setNbrAlbum] = useState(0);
   const [AlbumsList, setAlbumsList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -65,10 +64,8 @@ function App({ albumID }) {
         </div>
         {ModalIsOpen && (
           <ModalAlbumAdd
-            setAddNewAlbum={setAddNewAlbum}
             closeModal={closeModal}
             setModalIsOpen={setModalIsOpen}
-            fakesAlbums={AddNewAlbum}
             setNbrAlbum={setNbrAlbum}
             laoding={loading}
           />

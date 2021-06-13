@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 // == Import components
 import Homepage from "../Homepage";
-import Album from "../Album";
+import Albums from "../Albums";
 import "../../Styles/reset.scss";
 import "../../Styles/app.scss";
 import "antd/dist/antd.css";
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <Switch>
       <Route exact path="/" component={Homepage} />
-      <Route exact path="/albums" component={Album} />
+      <Route exact path="/albums" component={Albums} />
     </Switch>
   );
 };
