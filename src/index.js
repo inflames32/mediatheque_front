@@ -3,6 +3,7 @@ import { render } from "react-dom";
 //import "./Styles/index.css/";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./Components/App";
+import "bootstrap/dist/css/bootstrap.min.css";
 //import reportWebVitals from "./reportWebVitals";
 
 const rootReactElement = (

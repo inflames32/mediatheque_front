@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export const useAlbums = () => {
+export const AlbumsMiddleware = () => {
   const url = process.env.REACT_APP_URL_BACK_DEV;
   const url_prod = process.env.REACT_APP_URL_BACK_PROD;
 
@@ -9,16 +9,16 @@ export const useAlbums = () => {
   const [albums, setAlbums] = useState([]);
   const [key, setKey] = useState(0);
 
-  useEffect(() => {
+  /* useEffect(() => {
     getAllAlbums();
     console.log("useEffect getAlbums");
-  }, [key]);
+  }, [key]); */
 
   const getAllAlbums = async () => {
     try {
       const res = await axios({
         method: "get",
-        url: `${url_prod}/api/albums/`,
+        url: `${url}/api/albums/`,
       });
       setAlbums(res.data);
       console.log(res.data);
@@ -34,13 +34,14 @@ export const useAlbums = () => {
         url: `${url}/api/albums/${albumID}`,
       });
       setAlbums(res.data);
+
       console.log(res.data);
     } catch (e) {
       console.error(e);
     }
   };
 
-  const deleteAlbumID = async (albumID) => {
+  const deleteAlbumByID = async (albumID) => {
     console.log(albumID);
     try {
       await axios({
@@ -53,18 +54,33 @@ export const useAlbums = () => {
     }
   };
 
-  const postAlbum = async (albumID, data) => {
+  const deleteAlbumByName = async (albumName) => {
+    console.log(albumName);
     try {
-      const res = await axios({
+      await axios({
+        method: "delete",
+        url: `${url}/api/album/${albumName}`,
+      });
+      setKey(key + 1);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const postAlbum = async (data) => {
+    try {
+      console.log(`${url}/api/albums/addAlbum`);
+      await axios({
         method: "post",
         url: `${url}/api/albums/addAlbum`,
         data,
       });
-      setAlbums(res.data);
+      // setAlbums(res.data);
     } catch (e) {
       console.error(e);
     }
-    setLoading(false);
+    //setLoading(false);
+    setKey(key + 1);
   };
 
   return {
@@ -74,6 +90,7 @@ export const useAlbums = () => {
     getAllAlbums,
     getOneAlbum,
     postAlbum,
-    deleteAlbumID,
+    deleteAlbumByID,
+    deleteAlbumByName,
   };
 };

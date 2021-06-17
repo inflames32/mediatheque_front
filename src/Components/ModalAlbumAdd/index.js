@@ -1,22 +1,9 @@
 import { useState, useEffect } from "react";
-import { Card, Button, Form, Checkbox, Input } from "antd";
+//import { Card, Button, Checkbox, Input } from "antd";
+import { Form, Button } from "react-bootstrap";
+import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 
 import "../../Styles/modalAlbumAdd.scss";
-
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
-};
 
 const ModalAlbumAdd = ({
   closeModal,
@@ -28,10 +15,14 @@ const ModalAlbumAdd = ({
   nbrAlbum,
 }) => {
   //state de contrôle des données entrées par l'utilisateur
-  const [userInputValue, setUserInputValue] = useState("");
+  const [userInputValue, setUserInputValue] = useState({});
+
+  const { postAlbum } = AlbumsMiddleware();
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
+    console.log(name, value);
+    console.log(userInputValue);
     setUserInputValue({
       ...userInputValue,
       [name]: value,
@@ -40,118 +31,104 @@ const ModalAlbumAdd = ({
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    setAddNewAlbum([
-      ...fakesAlbums,
-      {
-        id: 10,
-        album: userInputValue.album,
-        artist: userInputValue.artist,
-        profil: userInputValue.profil,
-        gencode: userInputValue.gencode,
-        year: userInputValue.year,
-        format: userInputValue.format,
-        style: userInputValue.style,
-      },
-    ]);
-    setNbrAlbum(nbrAlbum + 1);
+    console.log(userInputValue);
+    postAlbum({
+      name: userInputValue.name,
+      artist: userInputValue.artist,
+      cover: userInputValue.cover,
+      gencode: userInputValue.gencode,
+      year: userInputValue.year,
+      format: userInputValue.format,
+      style: userInputValue.style,
+    });
+    // collection user
+    // const { albumPossédé } = await tacollection.getOne({ _id: iduser })
+    // getOneAlbum(id)
+
+    // {
+    //  id: 'sonid'
+    //  name: 'toto',
+    //  albumPossédé : [
+    //    'idalbum1', 'idalbum2'
+    //  ]
+    // }
+
     setModalIsOpen(false);
-    console.log(fakesAlbums);
   };
   return (
     <div className="form-add-album">
-      <Form
-        {...layout}
-        onSubmit={(onFormSubmit, console.log("submit"))}
-        className="form-add-album"
-      >
-        <Form.Item
-          label="Nom de l'album"
-          type="text"
-          name="album"
-          value={userInputValue.album}
-          //className="modal-card-body input is-hovered"
-          placeholder="nom de l'album"
-          onChange={handleInputChange}
-          rules={[{ required: true, message: "Entrez le titre de l'album!" }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Nom de l'artiste"
-          type="text"
-          name="artist"
-          value={userInputValue.artist}
-          class="modal-card-body input is-hovered"
-          placeholder="nom de l'artiste"
-          onChange={handleInputChange}
-          rules={[{ required: true, message: "Entrez le titre de l'album!" }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Jaquette de l'album"
-          type="text"
-          name="profil"
-          value={userInputValue.profil}
-          class="modal-card-body input is-hovered"
-          placeholder="jaquette de l'album"
-          onChange={handleInputChange}
-          rules={[{ required: false, message: "Entrez le titre de l'album!" }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Code-barres"
-          type="number"
-          name="gencode"
-          value={userInputValue.gencode}
-          class="modal-card-body input is-hovered"
-          placeholder="gencode"
-          onChange={handleInputChange}
-          rules={[{ required: false, message: "Entrez le titre de l'album!" }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Année de sortie"
-          type="number"
-          name="year"
-          value={userInputValue.year}
-          class="modal-card-body input is-hovered"
-          placeholder="année de sortie"
-          onChange={handleInputChange}
-          rules={[{ required: false, message: "Entrez le titre de l'album!" }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Format de l'album"
-          type="text"
-          name="format"
-          value={userInputValue.format}
-          class="modal-card-body input is-hovered"
-          placeholder="format (cd, vinyle, K7)"
-          onChange={handleInputChange}
-          rules={[{ required: true, message: "CD, vinyle, K7..." }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Style de l'album"
-          type="text"
-          name="style"
-          value={userInputValue.style}
-          class="modal-card-body input is-hovered"
-          placeholder="style musical"
-          onChange={handleInputChange}
-          rules={[
-            { required: false, message: "Rock, techno, jazz, classique..." },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item {...tailLayout}>
+      <Form className="form-add-album" onSubmit={onFormSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicAlbum">
+          <Form.Label>Nom de l'album</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Nom de l'album"
+            name="name"
+            value={userInputValue.name}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicArtist">
+          <Form.Label>Nom de l'artiste</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Nom de l'album"
+            name="artist"
+            value={userInputValue.artist}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCover">
+          <Form.Label>Jaquette de l'album</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Nom de l'album"
+            name="cover"
+            value={userInputValue.cover}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicGencode">
+          <Form.Label>Code barre</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Code barre"
+            name="gencode"
+            value={userInputValue.gencode}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicYear">
+          <Form.Label>Année de sortie</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Année de sortie de l'album"
+            name="year"
+            value={userInputValue.year}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicFormat">
+          <Form.Label>Format</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Format de l'album"
+            name="format"
+            value={userInputValue.format}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicStyle">
+          <Form.Label>Style</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Style de l'album"
+            name="style"
+            value={userInputValue.style}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <div>
           <Button
             type="primary"
             htmlType="submit"
@@ -168,7 +145,7 @@ const ModalAlbumAdd = ({
           >
             Annuler
           </Button>
-        </Form.Item>
+        </div>
       </Form>
     </div>
   );

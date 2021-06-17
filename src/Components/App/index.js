@@ -6,7 +6,7 @@ import Homepage from "../Homepage";
 import Albums from "../Albums";
 import "../../Styles/reset.scss";
 import "../../Styles/app.scss";
-import "antd/dist/antd.css";
+//import "antd/dist/antd.css";
 
 // == Composant
 const App = () => {

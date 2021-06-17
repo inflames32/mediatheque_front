@@ -1,28 +1,33 @@
 import { useState, useEffect } from "react";
-import { getAllAlbums, useAlbums } from "../../Middleware/albumMiddleware";
-import { Card, Button, Spin, Modal, Space } from "antd";
+import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
+import { Button } from "antd";
+
+import { Card, Spinner } from "react-bootstrap";
 import HN from "../HeaderNavigation";
 import Footer from "../FooterSite";
 import ModalAlbumAdd from "../ModalAlbumAdd";
 import ModalDeleteAlbum from "../ModalDeleteAlbum";
-import fakesAlbums from "./fakesAlbums";
+
 import { DeleteFilled, ExclamationCircleOutlined } from "@ant-design/icons";
 import { BsTrash } from "react-icons/bs";
 import "../../Styles/album.scss";
 
 const { Meta } = Card;
-function App({ albumID }) {
+function Albums({ albumID }) {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const [ModalDeleteAlbumIsOpen, setModalDeleteAlbumIsOpen] = useState(false);
   const [nbrAlbum, setNbrAlbum] = useState(0);
   const [AlbumsList, setAlbumsList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { getAllAlbums, albums, deleteAlbumID } = useAlbums();
+  const { getAllAlbums, albums, deleteAlbumByID, deleteAlbumByName } =
+    AlbumsMiddleware();
+  const [key, setKey] = useState(0);
 
-  /*   useAlbums(() => {
-    console.log(useEffect);
+  useEffect(() => {
+    setLoading(true);
     getAllAlbums();
-  }, [key]); */
+    setLoading(false);
+  }, [key]);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -30,73 +35,102 @@ function App({ albumID }) {
   const closeModal = () => {
     setModalIsOpen(false);
   };
-
-  const deleteAlbum = (id) => {
-    deleteAlbumID(id);
+  // permet de ne pas déclencher la function dans le onClick
+  const deleteAlbum = (_id) => () => {
+    console.log("id de l'élément target -->", _id);
+    //deleteAlbumByID(albumId);
+    //setKey(key + 1);
   };
+
+  /*   const deleteAlbumName = (evt) => {
+    const name = evt.target.name;
+    console.log(name);
+    deleteAlbumByName(name);
+  }; */
 
   const handleDeleteAlbum = () => {
     console.log(`je vais delete l'album`);
     setModalDeleteAlbumIsOpen(true);
-    //deleteAlbumID(_id);
   };
 
   const ImgNotDefined =
     "https://image.flaticon.com/icons/png/512/376/376819.png";
 
   return (
-    <div className="App">
+    <div className="Albums">
       <HN />
       <body>
         <div className="btn-add-new-album">
-          <Button
-            onClick={openModal}
-            className={
-              ModalIsOpen
-                ? "button btn-new-album is-unseen hidden"
-                : "button is-success"
-            }
-            variant="success"
-            type="primary"
-          >
-            Ajouter un nouvel album
-          </Button>
+          {ModalIsOpen && (
+            <Button
+              onClick={openModal}
+              className="button btn-new-album"
+              variant="success"
+              type="primary"
+            >
+              Ajouter un nouvel album
+            </Button>
+          )}
+          {!ModalIsOpen && (
+            <Button
+              onClick={openModal}
+              className="button btn-new-album"
+              variant="success"
+              type="primary"
+            >
+              Ajouter un nouvel album
+            </Button>
+          )}
         </div>
         {ModalIsOpen && (
           <ModalAlbumAdd
             closeModal={closeModal}
             setModalIsOpen={setModalIsOpen}
             setNbrAlbum={setNbrAlbum}
-            laoding={loading}
+            loading={loading}
           />
         )}
-        <div>nombre d'albums {nbrAlbum}</div>
 
         <div className="list-albums">
-          {loading && <Spin />}
-          {!loading &&
+          {loading ? (
+            <div className="div-test">
+              <Button variant="primary" disabled>
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                Loading...
+              </Button>
+            </div>
+          ) : (
             albums.length > 0 &&
             albums.map(({ _id, profil, artist, name }) => (
               <div className="list-albums-element" key={_id}>
-                <Card
-                  key={_id}
-                  hoverable
-                  style={{ width: 240 }}
-                  cover={<img alt="example" src={profil} />}
-                >
-                  <Meta title={artist} description={name} />
+                <Card>
+                  <Card.Img src={profil} />
+                  <Card.Title>{artist}</Card.Title>
+                  <Card.Title>{name}</Card.Title>
+
                   <br />
                   <span>
-                    <BsTrash
-                      className="trash-icon"
-                      onClick={() => deleteAlbumID(_id)}
-                      //onClick={handleDeleteAlbum}
-                    />
+                    <Button
+                      variant="danger"
+                      type="button"
+                      onClick={deleteAlbum(_id)}
+                    >
+                      <BsTrash className="trash-icon" />
+                    </Button>
                   </span>
+                  <div>
+                    <Spinner />
+                  </div>
                 </Card>
               </div>
-            ))}
-          {setModalDeleteAlbumIsOpen && <ModalDeleteAlbum />}
+            ))
+          )}
         </div>
       </body>
       <Footer />
@@ -104,4 +138,4 @@ function App({ albumID }) {
   );
 }
 
-export default App;
+export default Albums;

@@ -8,14 +8,7 @@ const Homepage = () => {
   return (
     <div className="App">
       <HN />
-      <body>
-        <Button type="primary" href="/albums">
-          Albums
-        </Button>
-        <Button type="primary" href="/livre">
-          Livres
-        </Button>
-      </body>
+      <body></body>
       <FooterSite />
     </div>
   );
