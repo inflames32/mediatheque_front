@@ -2,8 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const AlbumsMiddleware = () => {
-  const url = process.env.REACT_APP_URL_BACK_DEV;
-  const url_prod = process.env.REACT_APP_URL_BACK_PROD;
+  const url_dev = process.env.REACT_APP_URL_BACK_DEV;
+  const url = process.env.REACT_APP_URL_BACK_PROD;
 
   const [loading, setLoading] = useState(true);
   const [albums, setAlbums] = useState([]);
