@@ -11,9 +11,11 @@ import "../../Styles/header-navigation.scss";
 
 const HeaderNavigation = () => {
   return (
-    <Navbar bg="light" expand="xl">
+    <Navbar expand="xl" className="navbar-color">
       <Container>
-        <Navbar.Brand>Ma médiathèque</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">Ma médiathèque</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

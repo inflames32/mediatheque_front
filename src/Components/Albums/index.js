@@ -1,27 +1,34 @@
 import { useState, useEffect } from "react";
 import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
-import { Button } from "antd";
+//import { Button } from "antd";
 
-import { Card, Spinner } from "react-bootstrap";
+import { Card, Spinner, Button } from "react-bootstrap";
 import HN from "../HeaderNavigation";
-import Footer from "../FooterSite";
+import Footer from "../Footer";
 import ModalAlbumAdd from "../ModalAlbumAdd";
-import ModalDeleteAlbum from "../ModalDeleteAlbum";
+//import ModalDeleteAlbum from "../ModalDeleteAlbum";
+import AlbumDetails from "../AlbumDetails";
 
 import { DeleteFilled, ExclamationCircleOutlined } from "@ant-design/icons";
 import { BsTrash } from "react-icons/bs";
 import "../../Styles/album.scss";
 
-const { Meta } = Card;
+//const { Meta } = Card;
 function Albums({ albumID }) {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
-  const [ModalDeleteAlbumIsOpen, setModalDeleteAlbumIsOpen] = useState(false);
-  const [nbrAlbum, setNbrAlbum] = useState(0);
   const [AlbumsList, setAlbumsList] = useState([]);
   const [loading, setLoading] = useState(false);
   const { getAllAlbums, albums, deleteAlbumByID, deleteAlbumByName } =
     AlbumsMiddleware();
   const [key, setKey] = useState(0);
+  const [albumDetailsIsOpen, setAlbumDetailsIsOpen] = useState(false);
+  const [_id, setAlbumId] = useState();
+  const [albumDetails, setAlbumDetails] = useState({
+    _id: "",
+    cover: "",
+    artist: "",
+    name: "",
+  });
 
   useEffect(() => {
     setLoading(true);
@@ -29,28 +36,26 @@ function Albums({ albumID }) {
     setLoading(false);
   }, [key]);
 
+  // ouvrir/fermer l'ajout d'un album
   const openModal = () => {
     setModalIsOpen(true);
   };
   const closeModal = () => {
     setModalIsOpen(false);
   };
+
   // permet de ne pas déclencher la function dans le onClick
+  // supprimer un album
   const deleteAlbum = (_id) => () => {
     console.log("id de l'élément target -->", _id);
-    //deleteAlbumByID(albumId);
-    //setKey(key + 1);
+    deleteAlbumByID(_id);
+    setKey(key + 1);
   };
 
-  /*   const deleteAlbumName = (evt) => {
-    const name = evt.target.name;
-    console.log(name);
-    deleteAlbumByName(name);
-  }; */
-
-  const handleDeleteAlbum = () => {
-    console.log(`je vais delete l'album`);
-    setModalDeleteAlbumIsOpen(true);
+  const handleAlbumDetails = (_id) => () => {
+    console.log("id de l'élément target -->", _id);
+    setAlbumId(_id);
+    setAlbumDetailsIsOpen(true);
   };
 
   const ImgNotDefined =
@@ -61,16 +66,6 @@ function Albums({ albumID }) {
       <HN />
       <body>
         <div className="btn-add-new-album">
-          {ModalIsOpen && (
-            <Button
-              onClick={openModal}
-              className="button btn-new-album"
-              variant="success"
-              type="primary"
-            >
-              Ajouter un nouvel album
-            </Button>
-          )}
           {!ModalIsOpen && (
             <Button
               onClick={openModal}
@@ -86,7 +81,6 @@ function Albums({ albumID }) {
           <ModalAlbumAdd
             closeModal={closeModal}
             setModalIsOpen={setModalIsOpen}
-            setNbrAlbum={setNbrAlbum}
             loading={loading}
           />
         )}
@@ -107,13 +101,12 @@ function Albums({ albumID }) {
             </div>
           ) : (
             albums.length > 0 &&
-            albums.map(({ _id, profil, artist, name }) => (
+            albums.map(({ _id, cover, artist, name }) => (
               <div className="list-albums-element" key={_id}>
-                <Card>
-                  <Card.Img src={profil} />
+                <Card onClick={handleAlbumDetails(_id)}>
+                  <Card.Img src={cover} />
                   <Card.Title>{artist}</Card.Title>
                   <Card.Title>{name}</Card.Title>
-
                   <br />
                   <span>
                     <Button
@@ -132,6 +125,13 @@ function Albums({ albumID }) {
             ))
           )}
         </div>
+        {albumDetailsIsOpen && (
+          <AlbumDetails
+            setAlbumDetailsIsOpen={setAlbumDetailsIsOpen}
+            setAlbumId={setAlbumId}
+            _id={_id}
+          />
+        )}
       </body>
       <Footer />
     </div>

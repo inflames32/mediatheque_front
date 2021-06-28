@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 //import { Card, Button, Checkbox, Input } from "antd";
 import { Form, Button } from "react-bootstrap";
+
 import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 
 import "../../Styles/modalAlbumAdd.scss";
@@ -44,7 +45,6 @@ const ModalAlbumAdd = ({
     // collection user
     // const { albumPossédé } = await tacollection.getOne({ _id: iduser })
     // getOneAlbum(id)
-
     // {
     //  id: 'sonid'
     //  name: 'toto',
@@ -52,7 +52,6 @@ const ModalAlbumAdd = ({
     //    'idalbum1', 'idalbum2'
     //  ]
     // }
-
     setModalIsOpen(false);
   };
   return (
@@ -72,7 +71,7 @@ const ModalAlbumAdd = ({
           <Form.Label>Nom de l'artiste</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Nom de l'album"
+            placeholder="Nom de l'artiste"
             name="artist"
             value={userInputValue.artist}
             onChange={handleInputChange}
@@ -82,7 +81,7 @@ const ModalAlbumAdd = ({
           <Form.Label>Jaquette de l'album</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Nom de l'album"
+            placeholder="Jaquette de l'album"
             name="cover"
             value={userInputValue.cover}
             onChange={handleInputChange}
@@ -128,11 +127,11 @@ const ModalAlbumAdd = ({
             onChange={handleInputChange}
           />
         </Form.Group>
-        <div>
+        <div className="btn-group">
           <Button
             type="primary"
             htmlType="submit"
-            class="button is-success"
+            className="button is-success"
             onClick={onFormSubmit}
           >
             Enregistrer le nouvel album
@@ -142,6 +141,7 @@ const ModalAlbumAdd = ({
             type="danger"
             onClick={closeModal}
             variant="danger"
+            className="button is-cancel"
           >
             Annuler
           </Button>

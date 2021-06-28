@@ -1,7 +1,5 @@
 import React from "react";
-import { Button } from "antd";
-import { Link } from "react-router-dom";
-import FooterSite from "../FooterSite";
+import Footer from "../Footer";
 import HN from "../HeaderNavigation";
 
 const Homepage = () => {
@@ -9,7 +7,7 @@ const Homepage = () => {
     <div className="App">
       <HN />
       <body></body>
-      <FooterSite />
+      <Footer />
     </div>
   );
 };

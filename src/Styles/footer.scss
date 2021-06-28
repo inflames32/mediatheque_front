@@ -1,0 +1,12 @@
+.footer {
+    text-align: "center";
+    height: 6vh;
+    background-color: #3d414b;
+    &-text {
+        display: flex;
+        justify-content: center;
+        line-height: 6vh;
+        height: 6vh;
+        color: cadetblue;
+    }
+}
