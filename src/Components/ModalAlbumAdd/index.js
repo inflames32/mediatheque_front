@@ -22,8 +22,7 @@ const ModalAlbumAdd = ({
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
-    console.log(name, value);
-    console.log(userInputValue);
+
     setUserInputValue({
       ...userInputValue,
       [name]: value,
@@ -32,7 +31,6 @@ const ModalAlbumAdd = ({
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    console.log(userInputValue);
     postAlbum({
       name: userInputValue.name,
       artist: userInputValue.artist,

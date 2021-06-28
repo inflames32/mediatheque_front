@@ -47,13 +47,11 @@ function Albums({ albumID }) {
   // permet de ne pas déclencher la function dans le onClick
   // supprimer un album
   const deleteAlbum = (_id) => () => {
-    console.log("id de l'élément target -->", _id);
     deleteAlbumByID(_id);
     setKey(key + 1);
   };
 
   const handleAlbumDetails = (_id) => () => {
-    console.log("id de l'élément target -->", _id);
     setAlbumId(_id);
     setAlbumDetailsIsOpen(true);
   };

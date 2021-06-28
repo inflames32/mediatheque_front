@@ -2,9 +2,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const AlbumsMiddleware = () => {
-  const url = process.env.REACT_APP_URL_BACK_DEV;
+  const url_dev = process.env.REACT_APP_URL_BACK_DEV;
 
-  //const url = process.env.REACT_APP_URL_BACK_PROD;
+  const url_prod = process.env.REACT_APP_URL_BACK_PROD;
 
   const [loading, setLoading] = useState(true);
   const [albums, setAlbums] = useState([]);
@@ -12,18 +12,16 @@ export const AlbumsMiddleware = () => {
 
   useEffect(() => {
     getAllAlbums();
-    //console.log("useEffect getAlbums");
   }, [key]);
 
   const getAllAlbums = async () => {
     try {
       const res = await axios({
         method: "get",
-        url: `${url}/api/albums/`,
+        url: `https://mamediatheque-back.herokuapp.com/api/albums/`,
       });
-      console.log(url);
+
       setAlbums(res.data);
-      console.log(res.data);
     } catch (e) {
       console.error(e);
     }
@@ -33,26 +31,21 @@ export const AlbumsMiddleware = () => {
     try {
       const res = await axios({
         method: "get",
-        url: `${url}/api/albums/${albumID}`,
+        url: `${url_prod}/api/albums/${albumID}`,
       });
       setAlbums(res.data);
-
-      console.log(res.data);
     } catch (e) {
       console.error(e);
     }
   };
 
   const deleteAlbumByID = async (albumID) => {
-    /*    console.log(albumID);
-    console.log(url); */
     try {
       await axios({
         method: "delete",
-        url: `${url}/api/album/${albumID}`,
+        url: `${url_prod}/api/album/${albumID}`,
       });
       setKey(key + 1);
-      console.log(key);
     } catch (e) {
       console.error(e);
     }
@@ -60,25 +53,22 @@ export const AlbumsMiddleware = () => {
 
   const postAlbum = async (data) => {
     try {
-      console.log(`${url}/api/albums/addAlbum`);
       await axios({
         method: "post",
-        url: `${url}/api/albums/addAlbum`,
+        url: `${url_prod}/api/albums/addAlbum`,
         data,
       });
       setKey(key + 1);
-      console.log(key);
     } catch (e) {
       console.error(e);
     }
   };
 
   const deleteAlbumByName = async (albumName) => {
-    console.log(albumName);
     try {
       await axios({
         method: "delete",
-        url: `${url}/api/album/${albumName}`,
+        url: `${url_prod}/api/album/${albumName}`,
       });
       setKey(key + 1);
     } catch (e) {
