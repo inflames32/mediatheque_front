@@ -20,7 +20,7 @@ function AlbumDetails({ setAlbumDetailsIsOpen, _id }) {
 
         <Card.Body>
           <span className="btn-close" onClick={closeAlbumDetails}></span>
-          <Card.Title>Id de l'album :{_id}</Card.Title>
+          {/*  <Card.Title></Card.Title> */}
 
           <Card.Text>
             Dolor excepteur mollit aute veniam mollit sunt cillum.Pariatur

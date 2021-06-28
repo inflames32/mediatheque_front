@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const AlbumsMiddleware = () => {
-  const url_dev = process.env.REACT_APP_URL_BACK_DEV;
+  const url_dev = `http://localhost:5000`;
 
   const url_prod = process.env.REACT_APP_URL_BACK_PROD;
 
@@ -18,7 +18,7 @@ export const AlbumsMiddleware = () => {
     try {
       const res = await axios({
         method: "get",
-        url: `https://mamediatheque-back.herokuapp.com/api/albums/`,
+        url: `${url_prod}/api/albums/`,
       });
 
       setAlbums(res.data);
