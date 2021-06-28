@@ -105,16 +105,7 @@ function Albums({ albumID }) {
                   <Card.Img src={cover} />
                   <Card.Title>{artist}</Card.Title>
                   <Card.Title>{name}</Card.Title>
-                  <br />
-                  <span>
-                    <Button
-                      variant="danger"
-                      type="button"
-                      onClick={deleteAlbum(_id)}
-                    >
-                      <BsTrash className="trash-icon" />
-                    </Button>
-                  </span>
+
                   <div>
                     <Spinner />
                   </div>

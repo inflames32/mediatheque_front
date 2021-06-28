@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const AlbumsMiddleware = () => {
-  const url_dev = `http://localhost:5000`;
+  //const url_dev = `http://localhost:5000`;
 
   const url_prod = process.env.REACT_APP_URL_BACK_PROD;
 

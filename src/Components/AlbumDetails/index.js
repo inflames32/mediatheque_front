@@ -1,11 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
-import Header from "../HeaderNavigation";
-import Footer from "../Footer";
+
+import { BsTrash } from "react-icons/bs";
 
 import "../../Styles/albumDetails.scss";
+import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 
 function AlbumDetails({ setAlbumDetailsIsOpen, _id }) {
+  const { deleteAlbumByID } = AlbumsMiddleware();
+  const [key, setKey] = useState(0);
+
+  const deleteAlbum = (_id) => () => {
+    deleteAlbumByID(_id);
+    setKey(key + 1);
+  };
+
   const closeAlbumDetails = () => {
     setAlbumDetailsIsOpen(false);
   };
@@ -33,11 +42,14 @@ function AlbumDetails({ setAlbumDetailsIsOpen, _id }) {
           </Card.Text>
           <Button
             onClick={closeAlbumDetails}
-            className="albumDetails-btn-closee"
+            className="albumDetails-btn-close"
             variant="primary"
           >
             OK
           </Button>
+          <span>
+            <BsTrash className="trash-icon" onClick={deleteAlbum(_id)} />
+          </span>
         </Card.Body>
       </Card>
     </div>
