@@ -1,8 +1,4 @@
-.title {
-    color: white;
-}
-
-.homepage-card {
+.signIn-card {
     width: 80vw;
     display: flex;
     justify-content: center;
@@ -10,6 +6,8 @@
     margin-top: 5em;
 }
 
-.signIn-btn_connect {
-    text-decoration: underline;
+.user-input {
+    display: flex;
+    width: 80% !important;
+    justify-content: center;
 }

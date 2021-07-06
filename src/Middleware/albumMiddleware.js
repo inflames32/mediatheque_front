@@ -2,9 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const AlbumsMiddleware = () => {
-  //const url_dev = `http://localhost:5000`;
-
-  const url_prod = process.env.REACT_APP_URL_BACK_PROD;
+  const url = process.env.REACT_APP_URL_BACK_PROD;
 
   const [loading, setLoading] = useState(true);
   const [albums, setAlbums] = useState([]);
@@ -18,7 +16,7 @@ export const AlbumsMiddleware = () => {
     try {
       const res = await axios({
         method: "get",
-        url: `${url_prod}/api/albums/`,
+        url: `${url}/api/albums/`,
       });
 
       setAlbums(res.data);
@@ -31,7 +29,7 @@ export const AlbumsMiddleware = () => {
     try {
       const res = await axios({
         method: "get",
-        url: `${url_prod}/api/albums/${albumID}`,
+        url: `${url}/api/albums/${albumID}`,
       });
       setAlbums(res.data);
     } catch (e) {
@@ -43,7 +41,7 @@ export const AlbumsMiddleware = () => {
     try {
       await axios({
         method: "delete",
-        url: `${url_prod}/api/album/${albumID}`,
+        url: `${url}/api/album/${albumID}`,
       });
       setKey(key + 1);
     } catch (e) {
@@ -55,7 +53,7 @@ export const AlbumsMiddleware = () => {
     try {
       await axios({
         method: "post",
-        url: `${url_prod}/api/albums/addAlbum`,
+        url: `${url}/api/albums/addAlbum`,
         data,
       });
       setKey(key + 1);
@@ -68,7 +66,7 @@ export const AlbumsMiddleware = () => {
     try {
       await axios({
         method: "delete",
-        url: `${url_prod}/api/album/${albumName}`,
+        url: `${url}/api/album/${albumName}`,
       });
       setKey(key + 1);
     } catch (e) {

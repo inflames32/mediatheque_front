@@ -128,7 +128,6 @@ const ModalAlbumAdd = ({
         <div className="btn-group">
           <Button
             type="primary"
-            htmlType="submit"
             className="button is-success"
             onClick={onFormSubmit}
           >

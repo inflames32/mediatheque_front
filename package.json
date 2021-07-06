@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.16.1",
     "axios": "^0.21.1",
-    "bootstrap": "5.0.1",
+    "bootstrap": "5.0.2",
     "netlify-cli": "^3.34.1",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
@@ -46,10 +46,7 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^6.1.2",
-    "@semantic-ui-react/craco-less": "^1.2.1",
     "add": "^2.0.6",
-    "semantic-ui-less": "^2.4.1",
     "yarn": "^1.22.10"
   }
 }
