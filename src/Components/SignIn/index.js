@@ -1,12 +1,12 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Footer";
-import HN from "../HeaderNavigation";
+import Header from "../Header";
 
 import { Form, Button, Card } from "react-bootstrap";
-import "../../Styles/signIn.scss";
+import "../../Styles/signin.scss";
 
-const SignIn = () => {
+const Signin = () => {
   const [userInputValue, setUserInputValue] = useState({});
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -20,10 +20,10 @@ const SignIn = () => {
     evt.preventDefault();
   };
   return (
-    <div className="signIn">
-      <HN />
-      <body>
-        <Card className="signIn-card">
+    <div className="signin">
+      <Header />
+      <main>
+        <Card className="signin-card">
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Adresse e-mail</Form.Label>
@@ -52,18 +52,23 @@ const SignIn = () => {
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Restez connecté ?" />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={onFormSubmit}>
-              Submit
+            <Button
+              variant="primary"
+              type="submit"
+              disabled
+              onClick={onFormSubmit}
+            >
+              Connexion
             </Button>
             <Link to="/signUp">
-              <Form.Label>Vous n'avez pas de compte ? </Form.Label>
+              <span className="no_account">Vous n'avez pas de compte ?</span>
             </Link>
           </Form>
         </Card>
-      </body>
+      </main>
       <Footer />
     </div>
   );
 };
 
-export default SignIn;
+export default Signin;

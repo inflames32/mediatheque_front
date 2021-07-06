@@ -1,11 +1,11 @@
 import { React, useState } from "react";
 import Footer from "../Footer";
-import HN from "../HeaderNavigation";
+import Header from "../Header";
 
 import { Form, Button, Card } from "react-bootstrap";
-import "../../Styles/signUp.scss";
+import "../../Styles/signup.scss";
 
-const SignUp = () => {
+const Signup = () => {
   const [userInputValue, setUserInputValue] = useState({});
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -19,10 +19,10 @@ const SignUp = () => {
     evt.preventDefault();
   };
   return (
-    <div className="signUp">
-      <HN />
+    <div className="signup">
+      <Header />
       <body>
-        <Card className="signUp-card">
+        <Card className="signup-card">
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Adresse e-mail</Form.Label>
@@ -53,11 +53,17 @@ const SignUp = () => {
                 onChange={handleInputChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              {/* <Form.Check type="checkbox" label="Check me out" /> */}
-            </Form.Group>
-            <Button variant="primary" type="submit" onClick={onFormSubmit}>
-              Submit
+            <Form.Group
+              className="mb-3"
+              controlId="formBasicCheckbox"
+            ></Form.Group>
+            <Button
+              variant="primary"
+              disabled
+              type="submit"
+              onClick={onFormSubmit}
+            >
+              Créer
             </Button>
           </Form>
         </Card>
@@ -67,4 +73,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Signup;

@@ -56,7 +56,7 @@ const ModalAlbumAdd = ({
     <div className="form-add-album">
       <Form className="form-add-album" onSubmit={onFormSubmit}>
         <Form.Group className="mb-3" controlId="formBasicAlbum">
-          <Form.Label>Nom de l'album</Form.Label>
+          <Form.Label className="label-input">Nom de l'album</Form.Label>
           <Form.Control
             type="text"
             placeholder="Nom de l'album"
@@ -66,7 +66,7 @@ const ModalAlbumAdd = ({
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicArtist">
-          <Form.Label>Nom de l'artiste</Form.Label>
+          <Form.Label className="label-input">Nom de l'artiste</Form.Label>
           <Form.Control
             type="text"
             placeholder="Nom de l'artiste"
@@ -76,7 +76,7 @@ const ModalAlbumAdd = ({
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCover">
-          <Form.Label>Jaquette de l'album</Form.Label>
+          <Form.Label className="label-input">Jaquette de l'album</Form.Label>
           <Form.Control
             type="text"
             placeholder="Jaquette de l'album"
@@ -86,7 +86,7 @@ const ModalAlbumAdd = ({
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicGencode">
-          <Form.Label>Code barre</Form.Label>
+          <Form.Label className="label-input">Code barre</Form.Label>
           <Form.Control
             type="text"
             placeholder="Code barre"
@@ -96,7 +96,7 @@ const ModalAlbumAdd = ({
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicYear">
-          <Form.Label>Année de sortie</Form.Label>
+          <Form.Label className="label-input">Année de sortie</Form.Label>
           <Form.Control
             type="text"
             placeholder="Année de sortie de l'album"
@@ -106,7 +106,7 @@ const ModalAlbumAdd = ({
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicFormat">
-          <Form.Label>Format</Form.Label>
+          <Form.Label className="label-input">Format</Form.Label>
           <Form.Control
             type="text"
             placeholder="Format de l'album"
@@ -116,7 +116,7 @@ const ModalAlbumAdd = ({
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicStyle">
-          <Form.Label>Style</Form.Label>
+          <Form.Label className="label-input">Style</Form.Label>
           <Form.Control
             type="text"
             placeholder="Style de l'album"

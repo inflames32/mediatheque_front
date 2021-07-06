@@ -2,12 +2,17 @@
     color: white;
 }
 
+body {
+    min-height: 88vh !important;
+    max-height: auto;
+}
+
 .homepage-card {
     width: 80vw;
+    min-height: 60vh;
     display: flex;
     justify-content: center;
     margin: auto;
-    margin-top: 5em;
 }
 
 .signIn-btn_connect {

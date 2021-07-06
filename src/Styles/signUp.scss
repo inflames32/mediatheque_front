@@ -2,10 +2,14 @@
     color: white;
 }
 
-.signUp-card {
+.signup-card {
     width: 80vw;
     display: flex;
     justify-content: center;
     margin: auto;
-    margin-top: 5em;
+}
+
+body {
+    min-height: 88vh !important;
+    max-height: auto;
 }

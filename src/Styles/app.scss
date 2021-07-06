@@ -1,7 +1,5 @@
-//@import "~antd/dist/antd.css";
-
 body {
-  min-height: 88vh;
+  min-height: 79.5vh;
   max-height: auto;
   background-color: rgb(46, 50, 58) !important;
 }
@@ -12,18 +10,9 @@ body {
 .App {
   text-align: center;
   box-sizing: border-box;
-  min-height: 100vh;
+  max-height: 50vh;
 }
 .validation-btn {
   background: rgb(52, 160, 52) !important;
   border-color: rgb(52, 160, 52) !important;
 }
-
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */

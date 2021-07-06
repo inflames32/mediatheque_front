@@ -7,32 +7,23 @@ import {
   Container,
   NavDropdown,
 } from "react-bootstrap";
-import "../../Styles/header-navigation.scss";
+import "../../Styles/header.scss";
 
-const HeaderNavigation = () => {
+const Header = () => {
   return (
     <Navbar expand="xl">
       <Container>
         <Navbar.Brand>
-          <Link to="/">
-            <Button>Ma médiathèque</Button>
+          <Link to="/" className="logo">
+            Ma médiathèque
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {/*   <Link to="/">
-              <Button>Accueil</Button>
-            </Link> */}
             <Link to="/albums">
               <Button>Albums</Button>
             </Link>
-            {/*    <Link to="/books">
-              <Button>Livres</Button>
-            </Link> */}
-            {/*   <Link to="/signUp">
-              <Button>Création de compte</Button>
-            </Link> */}
             <Link to="/signIn">
               <Button className="signIn-btn_connect">Connexion</Button>
             </Link>
@@ -43,4 +34,4 @@ const HeaderNavigation = () => {
   );
 };
 
-export default HeaderNavigation;
+export default Header;

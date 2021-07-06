@@ -1,12 +1,22 @@
 .footer {
     text-align: "center";
     height: 6vh;
-    background-color: #3d414b;
+    background-color: #212529;
     &-text {
         display: flex;
         justify-content: center;
         line-height: 6vh;
         height: 6vh;
-        color: cadetblue;
+        color: #0d6efd;
+        font-weight: bold;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     }
+}
+.at {
+    margin-left: 0.25em;
+}
+
+.github {
+    margin-left: 0.25em;
+    text-decoration: none;
 }

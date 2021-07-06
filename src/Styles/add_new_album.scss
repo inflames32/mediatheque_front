@@ -1,8 +1,9 @@
-.modal-albumDetails {
-    display: flex; /* Hidden by default */
+.modal-form-add-album {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -11,30 +12,27 @@
     background-color: rgb(0, 0, 0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
+.form-add-album {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: auto;
+}
 
 .modal-content-albumDetails {
     background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
     border: 1px solid #888;
     width: 80%;
     height: 80%;
+    padding: 2em;
 }
 
-.btn-close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 14px;
-    font-weight: bold;
+.label-input {
+    color: black;
 }
 
-.btn-close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.trash-icon {
-    cursor: pointer;
+.btn-action {
+    margin: auto;
+    display: flex;
+    justify-content: center;
 }

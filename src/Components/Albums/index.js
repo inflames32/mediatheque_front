@@ -1,19 +1,13 @@
 import { useState, useEffect } from "react";
 import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
-//import { Button } from "antd";
-
 import { Card, Spinner, Button } from "react-bootstrap";
-import HN from "../HeaderNavigation";
-import Footer from "../Footer";
-import ModalAlbumAdd from "../ModalAlbumAdd";
-//import ModalDeleteAlbum from "../ModalDeleteAlbum";
-import AlbumDetails from "../AlbumDetails";
 
-import { DeleteFilled, ExclamationCircleOutlined } from "@ant-design/icons";
-import { BsTrash } from "react-icons/bs";
+import Header from "../Header";
+import Footer from "../Footer";
+import AddNewAlbum from "../AddNewAlbum";
+import AlbumDetails from "../AlbumDetails";
 import "../../Styles/album.scss";
 
-//const { Meta } = Card;
 function Albums({ albumID }) {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const [AlbumsList, setAlbumsList] = useState([]);
@@ -44,7 +38,7 @@ function Albums({ albumID }) {
     setModalIsOpen(false);
   };
 
-  // permet de ne pas déclencher la function dans le onClick
+  // permet de ne pas déclencher la fonction dans le onClick
   // supprimer un album
   const deleteAlbum = (_id) => () => {
     deleteAlbumByID(_id);
@@ -57,26 +51,24 @@ function Albums({ albumID }) {
   };
 
   const ImgNotDefined =
-    "https://image.flaticon.com/icons/png/512/376/376819.png";
+    "https://image.flaticon.com/icons/png/256/376/376819.png";
 
   return (
     <div className="Albums">
-      <HN />
+      <Header />
       <body>
         <div className="btn-add-new-album">
-          {!ModalIsOpen && (
-            <Button
-              onClick={openModal}
-              className="button btn-new-album"
-              variant="success"
-              type="primary"
-            >
-              Ajouter un nouvel album
-            </Button>
-          )}
+          <Button
+            onClick={openModal}
+            className="button btn-new-album"
+            variant="success"
+            type="primary"
+          >
+            Ajouter un nouvel album
+          </Button>
         </div>
         {ModalIsOpen && (
-          <ModalAlbumAdd
+          <AddNewAlbum
             closeModal={closeModal}
             setModalIsOpen={setModalIsOpen}
             loading={loading}
@@ -85,17 +77,15 @@ function Albums({ albumID }) {
 
         <div className="list-albums">
           {loading ? (
-            <div className="div-test">
-              <Button variant="primary" disabled>
-                <Spinner
-                  as="span"
-                  animation="grow"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                />
-                Loading...
-              </Button>
+            <div className="spinner_loading">
+              <Spinner
+                as="span"
+                animation="grow"
+                size="xl"
+                role="status"
+                aria-hidden="true"
+              />
+              Loading...
             </div>
           ) : (
             albums.length > 0 &&
@@ -119,6 +109,8 @@ function Albums({ albumID }) {
             setAlbumDetailsIsOpen={setAlbumDetailsIsOpen}
             setAlbumId={setAlbumId}
             _id={_id}
+            albumDetails={albumDetails}
+            setAlbumDetails={setAlbumDetails}
           />
         )}
       </body>

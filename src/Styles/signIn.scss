@@ -1,13 +1,21 @@
-.signIn-card {
+main {
+    min-height: 88vh !important;
+}
+
+.signin-card {
     width: 80vw;
     display: flex;
     justify-content: center;
     margin: auto;
-    margin-top: 5em;
+    padding: 2em;
 }
 
 .user-input {
     display: flex;
     width: 80% !important;
     justify-content: center;
+}
+
+.no_account {
+    margin-left: 5em;
 }
