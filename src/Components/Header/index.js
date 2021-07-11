@@ -25,7 +25,7 @@ const Header = () => {
               <Button>Albums</Button>
             </Link>
             <Link to="/signIn">
-              <Button className="signIn-btn_connect">Connexion</Button>
+              <Button className="signin-btn_connect">Connexion</Button>
             </Link>
           </Nav>
         </Navbar.Collapse>

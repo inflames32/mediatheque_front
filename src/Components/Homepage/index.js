@@ -9,7 +9,7 @@ const Homepage = () => {
   return (
     <div className="homepage">
       <Header />
-      <body>
+      <main>
         <Card className="homepage-card">
           <Card.Header>Ma médiathèque</Card.Header>
           <Card.Body>
@@ -21,7 +21,7 @@ const Homepage = () => {
             </Card.Text>
           </Card.Body>
         </Card>
-      </body>
+      </main>
       <Footer />
     </div>
   );

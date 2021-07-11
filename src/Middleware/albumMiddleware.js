@@ -6,11 +6,8 @@ export const AlbumsMiddleware = () => {
 
   const [loading, setLoading] = useState(true);
   const [albums, setAlbums] = useState([]);
+  const [album, setAlbum] = useState({});
   const [key, setKey] = useState(0);
-
-  useEffect(() => {
-    getAllAlbums();
-  }, [key]);
 
   const getAllAlbums = async () => {
     try {
@@ -18,8 +15,8 @@ export const AlbumsMiddleware = () => {
         method: "get",
         url: `${url}/api/albums/`,
       });
-
       setAlbums(res.data);
+      console.log(res.data);
     } catch (e) {
       console.error(e);
     }
@@ -29,15 +26,17 @@ export const AlbumsMiddleware = () => {
     try {
       const res = await axios({
         method: "get",
-        url: `${url}/api/albums/${albumID}`,
+        url: `${url}/api/album/${albumID}`,
       });
-      setAlbums(res.data);
+      setAlbum(res.data);
+      console.log(album);
     } catch (e) {
       console.error(e);
     }
   };
 
   const deleteAlbumByID = async (albumID) => {
+    console.log(albumID);
     try {
       await axios({
         method: "delete",
@@ -77,6 +76,7 @@ export const AlbumsMiddleware = () => {
   return {
     loading,
     albums,
+    album,
     setAlbums,
     getAllAlbums,
     getOneAlbum,

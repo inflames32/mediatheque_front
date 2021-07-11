@@ -58,6 +58,7 @@ const Signup = () => {
               controlId="formBasicCheckbox"
             ></Form.Group>
             <Button
+              className="no_account not_allowed"
               variant="primary"
               disabled
               type="submit"

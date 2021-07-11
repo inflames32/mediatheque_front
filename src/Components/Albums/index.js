@@ -12,16 +12,19 @@ function Albums({ albumID }) {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const [AlbumsList, setAlbumsList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { getAllAlbums, albums, deleteAlbumByID, deleteAlbumByName } =
-    AlbumsMiddleware();
   const [key, setKey] = useState(0);
   const [albumDetailsIsOpen, setAlbumDetailsIsOpen] = useState(false);
-  const [_id, setAlbumId] = useState();
+  const [albumId, setAlbumId] = useState();
+  const {
+    getAllAlbums,
+    getOneAlbum,
+    albums,
+    deleteAlbumByID,
+    deleteAlbumByName,
+  } = AlbumsMiddleware();
+
   const [albumDetails, setAlbumDetails] = useState({
     _id: "",
-    cover: "",
-    artist: "",
-    name: "",
   });
 
   useEffect(() => {
@@ -46,8 +49,10 @@ function Albums({ albumID }) {
   };
 
   const handleAlbumDetails = (_id) => () => {
-    setAlbumId(_id);
     setAlbumDetailsIsOpen(true);
+    setAlbumId(_id);
+    console.log(albumId);
+    getOneAlbum(_id);
   };
 
   const ImgNotDefined =
@@ -56,7 +61,7 @@ function Albums({ albumID }) {
   return (
     <div className="Albums">
       <Header />
-      <body>
+      <main>
         <div className="btn-add-new-album">
           <Button
             onClick={openModal}
@@ -89,13 +94,13 @@ function Albums({ albumID }) {
             </div>
           ) : (
             albums.length > 0 &&
-            albums.map(({ _id, cover, artist, name }) => (
+            albums.map(({ _id, cover, artist, name, year }) => (
               <div className="list-albums-element" key={_id}>
                 <Card onClick={handleAlbumDetails(_id)}>
                   <Card.Img src={cover} />
                   <Card.Title>{artist}</Card.Title>
                   <Card.Title>{name}</Card.Title>
-
+                  <Card.Title>{year}</Card.Title>
                   <div>
                     <Spinner />
                   </div>
@@ -108,12 +113,12 @@ function Albums({ albumID }) {
           <AlbumDetails
             setAlbumDetailsIsOpen={setAlbumDetailsIsOpen}
             setAlbumId={setAlbumId}
-            _id={_id}
+            albumId={albumId}
             albumDetails={albumDetails}
             setAlbumDetails={setAlbumDetails}
           />
         )}
-      </body>
+      </main>
       <Footer />
     </div>
   );

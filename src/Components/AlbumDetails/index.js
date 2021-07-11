@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 
 import { Button, Card } from "react-bootstrap";
-import { BsTrash } from "react-icons/bs";
+import { BsTrash, BsPencil } from "react-icons/bs";
 
 import "../../Styles/album_details.scss";
 
@@ -12,17 +12,22 @@ function AlbumDetails({
   setAlbumDetailsIsOpen,
   _id,
 }) {
-  const { deleteAlbumByID, getOneAlbum } = AlbumsMiddleware();
+  const { deleteAlbumByID, getOneAlbum, album } = AlbumsMiddleware();
+
   const [key, setKey] = useState(0);
-  console.log(albumDetails);
 
   const deleteAlbum = (_id) => () => {
+    console.log(_id);
     deleteAlbumByID(_id);
     setKey(key + 1);
   };
 
   const closeAlbumDetails = () => {
     setAlbumDetailsIsOpen(false);
+  };
+
+  const handleUpdateAlbumDetails = () => {
+    console.log("je modifierais les infos de l'album");
   };
 
   const ImgNotDefined =
@@ -34,15 +39,37 @@ function AlbumDetails({
         <Card.Img />
         <Card.Body>
           <span className="btn-close" onClick={closeAlbumDetails}></span>
+          {/* <Card.Img src={album.cover} /> */}
           <Card.Text>
-            AlbumDetails.name: {albumDetails.name}
-            {/*   Dolor excepteur mollit aute veniam mollit sunt cillum.Pariatur
-            aliqua ullamco nulla nostrud sint ut esse tempor qui culpa occaecat
-            enim commodo. Laboris aliquip officia sint officia dolore do.
-            Occaecat adipisicing fugiat voluptate do ullamco magna fugiat do.
-            Mollit anim amet anim ut cupidatat adipisicing labore adipisicing
-            tempor est. Tempor adipisicing incididunt Lorem elit incididunt aute
-            elit sit occaecat non cupidatat minim cupidatat. */}
+            {album === 0 &&
+              album.map(({ _id, name, artist, style }) => (
+                <div>
+                  <span>album id : {_id}</span>
+                  <span>album name : {name}</span>
+                  <span>artist : {artist}</span>
+                  <span>style : {style}</span>
+                </div>
+              ))}
+            <span>
+              <BsPencil
+                className="pencil-icon"
+                onClick={handleUpdateAlbumDetails}
+              />
+            </span>
+            <br /> <br />
+            <div>
+              <p>
+                Dolor excepteur mollit aute veniam mollit sunt cillum.Pariatur
+                aliqua ullamco nulla nostrud sint ut esse tempor qui culpa
+                occaecat enim commodo. Laboris aliquip officia sint officia
+                dolore do. Occaecat adipisicing fugiat voluptate do ullamco
+                magna fugiat do. Mollit anim amet anim ut cupidatat adipisicing
+                labore adipisicing tempor est. Tempor adipisicing incididunt
+                Lorem elit incididunt aute elit sit occaecat non cupidatat minim
+                cupidatat.
+              </p>
+            </div>
+            <br />
           </Card.Text>
           <Button
             onClick={closeAlbumDetails}
