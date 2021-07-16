@@ -6,20 +6,23 @@ import { BsTrash, BsPencil } from "react-icons/bs";
 
 import "../../Styles/album_details.scss";
 
-function AlbumDetails({
-  albumDetails,
-  setAlbumDetails,
+const AlbumDetails = ({
   setAlbumDetailsIsOpen,
-  _id,
-}) {
+  setIncrement,
+  increment,
+  albumId,
+}) => {
+  const [key, setKey] = useState(0);
   const { deleteAlbumByID, getOneAlbum, album } = AlbumsMiddleware();
 
-  const [key, setKey] = useState(0);
+  useEffect(() => {
+    getOneAlbum(albumId);
+    console.log(albumId);
+  }, [key]);
 
-  const deleteAlbum = (_id) => () => {
-    console.log(_id);
-    deleteAlbumByID(_id);
-    setKey(key + 1);
+  const deleteAlbum = (albumId) => () => {
+    deleteAlbumByID(albumId);
+    setIncrement(key + 1);
   };
 
   const closeAlbumDetails = () => {
@@ -39,11 +42,16 @@ function AlbumDetails({
         <Card.Img />
         <Card.Body>
           <span className="btn-close" onClick={closeAlbumDetails}></span>
-          {/* <Card.Img src={album.cover} /> */}
+
           <Card.Text>
-            {album === 0 &&
-              album.map(({ _id, name, artist, style }) => (
+            {album >= 0 &&
+              album.map(({ _id, name, artist, style, cover }) => (
                 <div>
+                  {cover ? (
+                    <span>album cover : {cover}</span>
+                  ) : (
+                    <span>album cover : {ImgNotDefined}</span>
+                  )}
                   <span>album id : {_id}</span>
                   <span>album name : {name}</span>
                   <span>artist : {artist}</span>
@@ -58,16 +66,13 @@ function AlbumDetails({
             </span>
             <br /> <br />
             <div>
-              <p>
-                Dolor excepteur mollit aute veniam mollit sunt cillum.Pariatur
-                aliqua ullamco nulla nostrud sint ut esse tempor qui culpa
-                occaecat enim commodo. Laboris aliquip officia sint officia
-                dolore do. Occaecat adipisicing fugiat voluptate do ullamco
-                magna fugiat do. Mollit anim amet anim ut cupidatat adipisicing
-                labore adipisicing tempor est. Tempor adipisicing incididunt
-                Lorem elit incididunt aute elit sit occaecat non cupidatat minim
-                cupidatat.
-              </p>
+              Dolor excepteur mollit aute veniam mollit sunt cillum.Pariatur
+              aliqua ullamco nulla nostrud sint ut esse tempor qui culpa
+              occaecat enim commodo. Laboris aliquip officia sint officia dolore
+              do. Occaecat adipisicing fugiat voluptate do ullamco magna fugiat
+              do. Mollit anim amet anim ut cupidatat adipisicing labore
+              adipisicing tempor est. Tempor adipisicing incididunt Lorem elit
+              incididunt aute elit sit occaecat non cupidatat minim cupidatat.
             </div>
             <br />
           </Card.Text>
@@ -79,12 +84,12 @@ function AlbumDetails({
             OK
           </Button>
           <span>
-            <BsTrash className="trash-icon" onClick={deleteAlbum(_id)} />
+            <BsTrash className="trash-icon" onClick={deleteAlbum(albumId)} />
           </span>
         </Card.Body>
       </Card>
     </div>
   );
-}
+};
 
 export default AlbumDetails;

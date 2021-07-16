@@ -20,7 +20,6 @@ const AddNewAlbum = ({
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
-
     setUserInputValue({
       ...userInputValue,
       [name]: value,

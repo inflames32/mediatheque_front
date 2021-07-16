@@ -16,27 +16,24 @@ export const AlbumsMiddleware = () => {
         url: `${url}/api/albums/`,
       });
       setAlbums(res.data);
-      console.log(res.data);
     } catch (e) {
       console.error(e);
     }
   };
 
-  const getOneAlbum = async (albumID) => {
+  const getOneAlbum = async (albumId) => {
     try {
       const res = await axios({
         method: "get",
-        url: `${url}/api/album/${albumID}`,
+        url: `${url}/api/album/${albumId}`,
       });
       setAlbum(res.data);
-      console.log(album);
     } catch (e) {
       console.error(e);
     }
   };
 
   const deleteAlbumByID = async (albumID) => {
-    console.log(albumID);
     try {
       await axios({
         method: "delete",

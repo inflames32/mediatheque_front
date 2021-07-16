@@ -1,22 +1,34 @@
 import { React, useState } from "react";
 import Footer from "../Footer";
 import Header from "../Header";
+import { AuthMiddleware } from "../../Middleware/authMiddleware";
 
 import { Form, Button, Card } from "react-bootstrap";
 import "../../Styles/signup.scss";
 
 const Signup = () => {
-  const [userInputValue, setUserInputValue] = useState({});
+  const { signup, user } = AuthMiddleware();
+  const [userValue, setUserInputValue] = useState({});
+  const [loading, setLoading] = useState(false);
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
 
     setUserInputValue({
-      ...userInputValue,
+      ...userValue,
       [name]: value,
     });
+    console.log(userValue);
   };
   const onFormSubmit = (evt) => {
     evt.preventDefault();
+    console.log("ici");
+    signup({
+      email: userValue.email,
+      password: userValue.password,
+      password_validation: userValue.password_validation,
+    });
+    console.log(userValue);
+    setLoading(true);
   };
   return (
     <div className="signup">
@@ -28,6 +40,7 @@ const Signup = () => {
               <Form.Label>Adresse e-mail</Form.Label>
               <Form.Control
                 type="email"
+                name="email"
                 placeholder="Entrez votre email"
                 onChange={handleInputChange}
               />
@@ -41,14 +54,19 @@ const Signup = () => {
               <Form.Label>Mot de passe</Form.Label>
               <Form.Control
                 type="password"
+                name="password"
                 placeholder="Mot de passe"
                 onChange={handleInputChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group
+              className="mb-3"
+              controlId="formBasicPasswordValidation"
+            >
               <Form.Label>Retaper votre mot de passe</Form.Label>
               <Form.Control
                 type="password"
+                name="passsword_validation"
                 placeholder="Retaper votre mot de passe"
                 onChange={handleInputChange}
               />
@@ -60,7 +78,6 @@ const Signup = () => {
             <Button
               className="no_account not_allowed"
               variant="primary"
-              disabled
               type="submit"
               onClick={onFormSubmit}
             >
