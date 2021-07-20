@@ -4,8 +4,8 @@ import { Route, Switch } from "react-router-dom";
 // == Import components
 import Homepage from "../Homepage";
 import Albums from "../Albums";
-import SignUp from "../Signup";
-import SignIn from "../Signin";
+import SignUp from "../SignUp";
+import SignIn from "../SignIn";
 import "../../Styles/reset.scss";
 import "../../Styles/app.scss";
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export const AuthMiddleware = () => {
   const url = process.env.REACT_APP_URL_BACK_PROD;
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [auth, setAuth] = useState(false);
 

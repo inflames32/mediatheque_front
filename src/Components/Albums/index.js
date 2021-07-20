@@ -9,23 +9,31 @@ import AlbumDetails from "../AlbumDetails";
 import "../../Styles/album.scss";
 
 const Albums = ({ albumID }) => {
+  const { getAllAlbums, getOneAlbum, albums } = AlbumsMiddleware();
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   //const [AlbumsList, setAlbumsList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [increment, setIncrement] = useState(0);
   const [albumDetailsIsOpen, setAlbumDetailsIsOpen] = useState(false);
   const [albumId, setAlbumId] = useState();
+  const [key, setKey] = useState(0);
   const [albumDetails, setAlbumDetails] = useState({
     _id: "",
   });
-  const { getAllAlbums, getOneAlbum, albums } = AlbumsMiddleware();
+
+  console.log("COUCOU");
 
   useEffect(() => {
-    setLoading(true);
-    console.log("avant", loading);
-    getAllAlbums();
-    setLoading(false);
-    console.log("apres", loading);
+    console.log("avant", isLoading);
+    getAllAlbums().then(() => {
+      setTimeout(() => {
+        console.log("Je vais recharger le composant…");
+        setIsLoading(false);
+        console.log("J'ai rechargé le composant !");
+      }, 2000);
+    });
+    //setIsLoading(false);
+    console.log("apres", isLoading);
   }, []);
 
   // ouvrir/fermer l'ajout d'un album
@@ -35,13 +43,6 @@ const Albums = ({ albumID }) => {
   const closeModal = () => {
     setModalIsOpen(false);
   };
-
-  // permet de ne pas déclencher la fonction dans le onClick
-  // supprimer un album
-  /*   const deleteAlbum = (_id) => () => {
-    deleteAlbumByID(_id);
-    setIncrement(increment + 1);
-  }; */
 
   const handleAlbumDetails = (_id) => () => {
     setAlbumDetailsIsOpen(true);
@@ -57,8 +58,17 @@ const Albums = ({ albumID }) => {
       <Header />
       <main>
         <div className="btn-add-new-album">
-          {loading ? (
-            <Button>Spinner</Button>
+          {isLoading ? (
+            <Button>
+              ...chargement
+              <Spinner
+                as="span"
+                animation="grow"
+                size="xl"
+                role="status"
+                aria-hidden="true"
+              />
+            </Button>
           ) : (
             <Button
               onClick={openModal}
@@ -74,12 +84,11 @@ const Albums = ({ albumID }) => {
           <AddNewAlbum
             closeModal={closeModal}
             setModalIsOpen={setModalIsOpen}
-            loading={loading}
           />
         )}
 
         <div className="list-albums">
-          {loading ? (
+          {isLoading ? (
             <div className="spinner_loading">
               <Spinner
                 as="span"
@@ -91,7 +100,7 @@ const Albums = ({ albumID }) => {
               Loading...
             </div>
           ) : (
-            albums.length > 0 &&
+            albums.length >= 1 &&
             albums.map(({ _id, cover, artist, name, year }) => (
               <div className="list-albums-element" key={_id}>
                 <Card onClick={handleAlbumDetails(_id)}>

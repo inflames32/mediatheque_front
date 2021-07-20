@@ -4,6 +4,7 @@
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
+    transition-delay: 0.5s;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
@@ -14,10 +15,13 @@
 .modal-content-albumDetails {
     background-color: #fefefe;
     margin: auto;
-
     border: 1px solid #888;
     width: 80%;
     height: 80%;
+}
+
+.modal-content-albumDetails-cover {
+    max-width: 50%;
 }
 
 .btn-close {
