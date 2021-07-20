@@ -1,37 +1,42 @@
 body {
-    min-height: 88vh !important;
-    max-height: auto;
+	min-height: 88vh !important;
+	max-height: auto;
 }
 
 .list-albums {
-    display: flex;
-    flex-wrap: wrap;
-    margin: auto;
-    justify-content: center;
-    &-element {
-        margin: 0.5em !important;
-    }
+	display: flex;
+	flex-wrap: wrap;
+	margin: auto;
+	justify-content: center;
+	&-element {
+		margin: 0.5em !important;
+	}
 }
 .trash-icon {
-    margin: auto;
-    width: 25px;
-    height: 25px;
+	margin: auto;
+	width: 25px;
+	height: 25px;
 }
+
+.card-img {
+	max-width: 15rem;
+}
+
 .card-test {
-    background-color: #fff;
+	background-color: #fff;
 }
 
 .div-test {
-    width: 200px;
-    height: 200px;
-    background-color: red;
+	width: 200px;
+	height: 200px;
+	background-color: red;
 }
 
 .btn-add-new-album {
-    display: flex;
-    justify-content: center;
-    background-color: #3d414b;
+	display: flex;
+	justify-content: center;
+	background-color: #3d414b;
 }
 .spinner_loading {
-    background-color: red;
+	background-color: red;
 }

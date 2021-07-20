@@ -139,7 +139,6 @@ const AddNewAlbum = ({
 							Enregistrer
 						</Button>
 						<Button
-							class='button'
 							type='danger'
 							onClick={closeModal}
 							variant='danger'

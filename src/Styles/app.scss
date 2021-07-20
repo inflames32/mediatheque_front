@@ -1,18 +1,22 @@
 body {
-  min-height: 79.5vh;
-  max-height: auto;
-  background-color: rgb(46, 50, 58) !important;
+	min-height: 79.5vh;
+	max-height: auto;
+	background-color: rgb(46, 50, 58) !important;
 }
 .title {
-  color: white;
+	color: white;
 }
 
 .App {
-  text-align: center;
-  box-sizing: border-box;
-  max-height: 50vh;
+	text-align: center;
+	box-sizing: border-box;
+	max-height: 50vh;
 }
 .validation-btn {
-  background: rgb(52, 160, 52) !important;
-  border-color: rgb(52, 160, 52) !important;
+	background: rgb(52, 160, 52) !important;
+	border-color: rgb(52, 160, 52) !important;
+}
+
+.btn {
+	margin: auto 0.25rem;
 }
