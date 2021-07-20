@@ -22,14 +22,12 @@ const Albums = ({ albumID }) => {
   });
 
   useEffect(() => {
+    console.log(isLoading);
     getAllAlbums().then(() => {
-      setTimeout(() => {
-        console.log("Je vais recharger le composant…");
-        setIsLoading(false);
-        console.log("J'ai rechargé le composant !");
-      }, 2000);
+      setIsLoading(false);
     });
-    //setIsLoading(false);
+
+    console.log(isLoading);
   }, []);
 
   // ouvrir/fermer l'ajout d'un album
