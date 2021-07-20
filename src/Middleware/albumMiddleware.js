@@ -8,11 +8,8 @@ export const AlbumsMiddleware = () => {
   const [album, setAlbum] = useState({});
   //const [key, setKey] = useState(0);
 
-  console.log("Je suis dans Middleware");
-
   //page albums
   const getAllAlbums = async () => {
-    console.log("getAllAlbums");
     try {
       const res = await axios({
         method: "get",
@@ -26,14 +23,12 @@ export const AlbumsMiddleware = () => {
 
   // quand on clique sur un album de la page Albums
   const getOneAlbum = async (albumId) => {
-    console.log("getOneAlbum");
     try {
       const res = await axios({
         method: "get",
         url: `${url}/api/album/${albumId}`,
       });
       setAlbum(res.data);
-      console.log(album);
     } catch (e) {
       console.error(e);
     }
@@ -54,7 +49,6 @@ export const AlbumsMiddleware = () => {
 
   // quand on valide l'ajout d'un album
   const postAlbum = async (data) => {
-    console.log("postAlbum");
     try {
       await axios({
         method: "post",
@@ -67,7 +61,6 @@ export const AlbumsMiddleware = () => {
   };
 
   const deleteAlbumByName = async (albumName) => {
-    console.log("deleteAlbumByName");
     try {
       await axios({
         method: "delete",
@@ -87,6 +80,5 @@ export const AlbumsMiddleware = () => {
     postAlbum,
     deleteAlbumByID,
     deleteAlbumByName,
-    //setLoading,
   };
 };

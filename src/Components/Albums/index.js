@@ -21,10 +21,7 @@ const Albums = ({ albumID }) => {
     _id: "",
   });
 
-  console.log("COUCOU");
-
   useEffect(() => {
-    console.log("avant", isLoading);
     getAllAlbums().then(() => {
       setTimeout(() => {
         console.log("Je vais recharger le composant…");
@@ -33,7 +30,6 @@ const Albums = ({ albumID }) => {
       }, 2000);
     });
     //setIsLoading(false);
-    console.log("apres", isLoading);
   }, []);
 
   // ouvrir/fermer l'ajout d'un album

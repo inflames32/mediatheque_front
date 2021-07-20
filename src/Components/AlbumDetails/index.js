@@ -9,7 +9,6 @@ import "../../Styles/album_details.scss";
 const AlbumDetails = ({ setAlbumDetailsIsOpen, setIncrement, albumId }) => {
   const [key, setKey] = useState(0);
   const { deleteAlbumByID, getOneAlbum, album } = AlbumsMiddleware();
-  console.log(album);
 
   useEffect(() => {
     getOneAlbum(albumId);
