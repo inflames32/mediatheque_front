@@ -11,32 +11,36 @@
 }
 
 .modal-content-albumDetails {
-	background-color: #fefefe;
-	margin: auto;
+    background-color: #fefefe;
+    margin: auto;
 
-	border: 1px solid #888;
-	width: 80%;
-	height: 80%;
+    border: 1px solid #888;
+    width: 80%;
+    height: 80%;
+}
+
+.modal-content-albumDetails-cover {
+    max-width: 50%;
 }
 
 .btn-close {
-	color: #aaaaaa;
-	float: right;
-	font-size: 14px;
-	font-weight: bold;
+    color: #aaaaaa;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .btn-close:hover,
 .close:focus {
-	color: #000;
-	text-decoration: none;
-	cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .trash-icon {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .pencil-icon {
-	cursor: pointer;
+    cursor: pointer;
 }

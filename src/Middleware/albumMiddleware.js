@@ -2,36 +2,36 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const AlbumsMiddleware = () => {
-	const url = process.env.REACT_APP_URL_BACK_PROD;
+  const url = process.env.REACT_APP_URL_BACK_PROD;
 
-	const [loading, setLoading] = useState(true);
-	const [albums, setAlbums] = useState([]);
-	const [album, setAlbum] = useState({});
-	const [key, setKey] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [albums, setAlbums] = useState([]);
+  const [album, setAlbum] = useState({});
+  const [key, setKey] = useState(0);
 
-	const getAllAlbums = async () => {
-		try {
-			const res = await axios({
-				method: "get",
-				url: `${url}/api/albums/`,
-			});
-			setAlbums(res.data);
-		} catch (e) {
-			console.error(e);
-		}
-	};
+  const getAllAlbums = async () => {
+    try {
+      const res = await axios({
+        method: "get",
+        url: `${url}/api/albums/`,
+      });
+      setAlbums(res.data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-	const getOneAlbum = async (albumId) => {
-		try {
-			const res = await axios({
-				method: "get",
-				url: `${url}/api/album/${albumId}`,
-			});
-			setAlbum(res.data);
-		} catch (e) {
-			console.error(e);
-		}
-	};
+  const getOneAlbum = async (albumId) => {
+    try {
+      const res = await axios({
+        method: "get",
+        url: `${url}/api/album/${albumId}`,
+      });
+      setAlbum(res.data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
 	const deleteAlbumByID = async (albumID) => {
 		try {
