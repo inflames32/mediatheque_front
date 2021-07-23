@@ -7,7 +7,7 @@ import { BsTrash, BsPencil } from "react-icons/bs";
 import "../../Styles/album_details.scss";
 
 const AlbumDetails = ({
-	setAlbumDetailsIsOpen,
+	closeModalAlbumDetail,
 	setIncrement,
 	increment,
 	albumId,
@@ -25,7 +25,7 @@ const AlbumDetails = ({
 	};
 
 	const closeAlbumDetails = () => {
-		setAlbumDetailsIsOpen(false);
+		closeModalAlbumDetail();
 	};
 
 	const handleUpdateAlbumDetails = () => {

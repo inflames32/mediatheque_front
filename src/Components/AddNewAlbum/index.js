@@ -14,7 +14,15 @@ const AddNewAlbum = ({
 	nbrAlbum,
 }) => {
 	//state de contrôle des données entrées par l'utilisateur
-	const [userInputValue, setUserInputValue] = useState({});
+	const [userInputValue, setUserInputValue] = useState({
+		name: "",
+		artist: "",
+		cover: "",
+		gencode: "",
+		year: "",
+		format: "",
+		style: "",
+	});
 
 	const { postAlbum } = AlbumsMiddleware();
 
@@ -26,9 +34,9 @@ const AddNewAlbum = ({
 		});
 	};
 
-	const onFormSubmit = (evt) => {
+	const onFormSubmit = async (evt) => {
 		evt.preventDefault();
-		postAlbum({
+		await postAlbum({
 			name: userInputValue.name,
 			artist: userInputValue.artist,
 			cover: userInputValue.cover,
@@ -47,7 +55,7 @@ const AddNewAlbum = ({
 		//    'idalbum1', 'idalbum2'
 		//  ]
 		// }
-		setModalIsOpen(false);
+		closeModal();
 	};
 	return (
 		<div className='modal-form-add-album'>
@@ -90,7 +98,7 @@ const AddNewAlbum = ({
 							Code barre (si existant)
 						</Form.Label>
 						<Form.Control
-							type='text'
+							type='number'
 							placeholder='Code barre'
 							name='gencode'
 							value={userInputValue.gencode}
@@ -100,7 +108,7 @@ const AddNewAlbum = ({
 					<Form.Group className='mb-3' controlId='formBasicYear'>
 						<Form.Label className='label-input'>Année de sortie</Form.Label>
 						<Form.Control
-							type='text'
+							type='number'
 							placeholder="Année de sortie de l'album"
 							name='year'
 							value={userInputValue.year}
