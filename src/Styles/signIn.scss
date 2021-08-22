@@ -1,6 +1,10 @@
-main {
+.signin{
+    &-main {
+        display: flex;
     min-height: 88vh !important;
 }
+}
+
 
 .signin-card {
     width: 80vw;
@@ -11,11 +15,12 @@ main {
 }
 
 .user-input {
-    display: flex;
-    width: 80% !important;
+    display: flex;   
     justify-content: center;
 }
 
 .no_account {
-    margin-left: 5em;
-}
+    display: flex;
+    margin-top: .5em;
+    justify-content: center;
+ }

@@ -1,3 +1,9 @@
+.albums{
+    min-height: 100vh;
+    &-main{
+        min-height: 88vh;
+    }
+}
 body {
     min-height: 88vh !important;
     max-height: auto;
@@ -9,9 +15,16 @@ body {
     margin: auto;
     justify-content: center;
     &-element {
+        
         margin: 0.5em !important;
     }
 }
+.albumcover{
+    box-sizing: border-box!important;
+    width: 229px!important;
+    height: 346px!important;
+}
+
 .trash-icon {
     margin: auto;
     width: 25px;

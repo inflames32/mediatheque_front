@@ -8,32 +8,34 @@ import "../../Styles/signup.scss";
 
 const Signup = () => {
   const { signup, user } = AuthMiddleware();
-  const [userValue, setUserInputValue] = useState({});
+  const [userValue, setUserInputValue] = useState({
+    email: "",
+    password:"",
+    password_validation:''
+  });
   const [loading, setLoading] = useState(false);
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
-
     setUserInputValue({
       ...userValue,
-      [name]: value,
-    });
-    console.log(userValue);
+      [name]: value,  
+    });  
+  ;
+    
   };
   const onFormSubmit = (evt) => {
-    evt.preventDefault();
-    console.log("ici");
+    evt.preventDefault();   
     signup({
       email: userValue.email,
       password: userValue.password,
       password_validation: userValue.password_validation,
-    });
-    console.log(userValue);
+    });       
     setLoading(true);
   };
   return (
     <div className="signup">
       <Header />
-      <body>
+      <main className="signup-main">
         <Card className="signup-card">
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -43,9 +45,10 @@ const Signup = () => {
                 name="email"
                 placeholder="Entrez votre email"
                 onChange={handleInputChange}
+                className="user-input"
               />
               <Form.Text className="text-muted">
-                Votre email ne sera utilisé que pour vous connecter à votre
+                Votre email sera utilisé que pour vous connecter à votre
                 compte.
               </Form.Text>
             </Form.Group>
@@ -57,7 +60,9 @@ const Signup = () => {
                 name="password"
                 placeholder="Mot de passe"
                 onChange={handleInputChange}
+                className="user-input"
               />
+               
             </Form.Group>
             <Form.Group
               className="mb-3"
@@ -66,26 +71,23 @@ const Signup = () => {
               <Form.Label>Retaper votre mot de passe</Form.Label>
               <Form.Control
                 type="password"
-                name="passsword_validation"
+                name="password_validation"
                 placeholder="Retaper votre mot de passe"
                 onChange={handleInputChange}
+                className="user-input"
               />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="formBasicCheckbox"
-            ></Form.Group>
-            <Button
+            <div>
+              <Button
               className="no_account not_allowed"
               variant="primary"
               type="submit"
-              onClick={onFormSubmit}
-            >
+              onClick={onFormSubmit}            >
               Créer
-            </Button>
+            </Button></div>
           </Form>
         </Card>
-      </body>
+      </main>
       <Footer />
     </div>
   );

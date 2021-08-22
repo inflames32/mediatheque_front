@@ -12,7 +12,7 @@ import "../../Styles/header.scss";
 const Header = () => {
   return (
     <Navbar expand="xl">
-      <Container>
+      
         <Navbar.Brand>
           <Link to="/" className="logo">
             Ma médiathèque
@@ -20,16 +20,16 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto navbar-btn">
             <Link to="/albums">
               <Button>Albums</Button>
             </Link>
-            <Link to="/signIn">
+            <Link to="/signin">
               <Button className="signin-btn_connect">Connexion</Button>
             </Link>
           </Nav>
         </Navbar.Collapse>
-      </Container>
+      
     </Navbar>
   );
 };

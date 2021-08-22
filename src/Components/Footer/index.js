@@ -10,9 +10,9 @@ const Footer = () => {
         </Link>
         <span className="at">©2021 created by </span>
         <span>
-          <Link to="https://github.com/inflames32" className="github">
+          <a href="https://github.com/inflames32" className="github">
             Inflames32
-          </Link>
+          </a>
         </span>
       </div>
     </div>

@@ -33,45 +33,67 @@ const AlbumDetails = ({ setAlbumDetailsIsOpen, setIncrement, albumId }) => {
   return (
     <div className="modal-albumDetails ">
       <Card className="modal-content-albumDetails">
-        <Card.Img />
+        <div className="btn-close" onClick={closeAlbumDetails}></div>
         <Card.Body>
-          <div className="btn-close" onClick={closeAlbumDetails}></div>
-          <Card.Text>
-            <div>
+
+          <div className='modal-content'>
+            <div className="modal-content-albumDetails-cover">
               {album.cover ? (
-                <div className="modal-content-albumDetails-cover">
-                  <Card.Img src={album.cover} />
-                </div>
+
+                <Card.Img src={album.cover} />
+
               ) : (
-                <div className="modal-content-albumDetails-cover">
-                  <Card.Img src={ImgNotDefined} />
+
+                <Card.Img src={ImgNotDefined} />
+
+              )}</div>
+            <div>
+              <div><span>Nom de l'album : {album.name}</span>
+                <span>
+                  <BsPencil
+                    className="pencil-icon"
+                    /* onClick={handleUpdateAlbumDetails} */
+                  />
+                </span></div>
+              <div><span>Nom de l'artiste : {album.artist}</span>
+                <span>
+                  <BsPencil
+                    className="pencil-icon"
+                    /* onClick={handleUpdateAlbumDetails} */
+                  />
+                </span></div>
+              <div> <span>Style : {album.style}</span>
+                <span>
+                  <BsPencil
+                    className="pencil-icon"
+                    /* onClick={handleUpdateAlbumDetails} */
+                  />
+                </span></div>
+              <div><span>Année : {album.year}</span>
+                <span>
+                  <BsPencil
+                    className="pencil-icon"
+                    /* onClick={handleUpdateAlbumDetails} */
+                  />
+                </span>
+              </div>
+              <div>
+                <span><BsTrash onClick={deleteAlbum}/>
+                </span>
                 </div>
-              )}
-              {/* <div>album id : {album._id}</div> */}
-              <div>Nom de l'album : {album.name}</div>
-              <div>Nom de l'artiste : {album.artist}</div>
-              <div>Style : {album.style}</div>
-              <div>Année : {album.year}</div>
             </div>
-            <span>
-              <BsPencil
-                className="pencil-icon"
-                onClick={handleUpdateAlbumDetails}
-              />
-            </span>
-            <br /> <br />
-            <br />
-          </Card.Text>
-          <Button
-            onClick={closeAlbumDetails}
-            className="albumDetails-btn-close"
-            variant="primary"
-          >
-            OK
-          </Button>
-          <span>
-            <BsTrash className="trash-icon" onClick={deleteAlbum(albumId)} />
-          </span>
+          </div>
+          <div className="modal-content-btn">
+            <Button
+              onClick={closeAlbumDetails}
+              className="albumDetails-btn-close"
+              variant="primary"
+            >
+              OK
+            </Button>
+            
+          </div>
+          
         </Card.Body>
       </Card>
     </div>

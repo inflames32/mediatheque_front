@@ -48,9 +48,9 @@ const Albums = ({ albumID }) => {
     "https://image.flaticon.com/icons/png/256/376/376819.png";
 
   return (
-    <div className="Albums">
+    <div className="albums">
       <Header />
-      <main>
+      <main className="albums-main">
         <div className="btn-add-new-album">
           {isLoading ? (
             <Button>
@@ -97,9 +97,9 @@ const Albums = ({ albumID }) => {
             albums.length >= 1 &&
             albums.map(({ _id, cover, artist, name, year }) => (
               <div className="list-albums-element" key={_id}>
-                <Card onClick={handleAlbumDetails(_id)}>
+                <Card onClick={handleAlbumDetails(_id)} className="albumcover" >
                   {cover ? (
-                    <Card.Img src={cover} />
+                    <Card.Img src={cover}  />
                   ) : (
                     <Card.Img src={ImgNotDefined} />
                   )}

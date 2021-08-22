@@ -1,12 +1,23 @@
+.signup{
+    &-main{
+        min-height: 88vh!important;
+        display: flex;
+    }
+    &-card{
+       width: 80vw;
+    display: flex;
+    justify-content: center;
+    margin: auto; 
+    padding: 2em;
+    }
+}
 .title {
     color: white;
 }
 
-.signup-card {
-    width: 80vw;
-    display: flex;
+.user-input {
+    display: flex;   
     justify-content: center;
-    margin: auto;
 }
 
 body {
@@ -14,6 +25,4 @@ body {
     max-height: auto;
 }
 
-.no_account {
-    margin-left: 5em;
-}
+

@@ -75,11 +75,11 @@ const AddNewAlbum = ({
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCover">
             <Form.Label className="label-input">
-              Jaquette de l'album (URL de l'image)
+              Jaquette de l'album
             </Form.Label>
             <Form.Control
               type="text"
-              placeholder="Jaquette de l'album"
+              placeholder="(URL de l'image"
               name="cover"
               value={userInputValue.cover}
               onChange={handleInputChange}
@@ -90,7 +90,7 @@ const AddNewAlbum = ({
               Code barre (si existant)
             </Form.Label>
             <Form.Control
-              type="text"
+              type="number"
               placeholder="Code barre"
               name="gencode"
               value={userInputValue.gencode}
@@ -100,7 +100,7 @@ const AddNewAlbum = ({
           <Form.Group className="mb-3" controlId="formBasicYear">
             <Form.Label className="label-input">Année de sortie</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
               placeholder="Année de sortie de l'album"
               name="year"
               value={userInputValue.year}

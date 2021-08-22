@@ -37,8 +37,8 @@ const Signin = () => {
   return (
     <div className="signin">
       <Header />
-      <main>
-        <Card className="signin-card">
+      <main className="signin-main">
+        <Card className="signin-card ">
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Adresse e-mail</Form.Label>
@@ -51,7 +51,7 @@ const Signin = () => {
                 onChange={handleInputChange}
               />
               <Form.Text className="text-muted">
-                Votre email ne sera utilisé que pour vous connecter à votre
+                Votre email sera utilisé que pour vous connecter à votre
                 compte.
               </Form.Text>
             </Form.Group>
@@ -67,16 +67,19 @@ const Signin = () => {
                 onChange={handleInputChange}
               />
             </Form.Group>
-
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Restez connecté ?" />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={onFormSubmit}>
-              Connexion
-            </Button>
-            <Link to="/signUp">
-              <span className="no_account">Vous n'avez pas de compte ?</span>
+            <div>
+              <Button variant="primary" type="submit" onClick={onFormSubmit}>
+                Connexion
+              </Button>
+            </div>
+
+            <Link to="/signup">
+              <div className="no_account">Vous n'avez pas de compte ?</div>
             </Link>
+
           </Form>
         </Card>
       </main>

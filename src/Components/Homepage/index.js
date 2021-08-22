@@ -9,7 +9,7 @@ const Homepage = () => {
   return (
     <div className="homepage">
       <Header />
-      <main>
+      <main className="homepage-main">
         <Card className="homepage-card">
           <Card.Header>Ma médiathèque</Card.Header>
           <Card.Body>
