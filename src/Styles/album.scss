@@ -1,6 +1,6 @@
-.albums{
+.albums {
     min-height: 100vh;
-    &-main{
+    &-main {
         min-height: 88vh;
     }
 }
@@ -15,14 +15,13 @@ body {
     margin: auto;
     justify-content: center;
     &-element {
-        
         margin: 0.5em !important;
     }
 }
-.albumcover{
-    box-sizing: border-box!important;
-    width: 229px!important;
-    height: 346px!important;
+.albumcover {
+    box-sizing: border-box !important;
+    width: 229px !important;
+    height: 346px !important;
 }
 
 .trash-icon {
@@ -41,6 +40,9 @@ body {
 }
 
 .btn-add-new-album {
+    width: 90%;
+    margin: auto;
+    margin-top: 15px;
     display: flex;
     justify-content: center;
     background-color: #3d414b;

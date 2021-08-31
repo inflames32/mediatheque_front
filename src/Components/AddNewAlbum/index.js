@@ -74,9 +74,7 @@ const AddNewAlbum = ({
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCover">
-            <Form.Label className="label-input">
-              Jaquette de l'album
-            </Form.Label>
+            <Form.Label className="label-input">Jaquette de l'album</Form.Label>
             <Form.Control
               type="text"
               placeholder="(URL de l'image"

@@ -2,21 +2,22 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const AuthMiddleware = () => {
-  const url = process.env.REACT_APP_URL_BACK_PROD;
+  //const url = process.env.REACT_APP_URL_BACK_PROD;
+  const url = "http://localhost:5000";
   //const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [auth, setAuth] = useState(false);
 
   const login = async (data) => {
     try {
-      const res = await axios({
+      const user = await axios({
         method: "post",
-        url: `${url}/api/login`,
+        url: `${url}/login`,
         data,
       });
-      setUser(res);
-      console.log(user);
-      console.log(res.data);
+      setUser(user);
+      //console.log(user);
+      console.log("res.data", user.data);
       setAuth(true);
     } catch (e) {
       console.error(e);
@@ -24,16 +25,16 @@ export const AuthMiddleware = () => {
   };
 
   const signup = async (data) => {
-    //console.log("ici");
+    console.log(data);
     try {
       const res = await axios({
         method: "post",
-        url: `${url}/api/register`,
+        url: `${url}/signup`,
         data,
       });
-      //setUser(res);
-      console.log(user);
-      console.log(res.data);
+      setUser(res);
+      /* console.log(user);
+      console.log(res.data); */
       setAuth(true);
     } catch (e) {
       console.error(e);

@@ -11,7 +11,7 @@ import "../../Styles/header.scss";
 
 const Header = () => {
   return (
-    <Navbar expand="xl">
+    <Navbar expand="lg" className="navbar-color">
       <Navbar.Brand>
         <Link to="/" className="logo">
           Ma médiathèque
@@ -21,7 +21,7 @@ const Header = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto navbar-btn">
           <Link to="/albums">
-            <Button>Albums</Button>
+            <Button className="btn_albumslist">Albums</Button>
           </Link>
           <Link to="/signin">
             <Button className="signin-btn_connect">Connexion</Button>
