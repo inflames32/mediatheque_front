@@ -1,15 +1,18 @@
-.homepage{
-    &-main{
+.homepage {
+    &-main {
+        width: 90%;
+        margin: auto;
         min-height: 88vh;
         display: flex;
     }
-&-card {
-    width: 80vw;
-    min-height: 60vh;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-}}
+    &-card {
+        width: 80vw;
+        min-height: 60vh;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+    }
+}
 .title {
     color: white;
 }
@@ -18,8 +21,6 @@ body {
     min-height: 88vh !important;
     max-height: auto;
 }
-
-
 
 .signIn-btn_connect {
     text-decoration: underline;

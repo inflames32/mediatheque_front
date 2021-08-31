@@ -8,10 +8,16 @@
 
 .signin-btn_connect {
     text-decoration: none;
+    background-color: transparent;
 }
 
 .narbar-btn {
-    display: flex!important;
-    flex-direction: row!important;
-       justify-content: space-evenly!important;    
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-evenly !important;
+}
+
+.navbar {
+    width: 90%;
+    margin: auto;
 }
