@@ -6,12 +6,11 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-text">
         <Link to="/" className="logo">
-          Ma médiathèque
+          Accueil
         </Link>
-        <span className="at">©2021 created by </span>
         <span>
           <a href="https://github.com/inflames32" className="github">
-            Inflames32
+            Creé par Inflames32
           </a>
         </span>
       </div>
