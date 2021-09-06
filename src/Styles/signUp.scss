@@ -1,14 +1,14 @@
-.signup{
-    &-main{
-        min-height: 88vh!important;
+.signup {
+    &-main {
+        min-height: 94vh !important;
         display: flex;
     }
-    &-card{
-       width: 80vw;
-    display: flex;
-    justify-content: center;
-    margin: auto; 
-    padding: 2em;
+    &-card {
+        width: 80vw;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        padding: 2em;
     }
 }
 .title {
@@ -16,7 +16,7 @@
 }
 
 .user-input {
-    display: flex;   
+    display: flex;
     justify-content: center;
 }
 
@@ -24,5 +24,3 @@ body {
     min-height: 88vh !important;
     max-height: auto;
 }
-
-

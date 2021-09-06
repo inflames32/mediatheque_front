@@ -10,6 +10,7 @@ body {
 }
 
 .list-albums {
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     margin: auto;
@@ -22,6 +23,7 @@ body {
     box-sizing: border-box !important;
     width: 229px !important;
     height: 346px !important;
+    align-items: center;
 }
 
 .trash-icon {
@@ -45,7 +47,6 @@ body {
     margin-top: 15px;
     display: flex;
     justify-content: center;
-    background-color: #3d414b;
 }
 .spinner_loading {
     background-color: red;

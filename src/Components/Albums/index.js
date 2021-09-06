@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 import { Card, Spinner, Button } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
 
 import Header from "../Header";
 import Footer from "../Footer";
 import AddNewAlbum from "../AddNewAlbum";
 import AlbumDetails from "../AlbumDetails";
 import "../../Styles/album.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const Albums = ({ albumID }) => {
   const { getAllAlbums, getOneAlbum, albums } = AlbumsMiddleware();
@@ -26,7 +28,6 @@ const Albums = ({ albumID }) => {
     getAllAlbums().then(() => {
       setIsLoading(false);
     });
-
     console.log(isLoading);
   }, []);
 
@@ -47,9 +48,23 @@ const Albums = ({ albumID }) => {
   const ImgNotDefined =
     "https://image.flaticon.com/icons/png/256/376/376819.png";
 
+  /*   const notify = () =>
+    toast("🦄 Wow so easy!", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }); */
   return (
     <div className="albums">
       <Header />
+      {/* <div>
+        <button onClick={notify}>Notify !</button>
+        <ToastContainer />
+      </div> */}
       <main className="albums-main">
         <div className="btn-add-new-album">
           {isLoading ? (
@@ -97,9 +112,9 @@ const Albums = ({ albumID }) => {
             albums.length >= 1 &&
             albums.map(({ _id, cover, artist, name, year }) => (
               <div className="list-albums-element" key={_id}>
-                <Card onClick={handleAlbumDetails(_id)} className="albumcover" >
+                <Card onClick={handleAlbumDetails(_id)} className="albumcover">
                   {cover ? (
-                    <Card.Img src={cover}  />
+                    <Card.Img src={cover} />
                   ) : (
                     <Card.Img src={ImgNotDefined} />
                   )}
@@ -123,6 +138,7 @@ const Albums = ({ albumID }) => {
           />
         )}
       </main>
+
       <Footer />
     </div>
   );

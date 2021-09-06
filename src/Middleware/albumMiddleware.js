@@ -13,7 +13,7 @@ export const AlbumsMiddleware = () => {
     try {
       const res = await axios({
         method: "get",
-        url: `${url}/api/albums/`,
+        url: `${url}/albums/`,
       });
       setAlbums(res.data);
     } catch (e) {
@@ -26,7 +26,7 @@ export const AlbumsMiddleware = () => {
     try {
       const res = await axios({
         method: "get",
-        url: `${url}/api/album/${albumId}`,
+        url: `${url}/album/${albumId}`,
       });
       setAlbum(res.data);
     } catch (e) {
@@ -34,14 +34,15 @@ export const AlbumsMiddleware = () => {
     }
   };
 
-  // supprimer un ablum quan don est dans les détails d'un album
+  // supprimer un ablum quand on est dans les détails d'un album
   const deleteAlbumByID = async (albumID) => {
     console.log("deleteAlbumByID");
     try {
-      await axios({
+      const res = await axios({
         method: "delete",
-        url: `${url}/api/album/${albumID}`,
+        url: `${url}/album/${albumID}`,
       });
+      console.log(res.data);
     } catch (e) {
       console.error(e);
     }
@@ -52,7 +53,7 @@ export const AlbumsMiddleware = () => {
     try {
       await axios({
         method: "post",
-        url: `${url}/api/albums/addAlbum`,
+        url: `${url}/albums/addAlbum`,
         data,
       });
     } catch (e) {
@@ -64,7 +65,7 @@ export const AlbumsMiddleware = () => {
     try {
       await axios({
         method: "delete",
-        url: `${url}/api/album/${albumName}`,
+        url: `${url}/album/${albumName}`,
       });
     } catch (e) {
       console.error(e);

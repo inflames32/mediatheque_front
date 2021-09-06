@@ -49,6 +49,7 @@ const AddNewAlbum = ({
     // }
     setModalIsOpen(false);
   };
+
   return (
     <div className="modal-form-add-album">
       <Card className="modal-content-albumDetails">

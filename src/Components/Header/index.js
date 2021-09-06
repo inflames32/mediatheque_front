@@ -1,12 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  Card,
-  Button,
-  Nav,
-  Navbar,
-  Container,
-  NavDropdown,
-} from "react-bootstrap";
+import { Button, Nav, Navbar } from "react-bootstrap";
 import "../../Styles/header.scss";
 
 const Header = () => {

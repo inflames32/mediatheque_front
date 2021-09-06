@@ -18,13 +18,13 @@ const Signin = () => {
       ...userValue,
       [name]: value,
     });
-    console.log(userValue);
+    //console.log(userValue);
   };
 
   const onFormSubmit = (evt) => {
-    console.log({
+    /* console.log({
       userValue,
-    });
+    }); */
     evt.preventDefault();
     setLoading(true);
     login({
@@ -51,8 +51,7 @@ const Signin = () => {
                 onChange={handleInputChange}
               />
               <Form.Text className="text-muted">
-                Votre email sera utilisé que pour vous connecter à votre
-                compte.
+                Votre email sera utilisé que pour vous connecter à votre compte.
               </Form.Text>
             </Form.Group>
 
@@ -79,7 +78,6 @@ const Signin = () => {
             <Link to="/signup">
               <div className="no_account">Vous n'avez pas de compte ?</div>
             </Link>
-
           </Form>
         </Card>
       </main>
