@@ -4,26 +4,22 @@
     background-color: #3d414b;
     position: fixed;
     bottom: 0;
-
-    &-text {
-        display: flex;
-        justify-content: space-around;
-        line-height: 6vh;
-        height: 6vh;
-        color: #0e131b !important;
-        font-weight: bold;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    }
+    display: flex;
+    justify-content: space-around;
+    line-height: 6vh;
+    color: #0e131b;
+    font-weight: bold;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-.github,
-.backhome {
+.footer__github,
+.footer__home {
     margin-left: 0.25em;
     text-decoration: none;
     color: rgb(29, 27, 27);
 }
-.github:hover,
-.backhome:hover {
+.footer__github:hover,
+.footer__home:hover {
     margin-left: 0.25em;
     text-decoration: none;
     color: white;

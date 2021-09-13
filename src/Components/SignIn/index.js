@@ -8,10 +8,10 @@ import { Form, Button, Card } from "react-bootstrap";
 import "../../Styles/signin.scss";
 
 const Signin = () => {
-  const { login, createUser, user } = AuthMiddleware();
+  const { login, createUser, user, auth } = AuthMiddleware();
   const [userValue, setUserValue] = useState({});
   const [loading, setLoading] = useState(false);
-
+  //const [btnSubmitIsDisabled, setBtnSubmitIsDisabled] = useState(true);
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
     setUserValue({
@@ -22,9 +22,6 @@ const Signin = () => {
   };
 
   const onFormSubmit = (evt) => {
-    /* console.log({
-      userValue,
-    }); */
     evt.preventDefault();
     setLoading(true);
     login({
@@ -34,6 +31,9 @@ const Signin = () => {
     setLoading(false);
   };
 
+  /*   if (userValue.email && userValue.password === "") {
+    setBtnSubmitIsDisabled(false);
+  } */
   return (
     <div className="signin">
       <Header />
@@ -70,7 +70,16 @@ const Signin = () => {
               <Form.Check type="checkbox" label="Restez connecté ?" />
             </Form.Group>
             <div>
-              <Button variant="primary" type="submit" onClick={onFormSubmit}>
+              <Button
+                //disabled={btnSubmitIsDisabled}
+                type="submit"
+                onClick={onFormSubmit}
+                /* className={
+                  userValue.email && userValue.password
+                    ? "btn--ok"
+                    : "btn--disabled"
+                } */
+              >
                 Connexion
               </Button>
             </div>
@@ -79,8 +88,14 @@ const Signin = () => {
               <div className="no_account">Vous n'avez pas de compte ?</div>
             </Link>
           </Form>
+          {auth ? (
+            <div>vous êtes authentifié</div>
+          ) : (
+            <div>vous n'êtes pas authentifié</div>
+          )}
         </Card>
       </main>
+
       <Footer />
     </div>
   );

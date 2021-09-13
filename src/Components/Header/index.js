@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <Navbar expand="lg" className="navbar-color">
       <Navbar.Brand>
-        <Link to="/" className="logo">
+        <Link to="/" className="navbar__logo">
           Ma médiathèque
         </Link>
       </Navbar.Brand>

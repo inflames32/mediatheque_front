@@ -1,42 +1,38 @@
-import { useState, useEffect } from "react";
-import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
+import { connect } from "react-redux";
 import { Form, Button, Card } from "react-bootstrap";
+
+import {
+  closeModalNewAlbum,
+  inputChangeCreateNewAlbum,
+  addingNewAlbum,
+} from "../../store/action";
 
 import "../../Styles/add_new_album.scss";
 
-const AddNewAlbum = ({
-  closeModal,
-  ModalIsOpen,
-  setAddNewAlbum,
-  fakesAlbums,
-  setModalIsOpen,
-  setNbrAlbum,
-  nbrAlbum,
+const ModalAddNewAlbum = ({
+  closeModalNewAlbum,
+  modalNewAlbumIsOpen,
+  inputChangeCreateNewAlbum,
+  errorMessage,
+  successMessage,
+  addingNewAlbum,
 }) => {
-  //state de contrôle des données entrées par l'utilisateur
-  const [userInputValue, setUserInputValue] = useState({});
-
-  const { postAlbum } = AlbumsMiddleware();
+  const handleCloseModal = () => {
+    closeModalNewAlbum();
+  };
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
-    setUserInputValue({
-      ...userInputValue,
+    inputChangeCreateNewAlbum({
       [name]: value,
     });
   };
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    postAlbum({
-      name: userInputValue.name,
-      artist: userInputValue.artist,
-      cover: userInputValue.cover,
-      gencode: userInputValue.gencode,
-      year: userInputValue.year,
-      format: userInputValue.format,
-      style: userInputValue.style,
-    });
+    addingNewAlbum();
+    console.log("je submit");
+
     // collection user
     // const { albumPossédé } = await tacollection.getOne({ _id: iduser })
     // getOneAlbum(id)
@@ -47,7 +43,6 @@ const AddNewAlbum = ({
     //    'idalbum1', 'idalbum2'
     //  ]
     // }
-    setModalIsOpen(false);
   };
 
   return (
@@ -59,8 +54,8 @@ const AddNewAlbum = ({
             <Form.Control
               type="text"
               placeholder="Nom de l'album"
-              name="name"
-              value={userInputValue.name}
+              name="album"
+              value={inputChangeCreateNewAlbum.album}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -70,7 +65,7 @@ const AddNewAlbum = ({
               type="text"
               placeholder="Nom de l'artiste"
               name="artist"
-              value={userInputValue.artist}
+              value={inputChangeCreateNewAlbum.artist}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -80,7 +75,7 @@ const AddNewAlbum = ({
               type="text"
               placeholder="(URL de l'image"
               name="cover"
-              value={userInputValue.cover}
+              value={inputChangeCreateNewAlbum.cover}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -92,7 +87,7 @@ const AddNewAlbum = ({
               type="number"
               placeholder="Code barre"
               name="gencode"
-              value={userInputValue.gencode}
+              value={inputChangeCreateNewAlbum.gencode}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -102,7 +97,7 @@ const AddNewAlbum = ({
               type="number"
               placeholder="Année de sortie de l'album"
               name="year"
-              value={userInputValue.year}
+              value={inputChangeCreateNewAlbum.year}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -114,7 +109,7 @@ const AddNewAlbum = ({
               type="text"
               placeholder="Format de l'album"
               name="format"
-              value={userInputValue.format}
+              value={inputChangeCreateNewAlbum.format}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -126,7 +121,7 @@ const AddNewAlbum = ({
               type="text"
               placeholder="Style de l'album"
               name="style"
-              value={userInputValue.style}
+              value={inputChangeCreateNewAlbum.style}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -139,14 +134,15 @@ const AddNewAlbum = ({
               Enregistrer
             </Button>
             <Button
-              class="button"
               type="danger"
-              onClick={closeModal}
+              onClick={handleCloseModal}
               variant="danger"
               className="button is-cancel"
             >
               Annuler
             </Button>
+            {errorMessage && <div>{errorMessage}</div>}
+            {successMessage && <div>{successMessage}</div>}
           </div>
         </Form>
       </Card>
@@ -154,4 +150,33 @@ const AddNewAlbum = ({
   );
 };
 
-export default AddNewAlbum;
+const mapState = (state) => ({
+  modalNewAlbumIsOpen: state.album.modalNewAlbumIsOpen,
+  inputChangeCreateNewAlbum: state.album.inputChangeCreateNewAlbum,
+  errorMessage: state.album.errorMessage,
+  successMessage: state.album.successMessage,
+});
+
+const mapDispatch = (dispatch) => ({
+  closeModalNewAlbum: () => {
+    dispatch(closeModalNewAlbum());
+  },
+  inputChangeCreateNewAlbum: (changeData) => {
+    dispatch(inputChangeCreateNewAlbum(changeData));
+  },
+  addingNewAlbum: () => {
+    dispatch(addingNewAlbum());
+  },
+});
+
+/* AddNewAlbum.propTypes = {
+  emptyState: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onFormLogin: PropTypes.func.isRequired,
+  loginData: PropTypes.object.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+  loginErrorMessage: PropTypes.string.isRequired,
+}; */
+
+export default connect(mapState, mapDispatch)(ModalAddNewAlbum);

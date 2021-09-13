@@ -4,16 +4,13 @@ import "../../Styles/footer.scss";
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="footer-text">
-        <Link to="/" className="backhome">
-          Accueil
-        </Link>
-        <span>
-          <a href="https://github.com/inflames32" className="github">
-            Creé par Inflames32
-          </a>
-        </span>
-      </div>
+      <Link to="/" className="footer__home">
+        Accueil
+      </Link>
+
+      <a href="https://github.com/inflames32" className="footer__github">
+        Me contacter
+      </a>
     </div>
   );
 };
