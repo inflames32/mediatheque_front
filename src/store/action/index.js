@@ -17,6 +17,12 @@ export const SUBMIT_CREATE_ACCOUNT = "SUBMIT_CREATE_ACCOUNT";
 export const SUCCESS_CREATE_ACCOUNT = "SUCCESS_CREATE_ACCOUNT";
 export const ERROR_CREATE_ACCOUNT = "ERROR_CREATE_ACCOUNT";
 
+// login account
+export const INPUT_CHANGE_LOGIN_DATA = "INPUT_CHANGE_LOGIN_DATA";
+export const SUBMIT_LOGIN = "SUBMIT_LOGIN";
+export const SUCCESS_LOGIN = "SUCCESS_LOGIN";
+export const ERROR_LOGIN = "ERROR_LOGIN";
+
 export const CHANGE_LOADING = "CHANGE_LOADING";
 
 export const changeLoading = (payload) => ({
@@ -75,12 +81,30 @@ export const submitCreateAccount = () => ({
   type: SUBMIT_CREATE_ACCOUNT,
 });
 
-export const successCreateAccount = (payload) => ({
+export const successCreateAccount = () => ({
   type: SUCCESS_CREATE_ACCOUNT,
-  payload,
 });
 
 export const errorCreateAccount = (payload) => ({
   type: ERROR_CREATE_ACCOUNT,
+  payload,
+});
+
+export const inputChangeLoginData = (payload) => ({
+  type: INPUT_CHANGE_LOGIN_DATA,
+  payload,
+});
+
+export const submitLogin = () => ({
+  type: SUBMIT_LOGIN,
+});
+
+export const successLogin = (payload) => ({
+  type: SUCCESS_LOGIN,
+  payload,
+});
+
+export const errorLogin = (payload) => ({
+  type: ERROR_LOGIN,
   payload,
 });

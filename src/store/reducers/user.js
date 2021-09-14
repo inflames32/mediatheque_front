@@ -3,21 +3,29 @@ import {
   INPUT_CHANGE_CREATE_ACCOUNT,
   ERROR_CREATE_ACCOUNT,
   SUCCESS_CREATE_ACCOUNT,
+  SUBMIT_LOGIN,
+  ERROR_LOGIN,
+  SUCCESS_LOGIN,
+  INPUT_CHANGE_LOGIN_DATA,
 } from "../action";
 
 const initialState = {
-  login: {
+  inputChangeLoginData: {
     email: "",
     password: "",
   },
-
   inputChangeCreateAccount: {
     email: "",
     password: "",
     password_validation: "",
   },
-  errorMessage: "",
-  successMessage: "",
+  errorMessage: [],
+  successMessage: [],
+  logged: false,
+  loginData: {
+    id: "",
+    logged: false,
+  },
 };
 
 const user = (state = initialState, action = {}) => {
@@ -39,7 +47,6 @@ const user = (state = initialState, action = {}) => {
           ...action.payload,
         },
       };
-
     case ERROR_CREATE_ACCOUNT:
       return {
         ...state,
@@ -49,6 +56,30 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         successMessage: action.payload,
+      };
+    case INPUT_CHANGE_LOGIN_DATA:
+      return {
+        ...state,
+        inputChangeLoginData: {
+          ...state.inputChangeLoginData,
+          ...action.payload,
+        },
+      };
+    case SUBMIT_LOGIN:
+      return {
+        ...state,
+      };
+
+    case ERROR_LOGIN:
+      return {
+        ...state,
+        errorMessage: [action.payload],
+      };
+    case SUCCESS_LOGIN:
+      return {
+        ...state,
+        successMessage: [action.payload],
+        logged: true,
       };
     default:
       return state;

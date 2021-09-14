@@ -1,32 +1,35 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Footer from "../Footer";
 import Header from "../Header";
 
+import {
+  inputChangeLoginData,
+  INPUT_CHANGE_LOGIN_DATA,
+  submitLogin,
+  successLogin,
+} from "../../store/action";
 import { Form, Button, Card } from "react-bootstrap";
 import "../../Styles/signin.scss";
 
-const Signin = () => {
-  const [userValue, setUserValue] = useState({});
-  const [loading, setLoading] = useState(false);
-  //const [btnSubmitIsDisabled, setBtnSubmitIsDisabled] = useState(true);
+const Signin = ({
+  inputChangeLoginData,
+  submitLogin,
+  logged,
+  successMessage,
+  errorMessage,
+}) => {
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
-    setUserValue({
-      ...userValue,
+    inputChangeLoginData({
       [name]: value,
     });
-    //console.log(userValue);
   };
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    setLoading(true);
-    /*   login({
-      email: userValue.email,
-      password: userValue.password,
-    }); */
-    setLoading(false);
+    submitLogin();
   };
 
   /*   if (userValue.email && userValue.password === "") {
@@ -44,7 +47,7 @@ const Signin = () => {
                 className="user-input"
                 type="email"
                 name="email"
-                value={userValue.email}
+                value={inputChangeLoginData.email}
                 placeholder="Entrez votre email"
                 onChange={handleInputChange}
               />
@@ -59,7 +62,7 @@ const Signin = () => {
                 className="user-input"
                 type="password"
                 name="password"
-                value={userValue.password}
+                value={inputChangeLoginData.password}
                 placeholder="Mot de passe"
                 onChange={handleInputChange}
               />
@@ -86,6 +89,16 @@ const Signin = () => {
               <div className="no_account">Vous n'avez pas de compte ?</div>
             </Link>
           </Form>
+          {logged && <div>logged : {logged}</div>}
+          {/*  {successMessage && <div>{successMessage}</div>} */}
+          {successMessage.map((elem) => (
+            <span>{elem.successMessage}</span>
+          ))}
+          {errorMessage.map((elem) => (
+            <span>{elem.errorMessage}</span>
+          ))}
+          {/* {errorMessage && <div>{errorMessage}</div>} */}
+
           {/*   {auth ? (
             <div>vous êtes authentifié</div>
           ) : (
@@ -99,4 +112,21 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+const mapState = (state) => ({
+  inputChangeLoginData: state.user.inputChangeLoginData,
+  isLoading: state.album.isLoading,
+  successMessage: state.user.successMessage,
+  errorMessage: state.user.errorMessage,
+  logged: state.user.logged,
+});
+
+const mapDispatch = (dispatch) => ({
+  inputChangeLoginData: (changeData) => {
+    dispatch(inputChangeLoginData(changeData));
+  },
+  submitLogin: () => {
+    dispatch(submitLogin());
+  },
+});
+
+export default connect(mapState, mapDispatch)(Signin);
