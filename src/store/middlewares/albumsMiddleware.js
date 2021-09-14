@@ -1,5 +1,5 @@
 import axios from "axios";
-//import { useState } from "react";
+
 import {
   GET_ALL_ALBUMS,
   errorGettingAllAlbums,
@@ -7,7 +7,7 @@ import {
   ADDING_NEW_ALBUM,
   successAddingNewAlbum,
   errorAddingNewAlbum,
-} from "../store/action";
+} from "../action";
 
 const albumsMiddleware = (store) => (next) => (action) => {
   const url = process.env.REACT_APP_URL_BACK_PROD;

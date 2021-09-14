@@ -1,37 +1,34 @@
 import { React, useState } from "react";
+import { connect } from "react-redux";
 import Footer from "../Footer";
 import Header from "../Header";
-import { AuthMiddleware } from "../../Middleware/authMiddleware";
+
+import {
+  inputChangeCreateAccount,
+  submitCreateAccount,
+} from "../../store/action";
 
 import { Form, Button, Card } from "react-bootstrap";
 import "../../Styles/signup.scss";
 
-const Signup = () => {
-  const { signup, user } = AuthMiddleware();
-  const [userValue, setUserInputValue] = useState({
-    email: "",
-    password:"",
-    password_validation:''
-  });
-  const [loading, setLoading] = useState(false);
+const Signup = ({
+  errorMessage,
+  successMessage,
+  inputChangeCreateAccount,
+  submitCreateAccount,
+}) => {
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
-    setUserInputValue({
-      ...userValue,
-      [name]: value,  
-    });  
-  ;
-    
+    inputChangeCreateAccount({
+      [name]: value,
+    });
   };
+
   const onFormSubmit = (evt) => {
-    evt.preventDefault();   
-    signup({
-      email: userValue.email,
-      password: userValue.password,
-      password_validation: userValue.password_validation,
-    });       
-    setLoading(true);
+    evt.preventDefault();
+    submitCreateAccount();
   };
+
   return (
     <div className="signup">
       <Header />
@@ -46,10 +43,10 @@ const Signup = () => {
                 placeholder="Entrez votre email"
                 onChange={handleInputChange}
                 className="user-input"
+                value={inputChangeCreateAccount.email}
               />
               <Form.Text className="text-muted">
-                Votre email sera utilisé que pour vous connecter à votre
-                compte.
+                Votre email sera utilisé que pour vous connecter à votre compte.
               </Form.Text>
             </Form.Group>
 
@@ -61,8 +58,8 @@ const Signup = () => {
                 placeholder="Mot de passe"
                 onChange={handleInputChange}
                 className="user-input"
+                value={inputChangeCreateAccount.password}
               />
-               
             </Form.Group>
             <Form.Group
               className="mb-3"
@@ -75,22 +72,41 @@ const Signup = () => {
                 placeholder="Retaper votre mot de passe"
                 onChange={handleInputChange}
                 className="user-input"
+                value={inputChangeCreateAccount.password_valdiation}
               />
             </Form.Group>
             <div>
               <Button
-              className="no_account not_allowed"
-              variant="primary"
-              type="submit"
-              onClick={onFormSubmit}            >
-              Créer
-            </Button></div>
+                className="no_account not_allowed"
+                variant="primary"
+                type="submit"
+                onClick={onFormSubmit}
+              >
+                Créer
+              </Button>
+            </div>
           </Form>
+          {errorMessage && <div>{errorMessage}</div>}
+          {successMessage && <div>{successMessage}</div>}
         </Card>
       </main>
       <Footer />
     </div>
   );
 };
+const mapState = (state) => ({
+  inputChangeCreateAccount: state.user.inputChangeCreateAccount,
+  errorMessage: state.user.errorMessage,
+  successMessage: state.user.successMessage,
+});
 
-export default Signup;
+const mapDispatch = (dispatch) => ({
+  inputChangeCreateAccount: (changeData) => {
+    dispatch(inputChangeCreateAccount(changeData));
+  },
+  submitCreateAccount: () => {
+    dispatch(submitCreateAccount());
+  },
+});
+
+export default connect(mapState, mapDispatch)(Signup);

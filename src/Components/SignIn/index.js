@@ -2,13 +2,11 @@ import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Footer";
 import Header from "../Header";
-import { AuthMiddleware } from "../../Middleware/authMiddleware";
 
 import { Form, Button, Card } from "react-bootstrap";
 import "../../Styles/signin.scss";
 
 const Signin = () => {
-  const { login, createUser, user, auth } = AuthMiddleware();
   const [userValue, setUserValue] = useState({});
   const [loading, setLoading] = useState(false);
   //const [btnSubmitIsDisabled, setBtnSubmitIsDisabled] = useState(true);
@@ -24,10 +22,10 @@ const Signin = () => {
   const onFormSubmit = (evt) => {
     evt.preventDefault();
     setLoading(true);
-    login({
+    /*   login({
       email: userValue.email,
       password: userValue.password,
-    });
+    }); */
     setLoading(false);
   };
 
@@ -88,11 +86,11 @@ const Signin = () => {
               <div className="no_account">Vous n'avez pas de compte ?</div>
             </Link>
           </Form>
-          {auth ? (
+          {/*   {auth ? (
             <div>vous êtes authentifié</div>
           ) : (
             <div>vous n'êtes pas authentifié</div>
-          )}
+          )} */}
         </Card>
       </main>
 

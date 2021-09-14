@@ -3,16 +3,13 @@ import { createStore, compose, applyMiddleware } from "redux";
 
 // == Import : local
 import rootReducer from "./reducers";
-
-import albumsMiddleware from "../Middleware/albumsMiddleware";
+import albumsMiddleware from "../store/middlewares/albumsMiddleware";
+import userMiddleware from "../store/middlewares/userMiddleware";
 // == Enhancers
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
-  applyMiddleware(
-    albumsMiddleware
-    // secondMiddleware,
-  )
+  applyMiddleware(albumsMiddleware, userMiddleware)
 );
 
 // == Store

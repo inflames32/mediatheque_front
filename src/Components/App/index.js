@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect, Provider } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
@@ -22,7 +22,8 @@ const App = () => {
         <Route exact path="/albums" component={Albums} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
-        <Route exact path="/user/:id" component={User} />
+        <Route exact path="/user/:_id" component={User} />
+        <Route exact path="/album/:_id" component={User} />
       </Switch>
     </Provider>
   );

@@ -1,81 +1,57 @@
-import {} from "../actions";
+import {
+  SUBMIT_CREATE_ACCOUNT,
+  INPUT_CHANGE_CREATE_ACCOUNT,
+  ERROR_CREATE_ACCOUNT,
+  SUCCESS_CREATE_ACCOUNT,
+} from "../action";
 
 const initialState = {
-  
-  propIn: false,
-  loading:false,
-  },
   login: {
     email: "",
     password: "",
   },
-  coordonates: {
-    lat: "",
-    lon: "",
+
+  inputChangeCreateAccount: {
+    email: "",
+    password: "",
+    password_validation: "",
   },
+  errorMessage: "",
+  successMessage: "",
 };
 
-export default (state = initialState, action = {}) => {
-  /* switch (action.type) {
-    case CHOOSE_COUNTRY:
+const user = (state = initialState, action = {}) => {
+  switch (action.type) {
+    case INPUT_CHANGE_CREATE_ACCOUNT:
       return {
         ...state,
-        choose: action.payload,
-      };
-
-    case SELECT_UNIT:
-      return {
-        ...state,
-        units: action.payload,
-      };
-
-    case INPUT_CITY_CHANGE:
-      return {
-        ...state,
-        city: action.payload,
-      };
-
-    case SUBMIT_WORLD:
-      return {
-        ...state,
-        loading: true,
-      };
-
-    case SUBMIT_FRANCE:
-      return {
-        ...state,
-        loading: true,
-      };
-
-    case SUBMIT_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        messageSuccess: "Congratulations!",
-        API: { ...action.payload },
-        apiSuccess: true,
-      };
-
-    case SUBMIT_ERROR:
-      return {
-        ...state,
-        loading: false,
-        messageError: "Ville inconnue/pas de recherche",
-        apiSuccess: false,
-        API: {},
-      };
-
-    case ON_INPUT_CHANGE:
-      return {
-        ...state,
-        loginData: {
-          ...state.loginData,
+        inputChangeCreateAccount: {
+          ...state.inputChangeCreateAccount,
           ...action.payload,
         },
-        isLogged: false,
-      }; */
+      };
 
+    case SUBMIT_CREATE_ACCOUNT:
+      return {
+        ...state,
+        inputChangeCreateAccount: {
+          ...state.createAccount,
+          ...action.payload,
+        },
+      };
+
+    case ERROR_CREATE_ACCOUNT:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+    case SUCCESS_CREATE_ACCOUNT:
+      return {
+        ...state,
+        successMessage: action.payload,
+      };
     default:
       return state;
   }
 };
+export default user;

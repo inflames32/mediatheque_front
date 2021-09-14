@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 //import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 import { Card, Spinner, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 
-import { openModalNewAlbum } from "../../store/action";
+import {
+  getAllAlbums,
+  openModalNewAlbum,
+  changeLoading,
+} from "../../store/action";
 
 import Header from "../Header";
 import Footer from "../Footer";
@@ -13,23 +17,26 @@ import AlbumDetails from "../AlbumDetails";
 import "../../Styles/album.scss";
 import "react-toastify/dist/ReactToastify.css";
 
-const Albums = ({ isLoading, modalNewAlbumIsOpen, openModalNewAlbum }) => {
-  //const { getAllAlbums, getOneAlbum, albums } = AlbumsMiddleware();
-
-  //const [isLoading, setIsLoading] = useState(true);
-
+const Albums = ({
+  isLoading,
+  modalNewAlbumIsOpen,
+  openModalNewAlbum,
+  changeLoading,
+  successMessage,
+  errorMessage,
+}) => {
   const [albumDetailsIsOpen, setAlbumDetailsIsOpen] = useState(false);
   const [albumId, setAlbumId] = useState();
   const [key, setKey] = useState(0);
   const [albumDetails, setAlbumDetails] = useState({
     _id: "",
   });
-
+  const toastEmmitSuccess = () => toast("wow so easy");
+  const toastEmmitError = () => toast("wow so hard!");
   /*  useEffect(() => {
-    console.log(isLoading);
-    getAllAlbums().then(() => {
-      isLoading(false);
-    });
+    changeLoading();
+    getAllAlbums();
+    changeLoading();
     console.log(isLoading);
   }, []); */
 
@@ -41,9 +48,13 @@ const Albums = ({ isLoading, modalNewAlbumIsOpen, openModalNewAlbum }) => {
   };
 
   const handleAlbumDetails = (_id) => () => {
-    setAlbumDetailsIsOpen(true);
-    setAlbumId(_id);
+    /* setAlbumDetailsIsOpen(true);
+    setAlbumId(_id); */
     //getOneAlbum(_id);
+  };
+
+  const handleGetAllAlbums = () => {
+    getAllAlbums();
   };
 
   const ImgNotDefined =
@@ -53,6 +64,7 @@ const Albums = ({ isLoading, modalNewAlbumIsOpen, openModalNewAlbum }) => {
     <div className="albums">
       <Header />
       <main className="albums-main">
+        {/* <Button onClick={handleGetAllAlbums}>récupérer les albums</Button> */}
         <div className="btn-add-new-album">
           {isLoading ? (
             <Button>
@@ -105,16 +117,31 @@ const Albums = ({ isLoading, modalNewAlbumIsOpen, openModalNewAlbum }) => {
               </div>
             ))
           )} */}
+          {/*   <ToastContainer
+            position="bottom-right"
+            autoClose={2000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <ToastContainer /> */}
         </div>
         {albumDetailsIsOpen && (
           <AlbumDetails
-            setAlbumDetailsIsOpen={setAlbumDetailsIsOpen}
+          /* setAlbumDetailsIsOpen={setAlbumDetailsIsOpen}
             setAlbumId={setAlbumId}
             albumId={albumId}
             albumDetails={albumDetails}
-            setAlbumDetails={setAlbumDetails}
+            setAlbumDetails={setAlbumDetails} */
           />
         )}
+
+        {successMessage && <div>{successMessage}</div>}
+        {errorMessage && <div>{errorMessage}</div>}
       </main>
       <Footer />
     </div>
@@ -124,11 +151,19 @@ const Albums = ({ isLoading, modalNewAlbumIsOpen, openModalNewAlbum }) => {
 const mapState = (state) => ({
   modalNewAlbumIsOpen: state.album.modalNewAlbumIsOpen,
   isLoading: state.album.isLoading,
+  successMessage: state.user.successMessage,
+  errorMessage: state.user.errorMessage,
 });
 
 const mapDispatch = (dispatch) => ({
   openModalNewAlbum: () => {
     dispatch(openModalNewAlbum());
+  },
+  getAllAlbums: () => {
+    dispatch(getAllAlbums());
+  },
+  changeLoading: () => {
+    dispatch(changeLoading());
   },
 });
 

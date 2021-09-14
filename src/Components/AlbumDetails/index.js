@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-//import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 
 import { Button, Card } from "react-bootstrap";
 import { BsTrash, BsPencil } from "react-icons/bs";

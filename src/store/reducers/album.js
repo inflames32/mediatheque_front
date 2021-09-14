@@ -7,6 +7,7 @@ import {
   ADDING_NEW_ALBUM,
   SUCCESS_ADDING_NEW_ALBUM,
   ERROR_ADDING_NEW_ALBUM,
+  CHANGE_LOADING,
 } from "../action";
 
 const initialState = {
@@ -66,6 +67,12 @@ const album = (state = initialState, action = {}) => {
         ...state,
         errorMessage: action.payload,
         //modalNewAlbumIsOpen: false,
+      };
+
+    case CHANGE_LOADING:
+      return {
+        ...state,
+        isLoading: !state.isLoading,
       };
     default:
       return state;
