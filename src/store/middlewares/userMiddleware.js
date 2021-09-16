@@ -44,11 +44,11 @@ const userMiddleware = (store) => (next) => (action) => {
         data: store.getState().user.inputChangeLoginData,
       })
         .then((res) => {
-          if (res.data.length) {
+          /*   if (res.data.length) {
             console.log(res.data.length);
             store.dispatch(errorLogin(res.data));
             return;
-          }
+          } */
           console.log(res.data);
           store.dispatch(successLogin(res.data));
         })

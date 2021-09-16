@@ -19,13 +19,10 @@ const initialState = {
     password: "",
     password_validation: "",
   },
-  errorMessage: [],
-  successMessage: [],
+  errorMessage: "",
+  successMessage: "",
   logged: false,
-  loginData: {
-    id: "",
-    logged: false,
-  },
+  user: {},
 };
 
 const user = (state = initialState, action = {}) => {
@@ -73,13 +70,18 @@ const user = (state = initialState, action = {}) => {
     case ERROR_LOGIN:
       return {
         ...state,
-        errorMessage: [action.payload],
+        errorMessage: action.payload,
+        //logged: false,
       };
     case SUCCESS_LOGIN:
       return {
         ...state,
-        successMessage: [action.payload],
+        successMessage: action.payload,
         logged: true,
+        user: {
+          ...state,
+          ...action.payload,
+        },
       };
     default:
       return state;

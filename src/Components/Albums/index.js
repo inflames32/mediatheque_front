@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 //import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 import { Card, Spinner, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 import {
   getAllAlbums,
   openModalNewAlbum,
   changeLoading,
+  getAlbumByID,
 } from "../../store/action";
 
 import Header from "../Header";
@@ -24,38 +26,31 @@ const Albums = ({
   changeLoading,
   successMessage,
   errorMessage,
+  getAllAlbums,
+  listAlbums,
+  albumId,
 }) => {
-  const [albumDetailsIsOpen, setAlbumDetailsIsOpen] = useState(false);
-  const [albumId, setAlbumId] = useState();
-  const [key, setKey] = useState(0);
-  const [albumDetails, setAlbumDetails] = useState({
-    _id: "",
-  });
-  const toastEmmitSuccess = () => toast("wow so easy");
-  const toastEmmitError = () => toast("wow so hard!");
-  /*  useEffect(() => {
-    changeLoading();
-    getAllAlbums();
-    changeLoading();
-    console.log(isLoading);
-  }, []); */
+  console.log(listAlbums);
 
-  // ouvrir/fermer l'ajout d'un album
+  useEffect(() => {
+    getAllAlbums();
+  }, []);
 
   const handleOpeningModalNewAlbum = () => {
     console.log("je clique");
     openModalNewAlbum();
   };
 
-  const handleAlbumDetails = (_id) => () => {
-    /* setAlbumDetailsIsOpen(true);
-    setAlbumId(_id); */
-    //getOneAlbum(_id);
+  const handleAlbumDetails = (albumId) => () => {
+    console.log(albumId);
+    getAlbumByID(albumId);
   };
 
   const handleGetAllAlbums = () => {
     getAllAlbums();
   };
+
+  const linktoalbumId = `/album/${albumId}`;
 
   const ImgNotDefined =
     "https://image.flaticon.com/icons/png/256/376/376819.png";
@@ -64,9 +59,8 @@ const Albums = ({
     <div className="albums">
       <Header />
       <main className="albums-main">
-        {/* <Button onClick={handleGetAllAlbums}>récupérer les albums</Button> */}
         <div className="btn-add-new-album">
-          {isLoading ? (
+          {/*  {isLoading ? (
             <Button>
               <Spinner
                 as="span"
@@ -76,16 +70,17 @@ const Albums = ({
                 aria-hidden="true"
               />
             </Button>
-          ) : (
-            <Button
-              onClick={handleOpeningModalNewAlbum}
-              className="button btn-new-album"
-              variant="success"
-              type="primary"
-            >
-              Ajouter un nouvel album
-            </Button>
-          )}
+          ) : ( */}
+
+          <Button
+            onClick={handleOpeningModalNewAlbum}
+            className="button btn-new-album"
+            variant="success"
+            type="primary"
+          >
+            Ajouter un nouvel album
+          </Button>
+          {/*  )} */}
         </div>
         {modalNewAlbumIsOpen && <ModalAddNewAlbum />}
         <div className="list-albums">
@@ -99,10 +94,10 @@ const Albums = ({
                 aria-hidden="true"
               />
               Loading...
-            </div>
-          ) : (
-            albums.length &&
-            albums.map(({ _id, cover, artist, name, year }) => (
+            </div>*/}
+
+          {listAlbums.length ? (
+            listAlbums.map(({ _id, cover, artist, name, year }) => (
               <div className="list-albums-element" key={_id}>
                 <Card onClick={handleAlbumDetails(_id)} className="albumcover">
                   {cover ? (
@@ -113,35 +108,28 @@ const Albums = ({
                   <Card.Title>{artist}</Card.Title>
                   <Card.Title>{name}</Card.Title>
                   <Card.Title>{year}</Card.Title>
+                  <Link to={linktoalbumId}>Lien vers l'album</Link>
+                  {/* <Link to="/albums">
+                    <p>retour</p>
+                  </Link> */}
                 </Card>
               </div>
             ))
-          )} */}
-          {/*   <ToastContainer
-            position="bottom-right"
-            autoClose={2000}
-            hideProgressBar={true}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-          <ToastContainer /> */}
+          ) : (
+            <Card>
+              <div>Erreur de récupération ou base de données vide</div>
+            </Card>
+          )}
         </div>
-        {albumDetailsIsOpen && (
+        {/*   {albumDetailsIsOpen && (
           <AlbumDetails
-          /* setAlbumDetailsIsOpen={setAlbumDetailsIsOpen}
+            setAlbumDetailsIsOpen={setAlbumDetailsIsOpen}
             setAlbumId={setAlbumId}
             albumId={albumId}
             albumDetails={albumDetails}
-            setAlbumDetails={setAlbumDetails} */
+            setAlbumDetails={setAlbumDetails}
           />
-        )}
-
-        {successMessage && <div>{successMessage}</div>}
-        {errorMessage && <div>{errorMessage}</div>}
+        )} */}
       </main>
       <Footer />
     </div>
@@ -149,10 +137,12 @@ const Albums = ({
 };
 
 const mapState = (state) => ({
-  modalNewAlbumIsOpen: state.album.modalNewAlbumIsOpen,
-  isLoading: state.album.isLoading,
+  modalNewAlbumIsOpen: state.albumReducer.modalNewAlbumIsOpen,
+  //isLoading: state.album.isLoading,
   successMessage: state.user.successMessage,
   errorMessage: state.user.errorMessage,
+  listAlbums: state.albumReducer.listAlbums,
+  albumId: state.albumReducer.album.albumId,
 });
 
 const mapDispatch = (dispatch) => ({
@@ -164,6 +154,9 @@ const mapDispatch = (dispatch) => ({
   },
   changeLoading: () => {
     dispatch(changeLoading());
+  },
+  getAlbumByID: (albumId) => {
+    dispatch(getAlbumByID(albumId));
   },
 });
 

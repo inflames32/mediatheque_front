@@ -19,6 +19,8 @@ const Signin = ({
   logged,
   successMessage,
   errorMessage,
+  message,
+  id,
 }) => {
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -89,14 +91,19 @@ const Signin = ({
               <div className="no_account">Vous n'avez pas de compte ?</div>
             </Link>
           </Form>
-          {logged && <div>logged : {logged}</div>}
+          {logged && (
+            <div>
+              <p>{message}</p>
+              <p>{id}</p>
+            </div>
+          )}
           {/*  {successMessage && <div>{successMessage}</div>} */}
-          {successMessage.map((elem) => (
-            <span>{elem.successMessage}</span>
-          ))}
-          {errorMessage.map((elem) => (
+          {/*  {successMessage.map((elem) => (
+            <span>{elem.successMessage.message}</span>
+          ))} */}
+          {/* {errorMessage.map((elem) => (
             <span>{elem.errorMessage}</span>
-          ))}
+          ))} */}
           {/* {errorMessage && <div>{errorMessage}</div>} */}
 
           {/*   {auth ? (
@@ -114,10 +121,12 @@ const Signin = ({
 
 const mapState = (state) => ({
   inputChangeLoginData: state.user.inputChangeLoginData,
-  isLoading: state.album.isLoading,
+  isLoading: state.albumReducer.isLoading,
   successMessage: state.user.successMessage,
   errorMessage: state.user.errorMessage,
   logged: state.user.logged,
+  message: state.user.successMessage.message,
+  id: state.user.user.userId,
 });
 
 const mapDispatch = (dispatch) => ({

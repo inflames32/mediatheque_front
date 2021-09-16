@@ -2,11 +2,14 @@ import axios from "axios";
 
 import {
   GET_ALL_ALBUMS,
-  errorGettingAllAlbums,
-  succesGettingAllAlbums,
+  errorGetAllAlbums,
+  successGetAllAlbums,
   ADDING_NEW_ALBUM,
   successAddingNewAlbum,
   errorAddingNewAlbum,
+  GET_ALBUM_BY_ID,
+  successGetAlbumByID,
+  errorGetAlbumByID,
 } from "../action";
 
 const albumsMiddleware = (store) => (next) => (action) => {
@@ -21,10 +24,32 @@ const albumsMiddleware = (store) => (next) => (action) => {
         url: `${url}/albums/`,
       })
         .then((res) => {
-          store.dispatch(succesGettingAllAlbums(res.data));
+          console.log(res);
+          console.log("albumsMiddleware", res.data);
+          store.dispatch(successGetAllAlbums(res.data));
         })
         .catch((err) => {
-          store.dispatch(errorGettingAllAlbums(err));
+          console.log(err);
+          store.dispatch(
+            errorGetAllAlbums("Impossible de récupérer les albums")
+          );
+        });
+      break;
+    }
+
+    case GET_ALBUM_BY_ID: {
+      const albumId = store.getState().album.album.albumId;
+      console.log("albumMiddleware", albumId);
+      axios({
+        method: "get",
+        url: `${url}/album/:${albumId}`,
+      })
+        .then((res) => {
+          console.log(res.data);
+          store.dispatch(successGetAlbumByID(res.data));
+        })
+        .catch((err) => {
+          store.dispatch(errorGetAlbumByID(err));
         });
       break;
     }

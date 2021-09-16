@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import album from "./album";
+import albumReducer from "./albumReducer";
 import user from "./user";
 
 export default combineReducers({
-  album,
+  albumReducer,
   user,
 });

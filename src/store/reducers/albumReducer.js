@@ -1,5 +1,3 @@
-//import albumsMiddleware from "../../Middleware/albumsMiddleware";
-
 import {
   OPEN_MODAL_NEW_ALBUM,
   CLOSE_MODAL_NEW_ALBUM,
@@ -8,6 +6,12 @@ import {
   SUCCESS_ADDING_NEW_ALBUM,
   ERROR_ADDING_NEW_ALBUM,
   CHANGE_LOADING,
+  GET_ALL_ALBUMS,
+  SUCCESS_GET_ALL_ALBUMS,
+  ERROR_GET_ALL_ALBUMS,
+  GET_ALBUM_BY_ID,
+  SUCCESS_GET_ALBUM_BY_ID,
+  ERROR_GET_ALBUM_BY_ID,
 } from "../action";
 
 const initialState = {
@@ -24,6 +28,11 @@ const initialState = {
   },
   successMessage: "",
   errorMessage: "",
+  album: {
+    albumId: "",
+  },
+  listAlbums: [],
+  loading: false,
 };
 
 const album = (state = initialState, action = {}) => {
@@ -38,6 +47,46 @@ const album = (state = initialState, action = {}) => {
       return {
         ...state,
         modalNewAlbumIsOpen: false,
+      };
+
+    case GET_ALBUM_BY_ID:
+      return {
+        ...state,
+        album: [...action.payload],
+      };
+
+    case SUCCESS_GET_ALBUM_BY_ID:
+      return {
+        ...state,
+        album: [...action.payload],
+      };
+
+    case ERROR_GET_ALBUM_BY_ID:
+      return {
+        ...state,
+        album: [],
+      };
+
+    case GET_ALL_ALBUMS:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case SUCCESS_GET_ALL_ALBUMS:
+      return {
+        ...state,
+        listAlbums: [...action.payload],
+        successMessage: action.payload,
+        loading: false,
+      };
+
+    case ERROR_GET_ALL_ALBUMS:
+      return {
+        ...state,
+        errorMessage: action.payload,
+        loading: false,
+        listAlbums: [],
       };
 
     case INPUT_CHANGE_CREATE_NEW_ALBUM:

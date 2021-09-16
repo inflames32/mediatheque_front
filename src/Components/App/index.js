@@ -8,6 +8,7 @@ import Albums from "../Albums";
 import SignUp from "../Signup";
 import SignIn from "../Signin";
 import User from "../User";
+import Album from "../Album";
 
 import store from "../../store";
 import "../../Styles/reset.scss";
@@ -23,7 +24,7 @@ const App = () => {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/user/:_id" component={User} />
-        <Route exact path="/album/:_id" component={User} />
+        <Route exact path="/album/:_id" component={Album} />
       </Switch>
     </Provider>
   );

@@ -151,10 +151,10 @@ const ModalAddNewAlbum = ({
 };
 
 const mapState = (state) => ({
-  modalNewAlbumIsOpen: state.album.modalNewAlbumIsOpen,
-  inputChangeCreateNewAlbum: state.album.inputChangeCreateNewAlbum,
-  errorMessage: state.album.errorMessage,
-  successMessage: state.album.successMessage,
+  modalNewAlbumIsOpen: state.albumReducer.modalNewAlbumIsOpen,
+  inputChangeCreateNewAlbum: state.albumReducer.inputChangeCreateNewAlbum,
+  errorMessage: state.albumReducer.errorMessage,
+  successMessage: state.albumReducer.successMessage,
 });
 
 const mapDispatch = (dispatch) => ({
