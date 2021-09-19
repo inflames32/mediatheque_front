@@ -33,6 +33,7 @@ export const SUCCESS_GET_ALL_ALBUMS = "SUCCESS_GET_ALL_ALBUMS";
 export const ERROR_GET_ALL_ALBUMS = "ERROR_GET_ALL_ALBUMS";
 // Open album
 export const OPEN_ALBUM_BY_ID = "OPEN_ALBUM_BY_ID";
+// My Account
 
 export const CHANGE_LOADING = "CHANGE_LOADING";
 

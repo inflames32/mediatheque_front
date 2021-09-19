@@ -141,8 +141,6 @@ const ModalAddNewAlbum = ({
             >
               Annuler
             </Button>
-            {errorMessage && <div>{errorMessage}</div>}
-            {successMessage && <div>{successMessage}</div>}
           </div>
         </Form>
       </Card>

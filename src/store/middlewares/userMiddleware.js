@@ -12,7 +12,7 @@ import {
 const userMiddleware = (store) => (next) => (action) => {
   const url = process.env.REACT_APP_URL_BACK_PROD;
   const data = store.getState().user.inputChangeCreateAccount;
-  console.log("ici...", data);
+
   next(action);
   switch (action.type) {
     // submit create account
@@ -24,7 +24,6 @@ const userMiddleware = (store) => (next) => (action) => {
       })
         .then((res) => {
           if (res.data.length) {
-            console.log(res.data.length);
             store.dispatch(errorCreateAccount(res.data));
             return;
           }
@@ -32,7 +31,6 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(successCreateAccount(res.data));
         })
         .catch((err) => {
-          console.log(err);
           store.dispatch(errorCreateAccount(err));
         });
       break;
@@ -44,16 +42,9 @@ const userMiddleware = (store) => (next) => (action) => {
         data: store.getState().user.inputChangeLoginData,
       })
         .then((res) => {
-          /*   if (res.data.length) {
-            console.log(res.data.length);
-            store.dispatch(errorLogin(res.data));
-            return;
-          } */
-          console.log(res.data);
           store.dispatch(successLogin(res.data));
         })
         .catch((err) => {
-          console.log(err);
           store.dispatch(errorLogin(err));
         });
       break;

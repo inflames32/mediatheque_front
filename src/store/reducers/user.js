@@ -7,6 +7,7 @@ import {
   ERROR_LOGIN,
   SUCCESS_LOGIN,
   INPUT_CHANGE_LOGIN_DATA,
+  GO_TO_MY_ACCOUNT,
 } from "../action";
 
 const initialState = {
@@ -22,7 +23,7 @@ const initialState = {
   errorMessage: "",
   successMessage: "",
   logged: false,
-  user: {},
+  loggedUser: "",
 };
 
 const user = (state = initialState, action = {}) => {
@@ -71,18 +72,14 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         errorMessage: action.payload,
-        //logged: false,
       };
     case SUCCESS_LOGIN:
       return {
         ...state,
-        successMessage: action.payload,
+        loggedUser: action.payload,
         logged: true,
-        user: {
-          ...state,
-          ...action.payload,
-        },
       };
+
     default:
       return state;
   }

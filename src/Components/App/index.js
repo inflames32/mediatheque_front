@@ -23,7 +23,7 @@ const App = () => {
         <Route exact path="/albums" component={Albums} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
-        <Route exact path="/user/:_id" component={User} />
+        <Route exact path="/user/:_id/my-account" component={User} />
         <Route exact path="/album/:_id" component={Album} />
       </Switch>
     </Provider>

@@ -28,6 +28,7 @@ const initialState = {
   },
   successMessage: "",
   errorMessage: "",
+  albumId: "",
   album: {
     albumId: "",
   },
@@ -77,7 +78,7 @@ const album = (state = initialState, action = {}) => {
       return {
         ...state,
         listAlbums: [...action.payload],
-        successMessage: action.payload,
+        successMessage: "les albums sont récupérés",
         loading: false,
       };
 

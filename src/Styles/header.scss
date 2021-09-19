@@ -29,3 +29,11 @@
     width: 90%;
     margin: auto;
 }
+
+@media screen and (min-width: 972px) {
+    .header__nav {
+        margin: 2em;
+        display: flex;
+        justify-content: space-around;
+    }
+} ;

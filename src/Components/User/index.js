@@ -14,7 +14,7 @@ const User = () => {
           <Card.Header>Ma médiathèque</Card.Header>
           <Card.Body>
             <Card.Title>Message de bienvenue</Card.Title>
-            <Card.Text>Biennu sur votre page</Card.Text>
+            <Card.Text>Bienvenu sur votre profil</Card.Text>
           </Card.Body>
         </Card>
       </main>

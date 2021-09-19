@@ -38,7 +38,8 @@ const albumsMiddleware = (store) => (next) => (action) => {
     }
 
     case GET_ALBUM_BY_ID: {
-      const albumId = store.getState().album.album.albumId;
+      const albumId = store.getState().albumReducer.albumId;
+
       console.log("albumMiddleware", albumId);
       axios({
         method: "get",

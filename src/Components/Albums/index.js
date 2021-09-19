@@ -18,6 +18,7 @@ import ModalAddNewAlbum from "../ModalAddNewAlbum";
 import AlbumDetails from "../AlbumDetails";
 import "../../Styles/album.scss";
 import "react-toastify/dist/ReactToastify.css";
+import { distanceAndSkiddingToXY } from "@popperjs/core/lib/modifiers/offset";
 
 const Albums = ({
   isLoading,
@@ -41,9 +42,9 @@ const Albums = ({
     openModalNewAlbum();
   };
 
-  const handleAlbumDetails = (albumId) => () => {
-    console.log(albumId);
-    getAlbumByID(albumId);
+  const handleAlbumDetails = (_id) => () => {
+    console.log(_id);
+    getAlbumByID(_id);
   };
 
   const handleGetAllAlbums = () => {
@@ -108,7 +109,7 @@ const Albums = ({
                   <Card.Title>{artist}</Card.Title>
                   <Card.Title>{name}</Card.Title>
                   <Card.Title>{year}</Card.Title>
-                  <Link to={linktoalbumId}>Lien vers l'album</Link>
+                  <Link to={_id}>Lien vers l'album</Link>
                   {/* <Link to="/albums">
                     <p>retour</p>
                   </Link> */}
@@ -131,6 +132,7 @@ const Albums = ({
           />
         )} */}
       </main>
+      <ToastContainer />
       <Footer />
     </div>
   );
@@ -139,7 +141,7 @@ const Albums = ({
 const mapState = (state) => ({
   modalNewAlbumIsOpen: state.albumReducer.modalNewAlbumIsOpen,
   //isLoading: state.album.isLoading,
-  successMessage: state.user.successMessage,
+  successMessage: state.albumReducer.successMessage,
   errorMessage: state.user.errorMessage,
   listAlbums: state.albumReducer.listAlbums,
   albumId: state.albumReducer.album.albumId,
@@ -155,8 +157,8 @@ const mapDispatch = (dispatch) => ({
   changeLoading: () => {
     dispatch(changeLoading());
   },
-  getAlbumByID: (albumId) => {
-    dispatch(getAlbumByID(albumId));
+  getAlbumByID: (_id) => {
+    dispatch(getAlbumByID(_id));
   },
 });
 
