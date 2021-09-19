@@ -12,6 +12,7 @@ import {
   GET_ALBUM_BY_ID,
   SUCCESS_GET_ALBUM_BY_ID,
   ERROR_GET_ALBUM_BY_ID,
+  GET_ALBUM_ID,
 } from "../action";
 
 const initialState = {
@@ -29,11 +30,17 @@ const initialState = {
   successMessage: "",
   errorMessage: "",
   albumId: "",
-  album: {
-    albumId: "",
-  },
   listAlbums: [],
   loading: false,
+  album: {
+    name: "",
+    artist: "",
+    cover: "",
+    gencode: "",
+    year: "",
+    format: "",
+    style: "",
+  },
 };
 
 const album = (state = initialState, action = {}) => {
@@ -53,13 +60,13 @@ const album = (state = initialState, action = {}) => {
     case GET_ALBUM_BY_ID:
       return {
         ...state,
-        album: [...action.payload],
+        album: { ...action.payload },
       };
 
     case SUCCESS_GET_ALBUM_BY_ID:
       return {
         ...state,
-        album: [...action.payload],
+        album: { ...action.payload },
       };
 
     case ERROR_GET_ALBUM_BY_ID:
@@ -124,6 +131,12 @@ const album = (state = initialState, action = {}) => {
         ...state,
         isLoading: !state.isLoading,
       };
+    case GET_ALBUM_ID:
+      return {
+        ...state,
+        albumId: action.payload,
+      };
+
     default:
       return state;
   }

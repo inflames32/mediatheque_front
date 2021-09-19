@@ -125,7 +125,6 @@ const mapState = (state) => ({
   successMessage: state.user.successMessage,
   errorMessage: state.user.errorMessage,
   logged: state.user.logged,
-  message: state.user.successMessage.message,
   _id: state.user._id,
 });
 

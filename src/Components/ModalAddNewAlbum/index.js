@@ -164,6 +164,7 @@ const mapDispatch = (dispatch) => ({
   },
   addingNewAlbum: () => {
     dispatch(addingNewAlbum());
+    dispatch(closeModalNewAlbum());
   },
 });
 

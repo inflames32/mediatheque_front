@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { Button, Nav, Navbar } from "react-bootstrap";
 import { connect } from "react-redux";
 import "../../Styles/header.scss";
-import { goToMyAccount } from "../../store/action";
+import { disconnectUser } from "../../store/action";
+import { toast, ToastContainer } from "react-toastify";
 
-const Header = ({ logged, _id, email }) => {
+const Header = ({ logged, _id, email, disconnectUser }) => {
+  const handleDisconnect = () => {
+    disconnectUser();
+  };
   return (
     <Navbar expand="lg" className="navbar-color">
       <Navbar.Brand>
@@ -17,7 +21,7 @@ const Header = ({ logged, _id, email }) => {
         <Nav className="me-auto navbar-btn header__btn">
           <Link to="/albums">
             <Button className="btn_albumslist header__btn_albums">
-              Albums
+              Albums publics
             </Button>
           </Link>
           {!logged ? (
@@ -28,20 +32,36 @@ const Header = ({ logged, _id, email }) => {
             </Link>
           ) : (
             <div>
-              <Link to="/user/userID/my-account">
+              <Link
+                to={{
+                  pathname: `/user/${_id}/mon-compte`,
+                }}
+              >
                 <Button className="signin-btn_connect header__btn_connexion">
                   Bienvenue {email}
                 </Button>
               </Link>
-
-              <Link to="/signin">
-                <Button className="signin-btn_connect header__btn_disconnect">
+              <Link
+                to={{
+                  pathname: `/user/${_id}/mes-albums`,
+                }}
+              >
+                <Button className="signin-btn_connect header__btn_myAlbums">
+                  Mes albums
+                </Button>
+              </Link>
+              <Link to="/">
+                <Button
+                  className="signin-btn_connect header__btn_disconnect"
+                  onClick={handleDisconnect}
+                >
                   Se déconnecter
                 </Button>
               </Link>
             </div>
           )}
         </Nav>
+        {/* <ToastContainer /> */}
       </Navbar.Collapse>
     </Navbar>
   );
@@ -55,6 +75,19 @@ const mapState = (state) => ({
   email: state.user.loggedUser.email,
 });
 
-const mapDispatch = (dispatch) => ({});
+const mapDispatch = (dispatch) => ({
+  disconnectUser: () => {
+    dispatch(disconnectUser());
+    /* toast.success("utlisateur déconnecé", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }); */
+  },
+});
 
 export default connect(mapState, mapDispatch)(Header);

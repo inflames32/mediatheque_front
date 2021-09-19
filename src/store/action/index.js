@@ -33,8 +33,10 @@ export const SUCCESS_GET_ALL_ALBUMS = "SUCCESS_GET_ALL_ALBUMS";
 export const ERROR_GET_ALL_ALBUMS = "ERROR_GET_ALL_ALBUMS";
 // Open album
 export const OPEN_ALBUM_BY_ID = "OPEN_ALBUM_BY_ID";
-// My Account
-
+// Disconnetc User
+export const DISCONNECT_USER = "DISCONNECT_USER";
+// Get album ID
+export const GET_ALBUM_ID = "GET_ALBUM_ID";
 export const CHANGE_LOADING = "CHANGE_LOADING";
 
 export const changeLoading = (payload) => ({
@@ -120,9 +122,8 @@ export const errorLogin = (payload) => ({
   payload,
 });
 
-export const getAlbumByID = (payload) => ({
+export const getAlbumByID = () => ({
   type: GET_ALBUM_BY_ID,
-  payload,
 });
 
 export const successGetAlbumByID = (payload) => ({
@@ -132,5 +133,15 @@ export const successGetAlbumByID = (payload) => ({
 
 export const errorGetAlbumByID = (payload) => ({
   type: ERROR_GET_ALBUM_BY_ID,
+  payload,
+});
+
+export const disconnectUser = (payload) => ({
+  type: DISCONNECT_USER,
+  payload,
+});
+
+export const getAlbumID = (payload) => ({
+  type: GET_ALBUM_ID,
   payload,
 });

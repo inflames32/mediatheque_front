@@ -19,6 +19,17 @@
     background-color: rgb(55, 55, 221) !important;
 }
 
+.header__btn_disconnect:hover {
+    text-decoration: none;
+    background-color: red !important;
+    border-color: red !important;
+}
+.header__btn_myAlbums:hover {
+    text-decoration: none;
+    background-color: green !important;
+    border-color: green !important;
+}
+
 .narbar-btn {
     display: flex !important;
     flex-direction: row !important;

@@ -10,6 +10,7 @@ import {
   openModalNewAlbum,
   changeLoading,
   getAlbumByID,
+  getAlbumID,
 } from "../../store/action";
 
 import Header from "../Header";
@@ -30,11 +31,25 @@ const Albums = ({
   getAllAlbums,
   listAlbums,
   albumId,
+  logged,
+  email,
+  _id,
+  getAlbumID,
 }) => {
-  console.log(listAlbums);
-
   useEffect(() => {
     getAllAlbums();
+    if (listAlbums.length) {
+      toast.success(
+        { successMessage },
+        {
+          position: toast.POSITION.TOP_LEFT,
+          duration: 2000,
+        }
+      );
+      console.log("ca marche");
+    }
+
+    console.log("sucess de récupération");
   }, []);
 
   const handleOpeningModalNewAlbum = () => {
@@ -42,16 +57,10 @@ const Albums = ({
     openModalNewAlbum();
   };
 
-  const handleAlbumDetails = (_id) => () => {
+  const handleAlbumId = (_id) => () => {
+    getAlbumID(_id);
     console.log(_id);
-    getAlbumByID(_id);
   };
-
-  const handleGetAllAlbums = () => {
-    getAllAlbums();
-  };
-
-  const linktoalbumId = `/album/${albumId}`;
 
   const ImgNotDefined =
     "https://image.flaticon.com/icons/png/256/376/376819.png";
@@ -59,6 +68,7 @@ const Albums = ({
   return (
     <div className="albums">
       <Header />
+      <ToastContainer />
       <main className="albums-main">
         <div className="btn-add-new-album">
           {/*  {isLoading ? (
@@ -72,16 +82,25 @@ const Albums = ({
               />
             </Button>
           ) : ( */}
-
-          <Button
-            onClick={handleOpeningModalNewAlbum}
-            className="button btn-new-album"
-            variant="success"
-            type="primary"
-          >
-            Ajouter un nouvel album
-          </Button>
-          {/*  )} */}
+          {logged ? (
+            <Button
+              onClick={handleOpeningModalNewAlbum}
+              className="button btn-new-album"
+              variant="success"
+              type="primary"
+            >
+              Ajouter un nouvel album à ma collection
+            </Button>
+          ) : (
+            <Button
+              onClick={handleOpeningModalNewAlbum}
+              className="button btn-new-album"
+              variant="success"
+              type="primary"
+            >
+              Ajouter un nouvel album
+            </Button>
+          )}
         </div>
         {modalNewAlbumIsOpen && <ModalAddNewAlbum />}
         <div className="list-albums">
@@ -100,7 +119,10 @@ const Albums = ({
           {listAlbums.length ? (
             listAlbums.map(({ _id, cover, artist, name, year }) => (
               <div className="list-albums-element" key={_id}>
-                <Card onClick={handleAlbumDetails(_id)} className="albumcover">
+                <Card
+                  /* onClick={handleAlbumDetails(_id)} */
+                  className="albumcover"
+                >
                   {cover ? (
                     <Card.Img src={cover} />
                   ) : (
@@ -109,10 +131,14 @@ const Albums = ({
                   <Card.Title>{artist}</Card.Title>
                   <Card.Title>{name}</Card.Title>
                   <Card.Title>{year}</Card.Title>
-                  <Link to={_id}>Lien vers l'album</Link>
-                  {/* <Link to="/albums">
-                    <p>retour</p>
-                  </Link> */}
+                  <Link
+                    to={{
+                      pathname: `/album/${_id}`,
+                    }}
+                    onClick={handleAlbumId(_id)}
+                  >
+                    Lien vers l'album
+                  </Link>
                 </Card>
               </div>
             ))
@@ -132,7 +158,6 @@ const Albums = ({
           />
         )} */}
       </main>
-      <ToastContainer />
       <Footer />
     </div>
   );
@@ -144,7 +169,10 @@ const mapState = (state) => ({
   successMessage: state.albumReducer.successMessage,
   errorMessage: state.user.errorMessage,
   listAlbums: state.albumReducer.listAlbums,
-  albumId: state.albumReducer.album.albumId,
+  albumId: state.albumReducer.albumId,
+  email: state.user.loggedUser.email,
+  logged: state.user.loggedUser.logged,
+  _id: state.user.loggedUser._id,
 });
 
 const mapDispatch = (dispatch) => ({
@@ -159,6 +187,9 @@ const mapDispatch = (dispatch) => ({
   },
   getAlbumByID: (_id) => {
     dispatch(getAlbumByID(_id));
+  },
+  getAlbumID: (_id) => {
+    dispatch(getAlbumID(_id));
   },
 });
 

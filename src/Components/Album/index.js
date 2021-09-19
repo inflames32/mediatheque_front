@@ -3,14 +3,20 @@ import { Card } from "react-bootstrap";
 import { BsPencil } from "react-icons/bs";
 import { connect } from "react-redux";
 import { getAlbumByID } from "../../store/action";
+import "../../Styles/album.scss";
 
-const Album = ({ setAlbumDetailsIsOpen, setIncrement, albumId, album }) => {
+const Album = ({
+  setAlbumDetailsIsOpen,
+  setIncrement,
+  albumId,
+  album,
+  cover,
+  getAlbumByID,
+}) => {
   //const { deleteAlbumByID, getOneAlbum, album } = AlbumsMiddleware();
 
-  useEffect(() => {
-    console.log(albumId);
+  useEffect((albumId) => {
     getAlbumByID(albumId);
-    console.log(albumId);
   }, []);
 
   /* const deleteAlbum = (albumId) => () => {
@@ -33,11 +39,11 @@ const Album = ({ setAlbumDetailsIsOpen, setIncrement, albumId, album }) => {
   return (
     <div className="album ">
       <Card className="album__card">
-        <Card.Body>
+        <Card.Body className="album__card__body">
           <div className="album__card__content">
             <div className="album__card__content__cover">
               {album.cover ? (
-                <Card.Img src={album.cover} />
+                <Card.Img src={cover} />
               ) : (
                 <Card.Img src={ImgNotDefined} />
               )}
@@ -91,14 +97,19 @@ const Album = ({ setAlbumDetailsIsOpen, setIncrement, albumId, album }) => {
 };
 
 const mapState = (state) => ({
-  isLoading: state.album.isLoading,
   successMessage: state.user.successMessage,
   errorMessage: state.user.errorMessage,
   message: state.user.successMessage.message,
-  album: state.album.album,
-  albumId: state.album.albumId,
+  album: state.albumReducer.album,
+  albumId: state.albumReducer.albumId,
+  _id: state.albumReducer.albumId,
+  cover: state.albumReducer.album.cover,
 });
 
-const mapDispatch = (dispatch) => ({});
+const mapDispatch = (dispatch) => ({
+  getAlbumByID: (albumId) => {
+    dispatch(getAlbumByID(albumId));
+  },
+});
 
 export default connect(mapState, mapDispatch)(Album);

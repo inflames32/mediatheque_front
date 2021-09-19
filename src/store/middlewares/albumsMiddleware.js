@@ -39,13 +39,13 @@ const albumsMiddleware = (store) => (next) => (action) => {
 
     case GET_ALBUM_BY_ID: {
       const albumId = store.getState().albumReducer.albumId;
-
       console.log("albumMiddleware", albumId);
       axios({
         method: "get",
         url: `${url}/album/:${albumId}`,
       })
         .then((res) => {
+          console.log(res);
           console.log(res.data);
           store.dispatch(successGetAlbumByID(res.data));
         })
@@ -59,7 +59,7 @@ const albumsMiddleware = (store) => (next) => (action) => {
       axios({
         method: "post",
         url: `${url}/albums/addAlbum`,
-        data: store.getState().album.inputChangeCreateNewAlbum,
+        data: store.getState().albumReducer.inputChangeCreateNewAlbum,
       })
         .then((res) => {
           if (res.data.length) {

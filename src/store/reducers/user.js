@@ -8,6 +8,7 @@ import {
   SUCCESS_LOGIN,
   INPUT_CHANGE_LOGIN_DATA,
   GO_TO_MY_ACCOUNT,
+  DISCONNECT_USER,
 } from "../action";
 
 const initialState = {
@@ -78,6 +79,16 @@ const user = (state = initialState, action = {}) => {
         ...state,
         loggedUser: action.payload,
         logged: true,
+      };
+    case DISCONNECT_USER:
+      return {
+        ...state,
+        loggedUser: "",
+        inputChangeCreateAccount: {
+          email: "",
+          password: "",
+          password_validation: "",
+        },
       };
 
     default:

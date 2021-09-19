@@ -1,11 +1,12 @@
 import React from "react";
 import Footer from "../Footer";
 import Header from "../Header";
+import { connect } from "react-redux";
 
 import { Card, Button } from "react-bootstrap";
 import "../../Styles/homepage.scss";
 
-const User = () => {
+const User = ({ _id, email }) => {
   return (
     <div className="my-account">
       <Header />
@@ -15,6 +16,8 @@ const User = () => {
           <Card.Body>
             <Card.Title>Message de bienvenue</Card.Title>
             <Card.Text>Bienvenu sur votre profil</Card.Text>
+            <Card.Text>Votre id: {_id}</Card.Text>
+            <Card.Text>Votre email : {email}</Card.Text>
           </Card.Body>
         </Card>
       </main>
@@ -23,4 +26,11 @@ const User = () => {
   );
 };
 
-export default User;
+const mapState = (state) => ({
+  _id: state.user.loggedUser._id,
+  email: state.user.loggedUser.email,
+});
+
+const mapDispatch = (dispatch) => ({});
+
+export default connect(mapState, mapDispatch)(User);
