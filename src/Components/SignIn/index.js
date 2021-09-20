@@ -1,15 +1,10 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Footer from "../Footer";
 import Header from "../Header";
 
-import {
-  inputChangeLoginData,
-  INPUT_CHANGE_LOGIN_DATA,
-  submitLogin,
-  successLogin,
-} from "../../store/action";
+import { inputChangeLoginData, submitLogin } from "../../store/action";
 import { Form, Button, Card } from "react-bootstrap";
 import "../../Styles/signin.scss";
 
@@ -21,6 +16,8 @@ const Signin = ({
   errorMessage,
   message,
   id,
+  email,
+  password,
 }) => {
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -74,20 +71,28 @@ const Signin = ({
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Restez connecté ?" />
               </Form.Group>
-              <div>
-                <Button
-                  //disabled={btnSubmitIsDisabled}
-                  type="submit"
-                  onClick={onFormSubmit}
-                  /* className={
-                  userValue.email && userValue.password
-                    ? "btn--ok"
-                    : "btn--disabled"
-                } */
-                >
-                  Connexion
-                </Button>
-              </div>
+              {email && password ? (
+                <div>
+                  <Button
+                    type="submit"
+                    onClick={onFormSubmit}
+                    className="btn--ok"
+                  >
+                    Connexion
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  <Button
+                    type="submit"
+                    onClick={onFormSubmit}
+                    className="btn--disabled"
+                    disabled
+                  >
+                    Connexion
+                  </Button>
+                </div>
+              )}
 
               <Link to="/signup">
                 <div className="no_account">Vous n'avez pas de compte ?</div>
@@ -105,20 +110,6 @@ const Signin = ({
               <p>{id}</p>
             </div>
           )}
-          {/*  {successMessage && <div>{successMessage}</div>} */}
-          {/*  {successMessage.map((elem) => (
-            <span>{elem.successMessage.message}</span>
-          ))} */}
-          {/* {errorMessage.map((elem) => (
-            <span>{elem.errorMessage}</span>
-          ))} */}
-          {/* {errorMessage && <div>{errorMessage}</div>} */}
-
-          {/*   {auth ? (
-            <div>vous êtes authentifié</div>
-          ) : (
-            <div>vous n'êtes pas authentifié</div>
-          )} */}
         </Card>
       </main>
 
@@ -128,6 +119,8 @@ const Signin = ({
 };
 
 const mapState = (state) => ({
+  email: state.user.inputChangeLoginData.email,
+  password: state.user.inputChangeLoginData.password,
   inputChangeLoginData: state.user.inputChangeLoginData,
   isLoading: state.albumReducer.isLoading,
   successMessage: state.user.successMessage,

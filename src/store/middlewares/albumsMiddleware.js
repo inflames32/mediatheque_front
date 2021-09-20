@@ -10,6 +10,10 @@ import {
   GET_ALBUM_BY_ID,
   successGetAlbumByID,
   errorGetAlbumByID,
+  DELETE_ALBUM_BY_ID,
+  errorDeleteAlbumByID,
+  successDeleteAlbumByID,
+  successDeletedAccount,
 } from "../action";
 
 const albumsMiddleware = (store) => (next) => (action) => {
@@ -51,6 +55,23 @@ const albumsMiddleware = (store) => (next) => (action) => {
         })
         .catch((err) => {
           store.dispatch(errorGetAlbumByID(err));
+        });
+      break;
+    }
+    case DELETE_ALBUM_BY_ID: {
+      const albumId = store.getState().albumReducer.albumId;
+      console.log("albumMiddleware", albumId);
+      axios({
+        method: "delete",
+        url: `${url}/album/:${albumId}`,
+      })
+        .then((res) => {
+          console.log(res);
+          console.log(res.data);
+          store.dispatch(successDeleteAlbumByID(res.data));
+        })
+        .catch((err) => {
+          store.dispatch(errorDeleteAlbumByID(err));
         });
       break;
     }

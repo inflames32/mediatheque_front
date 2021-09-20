@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Card } from "react-bootstrap";
-import { BsPencil } from "react-icons/bs";
+import { BsPencil, BsTrash } from "react-icons/bs";
 import { connect } from "react-redux";
 import Header from "../Header";
 import Footer from "../Footer";
-import { getAlbumByID } from "../../store/action";
+import { getAlbumByID, deleteAlbumByID } from "../../store/action";
 import "../../Styles/album.scss";
 
 const Album = ({
@@ -14,18 +14,16 @@ const Album = ({
   album,
   cover,
   getAlbumByID,
+  deleteAlbumByID,
 }) => {
-  //const { deleteAlbumByID, getOneAlbum, album } = AlbumsMiddleware();
-
   useEffect((albumId) => {
     getAlbumByID(albumId);
   }, []);
 
-  /* const deleteAlbum = (albumId) => () => {
+  const deleteAlbum = (albumId) => () => {
     console.log(albumId);
     deleteAlbumByID(albumId);
-    setIncrement(key + 1);
-  };  */
+  };
 
   const closeAlbumDetails = () => {
     setAlbumDetailsIsOpen(false);
@@ -91,7 +89,7 @@ const Album = ({
                 </div>
                 <div className="album__card__content__details__delete">
                   <span>
-                    {/*  <BsTrash onClick={deleteAlbum(albumId)} /> */}
+                    <BsTrash onClick={deleteAlbum(albumId)} />
                   </span>
                 </div>
               </div>
@@ -117,6 +115,9 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   getAlbumByID: (albumId) => {
     dispatch(getAlbumByID(albumId));
+  },
+  deleteAlbumByID: (albumId) => {
+    dispatch(deleteAlbumByID(albumId));
   },
 });
 

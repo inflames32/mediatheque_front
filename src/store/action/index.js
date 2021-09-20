@@ -42,6 +42,9 @@ export const CHANGE_LOADING = "CHANGE_LOADING";
 export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
 export const ERROR_DELETED_ACCOUNT = "ERROR_DELETED_ACCOUNT";
 export const SUCCESS_DELETED_ACCOUNT = "SUCCESS_DELETED_ACCOUNT";
+export const DELETE_ALBUM_BY_ID = "DELETE_ALBUM_BY_ID";
+export const ERROR_DELETE_ALBUM_BY_ID = "ERROR_DELETE_ALBUM_BY_ID";
+export const SUCCESS_DELETE_ALBUM_BY_ID = "SUCCESS_DELETE_ALBUM_BY_ID";
 
 export const changeLoading = (payload) => ({
   type: CHANGE_LOADING,
@@ -162,4 +165,16 @@ export const errorDeletedAccount = (payload) => ({
 export const successDeletedAccount = (payload) => ({
   type: SUCCESS_DELETED_ACCOUNT,
   payload,
+});
+
+export const successDeleteAlbumByID = () => ({
+  type: SUCCESS_DELETE_ALBUM_BY_ID,
+});
+
+export const deleteAlbumByID = () => ({
+  type: DELETE_ALBUM_BY_ID,
+});
+
+export const errorDeleteAlbumByID = () => ({
+  type: ERROR_DELETE_ALBUM_BY_ID,
 });

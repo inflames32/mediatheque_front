@@ -148,15 +148,6 @@ const Albums = ({
             </Card>
           )}
         </div>
-        {/*   {albumDetailsIsOpen && (
-          <AlbumDetails
-            setAlbumDetailsIsOpen={setAlbumDetailsIsOpen}
-            setAlbumId={setAlbumId}
-            albumId={albumId}
-            albumDetails={albumDetails}
-            setAlbumDetails={setAlbumDetails}
-          />
-        )} */}
       </main>
       <Footer />
     </div>
@@ -165,7 +156,7 @@ const Albums = ({
 
 const mapState = (state) => ({
   modalNewAlbumIsOpen: state.albumReducer.modalNewAlbumIsOpen,
-  //isLoading: state.album.isLoading,
+  //isLoading: state.albumMiddleware.isLoading,
   successMessage: state.albumReducer.successMessage,
   errorMessage: state.user.errorMessage,
   listAlbums: state.albumReducer.listAlbums,
