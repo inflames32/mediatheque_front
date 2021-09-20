@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { BsPencil } from "react-icons/bs";
 import { connect } from "react-redux";
+import Header from "../Header";
+import Footer from "../Footer";
 import { getAlbumByID } from "../../store/action";
 import "../../Styles/album.scss";
 
@@ -37,61 +39,67 @@ const Album = ({
     "https://image.flaticon.com/icons/png/128/376/376819.png";
 
   return (
-    <div className="album ">
-      <Card className="album__card">
-        <Card.Body className="album__card__body">
-          <div className="album__card__content">
-            <div className="album__card__content__cover">
-              {album.cover ? (
-                <Card.Img src={cover} />
-              ) : (
-                <Card.Img src={ImgNotDefined} />
-              )}
+    <div className="album">
+      <Header />
+      <div className="album__main">
+        <Card className="album__card">
+          <Card.Body className="album__card__body">
+            <div className="album__card__content">
+              <div className="album__card__content__cover">
+                {album.cover ? (
+                  <Card.Img src={cover} />
+                ) : (
+                  <Card.Img src={ImgNotDefined} />
+                )}
+              </div>
+              <div className="album__card__content__details">
+                <div className="album__card__content__details__name">
+                  <span>Nom de l'album : {album.name}</span>
+                  <span>
+                    <BsPencil
+                      className="pencil-icon"
+                      //onClick={handleUpdateAlbumDetails}
+                    />
+                  </span>
+                </div>
+                <div className="album__card__content__details__artist">
+                  <span>Nom de l'artiste : {album.artist}</span>
+                  <span>
+                    <BsPencil
+                      className="pencil-icon"
+                      //onClick={handleUpdateAlbumDetails}
+                    />
+                  </span>
+                </div>
+                <div className="album__card__content__details__style">
+                  <span>Style : {album.style}</span>
+                  <span>
+                    <BsPencil
+                      className="pencil-icon"
+                      /* onClick={handleUpdateAlbumDetails} */
+                    />
+                  </span>
+                </div>
+                <div className="album__card__content__details__year">
+                  <span>Année : {album.year}</span>
+                  <span>
+                    <BsPencil
+                      className="pencil-icon"
+                      /* onClick={handleUpdateAlbumDetails} */
+                    />
+                  </span>
+                </div>
+                <div className="album__card__content__details__delete">
+                  <span>
+                    {/*  <BsTrash onClick={deleteAlbum(albumId)} /> */}
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="album__card__content__details">
-              <div className="album__card__content__details__name">
-                <span>Nom de l'album : {album.name}</span>
-                <span>
-                  <BsPencil
-                    className="pencil-icon"
-                    //onClick={handleUpdateAlbumDetails}
-                  />
-                </span>
-              </div>
-              <div className="album__card__content__details__artist">
-                <span>Nom de l'artiste : {album.artist}</span>
-                <span>
-                  <BsPencil
-                    className="pencil-icon"
-                    //onClick={handleUpdateAlbumDetails}
-                  />
-                </span>
-              </div>
-              <div className="album__card__content__details__style">
-                <span>Style : {album.style}</span>
-                <span>
-                  <BsPencil
-                    className="pencil-icon"
-                    /* onClick={handleUpdateAlbumDetails} */
-                  />
-                </span>
-              </div>
-              <div className="album__card__content__details__year">
-                <span>Année : {album.year}</span>
-                <span>
-                  <BsPencil
-                    className="pencil-icon"
-                    /* onClick={handleUpdateAlbumDetails} */
-                  />
-                </span>
-              </div>
-              <div className="album__card__content__details__delete">
-                <span>{/*  <BsTrash onClick={deleteAlbum(albumId)} /> */}</span>
-              </div>
-            </div>
-          </div>
-        </Card.Body>
-      </Card>
+          </Card.Body>
+        </Card>
+      </div>
+      <Footer />
     </div>
   );
 };

@@ -42,55 +42,63 @@ const Signin = ({
       <Header />
       <main className="signin-main">
         <Card className="signin-card ">
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Adresse e-mail</Form.Label>
-              <Form.Control
-                className="user-input"
-                type="email"
-                name="email"
-                value={inputChangeLoginData.email}
-                placeholder="Entrez votre email"
-                onChange={handleInputChange}
-              />
-              <Form.Text className="text-muted">
-                Votre email sera utilisé que pour vous connecter à votre compte.
-              </Form.Text>
-            </Form.Group>
+          {!logged ? (
+            <Form>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Adresse e-mail</Form.Label>
+                <Form.Control
+                  className="user-input"
+                  type="email"
+                  name="email"
+                  value={inputChangeLoginData.email}
+                  placeholder="Entrez votre email"
+                  onChange={handleInputChange}
+                />
+                <Form.Text className="text-muted">
+                  Votre email sera utilisé que pour vous connecter à votre
+                  compte.
+                </Form.Text>
+              </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control
-                className="user-input"
-                type="password"
-                name="password"
-                value={inputChangeLoginData.password}
-                placeholder="Mot de passe"
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Restez connecté ?" />
-            </Form.Group>
-            <div>
-              <Button
-                //disabled={btnSubmitIsDisabled}
-                type="submit"
-                onClick={onFormSubmit}
-                /* className={
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Mot de passe</Form.Label>
+                <Form.Control
+                  className="user-input"
+                  type="password"
+                  name="password"
+                  value={inputChangeLoginData.password}
+                  placeholder="Mot de passe"
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="Restez connecté ?" />
+              </Form.Group>
+              <div>
+                <Button
+                  //disabled={btnSubmitIsDisabled}
+                  type="submit"
+                  onClick={onFormSubmit}
+                  /* className={
                   userValue.email && userValue.password
                     ? "btn--ok"
                     : "btn--disabled"
                 } */
-              >
-                Connexion
-              </Button>
-            </div>
+                >
+                  Connexion
+                </Button>
+              </div>
 
-            <Link to="/signup">
-              <div className="no_account">Vous n'avez pas de compte ?</div>
-            </Link>
-          </Form>
+              <Link to="/signup">
+                <div className="no_account">Vous n'avez pas de compte ?</div>
+              </Link>
+            </Form>
+          ) : (
+            <div>
+              <Card>Vous êtes connecté</Card>
+              <Link to="/">Retour à l'accueil</Link>
+            </div>
+          )}
           {logged && (
             <div>
               <p>{message}</p>

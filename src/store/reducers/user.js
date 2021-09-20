@@ -7,8 +7,10 @@ import {
   ERROR_LOGIN,
   SUCCESS_LOGIN,
   INPUT_CHANGE_LOGIN_DATA,
-  GO_TO_MY_ACCOUNT,
   DISCONNECT_USER,
+  DELETE_ACCOUNT,
+  ERROR_DELETED_ACCOUNT,
+  SUCCESS_DELETED_ACCOUNT,
 } from "../action";
 
 const initialState = {
@@ -25,6 +27,7 @@ const initialState = {
   successMessage: "",
   logged: false,
   loggedUser: "",
+  isLoading: false,
 };
 
 const user = (state = initialState, action = {}) => {
@@ -83,12 +86,36 @@ const user = (state = initialState, action = {}) => {
     case DISCONNECT_USER:
       return {
         ...state,
+        logged: false,
         loggedUser: "",
         inputChangeCreateAccount: {
           email: "",
           password: "",
           password_validation: "",
         },
+        inputChangeLoginData: {
+          email: "",
+          password: "",
+        },
+      };
+    case DELETE_ACCOUNT:
+      return {
+        ...state,
+        isloading: true,
+      };
+    case SUCCESS_DELETED_ACCOUNT:
+      return {
+        ...state,
+        successMessage: "votre compte a été supprimé",
+        isloading: false,
+        logged: false,
+      };
+    case ERROR_DELETED_ACCOUNT:
+      return {
+        ...state,
+        successMessage:
+          "une erreur est survenu pendant la suppression de votre compte",
+        logged: false,
       };
 
     default:

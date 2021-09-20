@@ -41,6 +41,7 @@ const initialState = {
     format: "",
     style: "",
   },
+  userListAlbums: [],
 };
 
 const album = (state = initialState, action = {}) => {

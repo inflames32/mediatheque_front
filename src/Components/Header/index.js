@@ -78,15 +78,6 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   disconnectUser: () => {
     dispatch(disconnectUser());
-    /* toast.success("utlisateur déconnecé", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    }); */
   },
 });
 

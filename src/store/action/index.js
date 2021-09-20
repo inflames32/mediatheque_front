@@ -39,6 +39,10 @@ export const DISCONNECT_USER = "DISCONNECT_USER";
 export const GET_ALBUM_ID = "GET_ALBUM_ID";
 export const CHANGE_LOADING = "CHANGE_LOADING";
 
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
+export const ERROR_DELETED_ACCOUNT = "ERROR_DELETED_ACCOUNT";
+export const SUCCESS_DELETED_ACCOUNT = "SUCCESS_DELETED_ACCOUNT";
+
 export const changeLoading = (payload) => ({
   type: CHANGE_LOADING,
   payload,
@@ -143,5 +147,19 @@ export const disconnectUser = (payload) => ({
 
 export const getAlbumID = (payload) => ({
   type: GET_ALBUM_ID,
+  payload,
+});
+
+export const deleteAccount = () => ({
+  type: DELETE_ACCOUNT,
+});
+
+export const errorDeletedAccount = (payload) => ({
+  type: ERROR_DELETED_ACCOUNT,
+  payload,
+});
+
+export const successDeletedAccount = (payload) => ({
+  type: SUCCESS_DELETED_ACCOUNT,
   payload,
 });
