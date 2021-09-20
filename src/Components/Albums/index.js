@@ -144,7 +144,14 @@ const Albums = ({
             ))
           ) : (
             <Card>
-              <div>Erreur de récupération ou base de données vide</div>
+              <div>
+                Erreur de récupération ou base de données vide
+                <span>
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </span>
+              </div>
             </Card>
           )}
         </div>
