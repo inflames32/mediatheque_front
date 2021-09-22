@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../Footer";
 import Header from "../Header";
+import { connect } from "react-redux";
+import { Flip, toast, ToastContainer } from "react-toastify";
 
 import { Card, Button } from "react-bootstrap";
 import "../../Styles/homepage.scss";
 
-const Homepage = () => {
+const Homepage = ({ logged, successMessage, errorMessage }) => {
+  useEffect(() => {
+    if (logged) {
+      toast.success("Vous êtes identifié", {
+        position: "top-right",
+      });
+    }
+  }, [logged]);
+
   return (
     <div className="homepage">
       <Header />
@@ -25,10 +35,19 @@ const Homepage = () => {
             </Card.Text>
           </Card.Body>
         </Card>
+        <ToastContainer />
       </main>
       <Footer />
     </div>
   );
 };
 
-export default Homepage;
+const mapState = (state) => ({
+  successMessage: state.user.successMessage,
+  errorMessage: state.user.errorMessage,
+  logged: state.user.logged,
+});
+
+const mapDispatch = (dispatch) => ({});
+
+export default connect(mapState, mapDispatch)(Homepage);

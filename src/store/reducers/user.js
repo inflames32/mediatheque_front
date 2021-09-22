@@ -25,7 +25,7 @@ const initialState = {
   },
   errorMessage: "",
   successMessage: "",
-  logged: false,
+  //logged: false,
   loggedUser: "",
   isLoading: false,
 };
@@ -48,6 +48,7 @@ const user = (state = initialState, action = {}) => {
           ...state.createAccount,
           ...action.payload,
         },
+        isLoading: true,
       };
     case ERROR_CREATE_ACCOUNT:
       return {

@@ -1,12 +1,14 @@
 import { React } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 import Footer from "../Footer";
 import Header from "../Header";
 
 import { inputChangeLoginData, submitLogin } from "../../store/action";
 import { Form, Button, Card } from "react-bootstrap";
 import "../../Styles/signin.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signin = ({
   inputChangeLoginData,
@@ -100,8 +102,7 @@ const Signin = ({
             </Form>
           ) : (
             <div>
-              <Card>Vous êtes connecté</Card>
-              <Link to="/">Retour à l'accueil</Link>
+              <Redirect to="/">Retour à l'accueil</Redirect>
             </div>
           )}
           {logged && (
@@ -112,7 +113,8 @@ const Signin = ({
           )}
         </Card>
       </main>
-
+      <ToastContainer />
+      {successMessage && toast.success("Vous êtes connecté")}
       <Footer />
     </div>
   );

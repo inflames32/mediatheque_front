@@ -18,8 +18,6 @@ import Footer from "../Footer";
 import ModalAddNewAlbum from "../ModalAddNewAlbum";
 import AlbumDetails from "../AlbumDetails";
 import "../../Styles/album.scss";
-import "react-toastify/dist/ReactToastify.css";
-import { distanceAndSkiddingToXY } from "@popperjs/core/lib/modifiers/offset";
 
 const Albums = ({
   isLoading,
@@ -37,18 +35,28 @@ const Albums = ({
   getAlbumID,
 }) => {
   useEffect(() => {
-    getAllAlbums();
-    if (listAlbums.length) {
-      toast.success(
-        { successMessage },
-        {
-          position: toast.POSITION.TOP_LEFT,
-          duration: 2000,
-        }
-      );
-      console.log("ca marche");
-    }
-
+    getAllAlbums((err, res) => {
+      console.log(res);
+      if (!err && listAlbums.length) {
+        toast.success(
+          console.log("liste récupérée"),
+          { successMessage },
+          {
+            position: toast.POSITION.TOP_LEFT,
+            duration: 2000,
+          }
+        );
+      } else {
+        toast.error(
+          { errorMessage },
+          {
+            position: toast.POSITION.TOP_LEFT,
+            duration: 2000,
+          }
+        );
+        console.log(res);
+      }
+    });
     console.log("sucess de récupération");
   }, []);
 
@@ -156,6 +164,7 @@ const Albums = ({
           )}
         </div>
       </main>
+      <ToastContainer />
       <Footer />
     </div>
   );

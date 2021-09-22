@@ -19,7 +19,7 @@ const initialState = {
   modalNewAlbumIsOpen: false,
   isLoading: false,
   inputChangeCreateNewAlbum: {
-    album: "",
+    name: "",
     artist: "",
     cover: "",
     gencode: "",

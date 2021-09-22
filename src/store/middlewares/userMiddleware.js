@@ -49,6 +49,7 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((err) => {
           store.dispatch(errorLogin(err));
+          console.log(err);
         });
       break;
     }

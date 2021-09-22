@@ -16,6 +16,7 @@ const Signup = ({
   successMessage,
   inputChangeCreateAccount,
   submitCreateAccount,
+  isloading,
 }) => {
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -86,6 +87,11 @@ const Signup = ({
               </Button>
             </div>
           </Form>
+          {/* {errorMessage &&
+            errorMessage.forEach((message) => {
+              console.log(message);
+              <div>{message}</div>;
+            })} */}
           {errorMessage && <div>{errorMessage}</div>}
           {successMessage && <div>{successMessage}</div>}
         </Card>
@@ -98,6 +104,7 @@ const mapState = (state) => ({
   inputChangeCreateAccount: state.user.inputChangeCreateAccount,
   errorMessage: state.user.errorMessage,
   successMessage: state.user.successMessage,
+  isLoading: state.user.isLoading,
 });
 
 const mapDispatch = (dispatch) => ({

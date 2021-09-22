@@ -10,7 +10,7 @@ const Header = ({ logged, _id, email, disconnectUser }) => {
     disconnectUser();
   };
   return (
-    <Navbar expand="lg" className="navbar-color">
+    <Navbar expand="lg" className="homepage__navbar">
       <Navbar.Brand>
         <Link to="/" className="navbar__logo header__logo">
           Ma médiathèque

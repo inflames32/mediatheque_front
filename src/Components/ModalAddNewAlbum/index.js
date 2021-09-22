@@ -31,7 +31,6 @@ const ModalAddNewAlbum = ({
   const onFormSubmit = (evt) => {
     evt.preventDefault();
     addingNewAlbum();
-    console.log("je submit");
 
     // collection user
     // const { albumPossédé } = await tacollection.getOne({ _id: iduser })
@@ -54,7 +53,7 @@ const ModalAddNewAlbum = ({
             <Form.Control
               type="text"
               placeholder="Nom de l'album"
-              name="album"
+              name="name"
               value={inputChangeCreateNewAlbum.album}
               onChange={handleInputChange}
             />

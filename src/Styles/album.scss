@@ -13,9 +13,8 @@
     .album__card {
         display: flex !important;
         margin: auto;
-
         width: 95vw;
-        height: 100%;
+        height: 80%;
 
         &__content {
             width: 100%;
@@ -23,15 +22,17 @@
             &__details {
                 display: flex;
                 flex-direction: column;
-                margin-top: 2em;
-                height: 55vh;
-                background-color: grey;
+                height: 50%;
+            }
+            &__details > ul {
+                font-size: 1.2em;
             }
             &__cover {
                 display: flex;
                 margin: auto;
                 box-sizing: border-box;
                 width: 250px;
+                height: 50%;
             }
         }
     }

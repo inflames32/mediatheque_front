@@ -9,7 +9,6 @@ import "../../Styles/album.scss";
 
 const Album = ({
   setAlbumDetailsIsOpen,
-  setIncrement,
   albumId,
   album,
   cover,
@@ -17,6 +16,7 @@ const Album = ({
   deleteAlbumByID,
 }) => {
   useEffect((albumId) => {
+    console.log(albumId);
     getAlbumByID(albumId);
   }, []);
 
@@ -50,48 +50,69 @@ const Album = ({
                   <Card.Img src={ImgNotDefined} />
                 )}
               </div>
+
               <div className="album__card__content__details">
-                <div className="album__card__content__details__name">
-                  <span>Nom de l'album : {album.name}</span>
-                  <span>
-                    <BsPencil
-                      className="pencil-icon"
-                      //onClick={handleUpdateAlbumDetails}
-                    />
-                  </span>
-                </div>
-                <div className="album__card__content__details__artist">
-                  <span>Nom de l'artiste : {album.artist}</span>
-                  <span>
-                    <BsPencil
-                      className="pencil-icon"
-                      //onClick={handleUpdateAlbumDetails}
-                    />
-                  </span>
-                </div>
-                <div className="album__card__content__details__style">
-                  <span>Style : {album.style}</span>
-                  <span>
-                    <BsPencil
-                      className="pencil-icon"
-                      /* onClick={handleUpdateAlbumDetails} */
-                    />
-                  </span>
-                </div>
-                <div className="album__card__content__details__year">
-                  <span>Année : {album.year}</span>
-                  <span>
-                    <BsPencil
-                      className="pencil-icon"
-                      /* onClick={handleUpdateAlbumDetails} */
-                    />
-                  </span>
-                </div>
-                <div className="album__card__content__details__delete">
-                  <span>
-                    <BsTrash onClick={deleteAlbum(albumId)} />
-                  </span>
-                </div>
+                <ul className="album__card__content__details__list">
+                  <li className="album__card__content__details__name">
+                    <span>Nom de l'album : {album.name}</span>
+                    <span>
+                      <BsPencil
+                        className="pencil-icon"
+                        //onClick={handleUpdateAlbumDetails}
+                      />
+                    </span>
+                  </li>
+                  <li className="album__card__content__details__artist">
+                    <span>Nom de l'artiste : {album.artist}</span>
+                    <span>
+                      <BsPencil
+                        className="pencil-icon"
+                        //onClick={handleUpdateAlbumDetails}
+                      />
+                    </span>
+                  </li>
+                  <li className="album__card__content__details__style">
+                    <span>Style : {album.style}</span>
+                    <span>
+                      <BsPencil
+                        className="pencil-icon"
+                        /* onClick={handleUpdateAlbumDetails} */
+                      />
+                    </span>
+                  </li>
+                  <li className="album__card__content__details__year">
+                    <span>Année : {album.year}</span>
+                    <span>
+                      <BsPencil
+                        className="pencil-icon"
+                        /* onClick={handleUpdateAlbumDetails} */
+                      />
+                    </span>
+                  </li>
+                  <li className="album__card__content__details__format">
+                    <span>Format : {album.format}</span>
+                    <span>
+                      <BsPencil
+                        className="pencil-icon"
+                        /* onClick={handleUpdateAlbumDetails} */
+                      />
+                    </span>
+                  </li>
+                  <li className="album__card__content__details__gencode">
+                    <span>Codebarre : {album.gencode}</span>
+                    <span>
+                      <BsPencil
+                        className="pencil-icon"
+                        /* onClick={handleUpdateAlbumDetails} */
+                      />
+                    </span>
+                  </li>
+                  <li className="album__card__content__details__delete">
+                    <span>
+                      <BsTrash onClick={deleteAlbum(albumId)} />
+                    </span>
+                  </li>
+                </ul>
               </div>
             </div>
           </Card.Body>
