@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 //import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 import { Card, Spinner, Button } from "react-bootstrap";
+import { GrCaretNext } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -18,9 +19,9 @@ import Header from "../Header";
 import Footer from "../Footer";
 import ModalAddNewAlbum from "../ModalAddNewAlbum";
 
-import "../../Styles/album.scss";
+import "../../Styles/albumsPublics.scss";
 
-const Albums = ({
+const AlbumsList = ({
   isLoading,
   modalNewAlbumIsOpen,
   openModalNewAlbum,
@@ -62,17 +63,6 @@ const Albums = ({
       <main className="albums-main">
         Albums publics
         <div className="btn-add-new-album">
-          {/*  {isLoading ? (
-            <Button>
-              <Spinner
-                as="span"
-                animation="grow"
-                size="xl"
-                role="status"
-                aria-hidden="true"
-              />
-            </Button>
-          ) : ( */}
           {isLoading ? (
             <Button
               onClick={handleOpeningModalNewAlbum}
@@ -101,43 +91,32 @@ const Albums = ({
         </div>
         {modalNewAlbumIsOpen && <ModalAddNewAlbum />}
         <div className="list-albums">
-          {/*       {isLoading ? (
-            <div className="spinner_loading">
-              <Spinner
-                as="span"
-                animation="grow"
-                size="xl"
-                role="status"
-                aria-hidden="true"
-              />
-              Loading...
-            </div>*/}
-
           {listAlbums.length ? (
             listAlbums.map(({ _id, cover, artist, name, year }) => (
-              <div className="list-albums-element" key={_id}>
-                <Card
-                  /* onClick={handleAlbumDetails(_id)} */
-                  className="albumcover"
-                >
+              <Card className="list-albums-element" key={_id}>
+                <div className="cover">
                   {cover ? (
                     <Card.Img src={cover} />
                   ) : (
                     <Card.Img src={ImgNotDefined} />
                   )}
+                </div>
+                <div className="infos">
                   <Card.Title>{artist}</Card.Title>
                   <Card.Title>{name}</Card.Title>
                   <Card.Title>{year}</Card.Title>
-                  <Link
-                    to={{
-                      pathname: `/album/${_id}`,
-                    }}
-                    onClick={handleAlbumId(_id)}
-                  >
-                    Lien vers l'album
-                  </Link>
-                </Card>
-              </div>
+                </div>
+
+                <Link
+                  to={{
+                    pathname: `/album/${_id}`,
+                  }}
+                  onClick={handleAlbumId(_id)}
+                  className="link"
+                >
+                  <GrCaretNext />
+                </Link>
+              </Card>
             ))
           ) : (
             <Card>
@@ -186,4 +165,4 @@ const mapDispatch = (dispatch) => ({
   },
 });
 
-export default connect(mapState, mapDispatch)(Albums);
+export default connect(mapState, mapDispatch)(AlbumsList);

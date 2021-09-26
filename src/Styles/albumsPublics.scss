@@ -1,0 +1,40 @@
+@media screen and (max-width: 544px) {
+    .key {
+        width: 30%;
+    }
+    .valeur {
+        width: 70%;
+        color: rgb(17, 17, 100);
+    }
+    .list-albums-element {
+        display: flex !important;
+        flex-direction: row !important;
+        height: 150px !important;
+        width: 100% !important;
+    }
+    .card-img {
+        box-sizing: border-box;
+    }
+    .cover {
+        width: 150px !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .infos {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        text-align: center;
+        margin: auto;
+    }
+    .card-infos {
+        border-bottom: rgb(170, 169, 169) 0.2px solid;
+    }
+    .link {
+        display: flex;
+        margin: auto;
+        width: 10%;
+        justify-content: center;
+    }
+}

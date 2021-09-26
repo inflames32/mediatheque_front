@@ -25,7 +25,7 @@ const Header = ({ logged, _id, email, disconnectUser }) => {
                   Connexion
                 </Button>
               </Link>
-              <Link to="/albums">
+              <Link to="/albums-publics">
                 <Button className="btn_albumslist header__btn_albums">
                   Albums publics
                 </Button>

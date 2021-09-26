@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Card } from "react-bootstrap";
-import { BsPencil, BsTrash } from "react-icons/bs";
+import { BsPencil, BsTrash, BsInfoCircle } from "react-icons/bs";
+
 import { connect } from "react-redux";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -42,67 +43,90 @@ const Album = ({
                   <Card.Img src={ImgNotDefined} />
                 )}
               </div>
-
               <div className="album__card__content__details">
+                <div className="album__card__content__details__title">
+                  <div>
+                    <BsInfoCircle />
+                  </div>
+                  <div>Informations sur l'album</div>
+                </div>
                 <ul className="album__card__content__details__list">
                   <li className="album__card__content__details__name">
-                    <span>Nom de l'album : {album.name}</span>
-                    <span>
-                      <BsPencil
-                        className="pencil-icon"
-                        //onClick={handleUpdateAlbumDetails}
-                      />
-                    </span>
+                    <div className="informations">
+                      <div className="key">Nom de l'album :</div>
+                      <div className="valeur">{album.name}</div>
+                      <div>
+                        <BsPencil
+                          className="pencil-icon"
+                          //onClick={handleUpdateAlbumDetails}
+                        />
+                      </div>
+                    </div>
                   </li>
                   <li className="album__card__content__details__artist">
-                    <span>Nom de l'artiste : {album.artist}</span>
-                    <span>
-                      <BsPencil
-                        className="pencil-icon"
-                        //onClick={handleUpdateAlbumDetails}
-                      />
-                    </span>
+                    <div className="informations">
+                      <div className="key">Nom de l'artiste :</div>{" "}
+                      <div className="valeur">{album.artist}</div>
+                      <div>
+                        <BsPencil
+                          className="pencil-icon"
+                          //onClick={handleUpdateAlbumDetails}
+                        />
+                      </div>
+                    </div>
                   </li>
                   <li className="album__card__content__details__style">
-                    <span>Style : {album.style}</span>
-                    <span>
-                      <BsPencil
-                        className="pencil-icon"
-                        /* onClick={handleUpdateAlbumDetails} */
-                      />
-                    </span>
+                    <div className="informations">
+                      <div className="key">Style :</div>{" "}
+                      <div className="valeur">{album.style}</div>
+                      <div>
+                        <BsPencil
+                          className="pencil-icon"
+                          //onClick={handleUpdateAlbumDetails}
+                        />
+                      </div>
+                    </div>
                   </li>
                   <li className="album__card__content__details__year">
-                    <span>Année : {album.year}</span>
-                    <span>
-                      <BsPencil
-                        className="pencil-icon"
-                        /* onClick={handleUpdateAlbumDetails} */
-                      />
-                    </span>
+                    <div className="informations">
+                      <div className="key">Année :</div>{" "}
+                      <div className="valeur">{album.year}</div>
+                      <div>
+                        <BsPencil
+                          className="pencil-icon"
+                          //onClick={handleUpdateAlbumDetails}
+                        />
+                      </div>
+                    </div>
                   </li>
                   <li className="album__card__content__details__format">
-                    <span>Format : {album.format}</span>
-                    <span>
-                      <BsPencil
-                        className="pencil-icon"
-                        /* onClick={handleUpdateAlbumDetails} */
-                      />
-                    </span>
+                    <div className="informations">
+                      <div className="key">Format :</div>
+                      <div className="valeur">{album.format}</div>
+                      <div>
+                        <BsPencil
+                          className="pencil-icon"
+                          //onClick={handleUpdateAlbumDetails}
+                        />
+                      </div>
+                    </div>
                   </li>
                   <li className="album__card__content__details__gencode">
-                    <span>Codebarre : {album.gencode}</span>
-                    <span>
-                      <BsPencil
-                        className="pencil-icon"
-                        /* onClick={handleUpdateAlbumDetails} */
-                      />
-                    </span>
+                    <div className="informations">
+                      <div className="key">Codebarre :</div>
+                      <div className="valeur">{album.gencode}</div>
+                      <div>
+                        <BsPencil
+                          className="pencil-icon"
+                          //onClick={handleUpdateAlbumDetails}
+                        />
+                      </div>
+                    </div>
                   </li>
                   <li className="album__card__content__details__delete">
-                    <span>
+                    <div>
                       <BsTrash onClick={deleteAlbum(albumId)} />
-                    </span>
+                    </div>
                   </li>
                 </ul>
               </div>

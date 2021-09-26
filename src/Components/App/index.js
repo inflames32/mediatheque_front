@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 // == Import components
 import Homepage from "../Homepage";
-import Albums from "../Albums";
+import AlbumsPublics from "../AlbumsPublics";
 import SignUp from "../Signup";
 import SignIn from "../Signin";
 import User from "../User";
@@ -22,7 +22,7 @@ const App = () => {
     <Provider store={store}>
       <Switch>
         <Route exact path="/" component={Homepage} />
-        <Route exact path="/albums" component={Albums} />
+        <Route exact path="/albums-publics" component={AlbumsPublics} />
         <Route exact path="/user/:_id/mes-albums" component={MyAlbums} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
