@@ -11,6 +11,18 @@ export const ADD_NEW_ALBUM = "ADD_NEW_ALBUM";
 export const ADDING_NEW_ALBUM = "ADDING_NEW_ALBUM";
 export const SUCCESS_ADDING_NEW_ALBUM = "SUCCESS_ADDING_NEW_ALBUM";
 export const ERROR_ADDING_NEW_ALBUM = "ERROR_ADDING_NEW_ALBUM";
+
+// add album to my list
+export const ADDING_NEW_ALBUM_TO_MY_LIST = "ADDING_NEW_ALBUM_TO_MY_LIST";
+export const SUCCESS_ADDING_NEW_ALBUM_TO_MY_LIST =
+  "SUCCESS_ADDING_NEW_ALBUM_TO_MY_LIST";
+export const ERROR_ADDING_NEW_ALBUM_TO_MY_LIST =
+  "ERROR_ADDING_NEW_ALBUM_TO_MY_LIST";
+
+// get albums list if logged
+export const SUCCESS_GET_ALBUMS_LIST = "SUCCESS_GET_ALBUMS_LIST";
+export const ERROR_GET_ALBUMS_LIST = "ERROR_GET_ALBUMS_LIST";
+export const GET_ALBUMS_LIST = "GET_ALBUMS_LIST";
 // create account
 export const INPUT_CHANGE_CREATE_ACCOUNT = "INPUT_CHANGE_CREATE_ACCOUNT";
 export const SUBMIT_CREATE_ACCOUNT = "SUBMIT_CREATE_ACCOUNT";
@@ -27,10 +39,17 @@ export const ERROR_LOGIN = "ERROR_LOGIN";
 export const GET_ALBUM_BY_ID = "GET_ALBUM_BY_ID";
 export const SUCCESS_GET_ALBUM_BY_ID = "SUCCESS_GET_ALBUM_BY_ID";
 export const ERROR_GET_ALBUM_BY_ID = "ERROR_GET_ALBUM_BY_ID";
+
 // Get all albums
 export const GET_ALL_ALBUMS = "GET_ALL_ALBUMS";
 export const SUCCESS_GET_ALL_ALBUMS = "SUCCESS_GET_ALL_ALBUMS";
 export const ERROR_GET_ALL_ALBUMS = "ERROR_GET_ALL_ALBUMS";
+
+// Get all albums
+export const GET_ALL_MY_ALBUMS = "GET_ALL_MY_ALBUMS";
+export const SUCCESS_GET_ALL_MY_ALBUMS = "SUCCESS_GET_ALL_MY_ALBUMS";
+export const ERROR_GET_ALL_MY_ALBUMS = "ERROR_GET_ALL_MY_ALBUMS";
+
 // Open album
 export const OPEN_ALBUM_BY_ID = "OPEN_ALBUM_BY_ID";
 // Disconnetc User
@@ -78,6 +97,20 @@ export const errorGetAllAlbums = (payload) => ({
   payload,
 });
 
+export const getAllMyAlbums = () => ({
+  type: GET_ALL_MY_ALBUMS,
+});
+
+export const successGetAllMyAlbums = (payload) => ({
+  type: SUCCESS_GET_ALL_MY_ALBUMS,
+  payload,
+});
+
+export const errorGetAllMyAlbums = (payload) => ({
+  type: ERROR_GET_ALL_MY_ALBUMS,
+  payload,
+});
+// add album
 export const addingNewAlbum = () => ({
   type: ADDING_NEW_ALBUM,
 });
@@ -89,6 +122,21 @@ export const successAddingNewAlbum = (payload) => ({
 
 export const errorAddingNewAlbum = (payload) => ({
   type: ERROR_ADDING_NEW_ALBUM,
+  payload,
+});
+
+// add album to my list
+export const addingNewAlbumToMyList = () => ({
+  type: ADDING_NEW_ALBUM_TO_MY_LIST,
+});
+
+export const successAddingNewAlbumToMyList = (payload) => ({
+  type: SUCCESS_ADDING_NEW_ALBUM_TO_MY_LIST,
+  payload,
+});
+
+export const errorAddingNewAlbumToMyList = (payload) => ({
+  type: ERROR_ADDING_NEW_ALBUM_TO_MY_LIST,
   payload,
 });
 
@@ -177,4 +225,16 @@ export const deleteAlbumByID = () => ({
 
 export const errorDeleteAlbumByID = () => ({
   type: ERROR_DELETE_ALBUM_BY_ID,
+});
+
+export const getAlbumsList = () => ({
+  type: GET_ALBUMS_LIST,
+});
+
+export const errorGetAlbumsList = () => ({
+  type: ERROR_GET_ALBUMS_LIST,
+});
+
+export const successGetAlbumsList = () => ({
+  type: SUCCESS_GET_ALBUMS_LIST,
 });

@@ -9,6 +9,8 @@ import SignUp from "../Signup";
 import SignIn from "../Signin";
 import User from "../User";
 import Album from "../Album";
+import MyAlbums from "../MyAlbums";
+import error404 from "../404error";
 
 import store from "../../store";
 import "../../Styles/reset.scss";
@@ -21,11 +23,12 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/albums" component={Albums} />
-        <Route exact path="/user/:_id/mes-albums" component={Albums} />
+        <Route exact path="/user/:_id/mes-albums" component={MyAlbums} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/user/:_id/mon-compte" component={User} />
         <Route exact path="/album/:_id" component={Album} />
+        <Route component={error404} />
       </Switch>
     </Provider>
   );

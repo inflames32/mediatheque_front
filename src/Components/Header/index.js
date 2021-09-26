@@ -3,7 +3,6 @@ import { Button, Nav, Navbar } from "react-bootstrap";
 import { connect } from "react-redux";
 import "../../Styles/header.scss";
 import { disconnectUser } from "../../store/action";
-import { toast, ToastContainer } from "react-toastify";
 
 const Header = ({ logged, _id, email, disconnectUser }) => {
   const handleDisconnect = () => {
@@ -19,17 +18,19 @@ const Header = ({ logged, _id, email, disconnectUser }) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav " />
       <Navbar.Collapse id="basic-navbar-nav header__nav">
         <Nav className="me-auto navbar-btn header__btn">
-          <Link to="/albums">
-            <Button className="btn_albumslist header__btn_albums">
-              Albums publics
-            </Button>
-          </Link>
           {!logged ? (
-            <Link to="/signin">
-              <Button className="signin-btn_connect header__btn_connexion">
-                Connexion
-              </Button>
-            </Link>
+            <div>
+              <Link to="/signin">
+                <Button className="signin-btn_connect header__btn_connexion">
+                  Connexion
+                </Button>
+              </Link>
+              <Link to="/albums">
+                <Button className="btn_albumslist header__btn_albums">
+                  Albums publics
+                </Button>
+              </Link>
+            </div>
           ) : (
             <div>
               <Link
@@ -61,7 +62,6 @@ const Header = ({ logged, _id, email, disconnectUser }) => {
             </div>
           )}
         </Nav>
-        {/* <ToastContainer /> */}
       </Navbar.Collapse>
     </Navbar>
   );

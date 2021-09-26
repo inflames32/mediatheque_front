@@ -25,9 +25,10 @@ const initialState = {
   },
   errorMessage: "",
   successMessage: "",
-  //logged: false,
+
   loggedUser: "",
   isLoading: false,
+  listAlbums: [],
 };
 
 const user = (state = initialState, action = {}) => {

@@ -12,7 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Signin = ({
   inputChangeLoginData,
-  submitLogin,
   logged,
   successMessage,
   errorMessage,
@@ -20,6 +19,7 @@ const Signin = ({
   id,
   email,
   password,
+  submitLogin,
 }) => {
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -30,6 +30,7 @@ const Signin = ({
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
+    console.log("je clique");
     submitLogin();
   };
 
@@ -52,6 +53,7 @@ const Signin = ({
                   value={inputChangeLoginData.email}
                   placeholder="Entrez votre email"
                   onChange={handleInputChange}
+                  autoComplete="current-email"
                 />
                 <Form.Text className="text-muted">
                   Votre email sera utilisé que pour vous connecter à votre
@@ -68,6 +70,7 @@ const Signin = ({
                   value={inputChangeLoginData.password}
                   placeholder="Mot de passe"
                   onChange={handleInputChange}
+                  autoComplete="current-password"
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -95,7 +98,6 @@ const Signin = ({
                   </Button>
                 </div>
               )}
-
               <Link to="/signup">
                 <div className="no_account">Vous n'avez pas de compte ?</div>
               </Link>
@@ -136,6 +138,7 @@ const mapDispatch = (dispatch) => ({
     dispatch(inputChangeLoginData(changeData));
   },
   submitLogin: () => {
+    console.log("je submit");
     dispatch(submitLogin());
   },
 });

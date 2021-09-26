@@ -5,6 +5,7 @@ import {
   closeModalNewAlbum,
   inputChangeCreateNewAlbum,
   addingNewAlbum,
+  addingNewAlbumToMyList,
 } from "../../store/action";
 
 import "../../Styles/add_new_album.scss";
@@ -16,6 +17,8 @@ const ModalAddNewAlbum = ({
   errorMessage,
   successMessage,
   addingNewAlbum,
+  loggedUser,
+  addingNewAlbumToMyList,
 }) => {
   const handleCloseModal = () => {
     closeModalNewAlbum();
@@ -30,7 +33,13 @@ const ModalAddNewAlbum = ({
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    addingNewAlbum();
+    if (loggedUser) {
+      console.log(`je crée dans la liste de l'utilisateur`);
+      addingNewAlbumToMyList();
+    } else {
+      console.log(`je crée dans la liste public`);
+      addingNewAlbum();
+    }
 
     // collection user
     // const { albumPossédé } = await tacollection.getOne({ _id: iduser })
@@ -47,6 +56,7 @@ const ModalAddNewAlbum = ({
   return (
     <div className="modal-form-add-album">
       <Card className="modal-content-albumDetails">
+        {loggedUser.logged && <span>{loggedUser._id}</span>}
         <Form className="form-add-album" onSubmit={onFormSubmit}>
           <Form.Group className="mb-3" controlId="formBasicAlbum">
             <Form.Label className="label-input">Nom de l'album</Form.Label>
@@ -152,6 +162,8 @@ const mapState = (state) => ({
   inputChangeCreateNewAlbum: state.albumReducer.inputChangeCreateNewAlbum,
   errorMessage: state.albumReducer.errorMessage,
   successMessage: state.albumReducer.successMessage,
+  loggedUser: state.user.loggedUser,
+  _id: state.user.loggedUser._id,
 });
 
 const mapDispatch = (dispatch) => ({
@@ -163,6 +175,10 @@ const mapDispatch = (dispatch) => ({
   },
   addingNewAlbum: () => {
     dispatch(addingNewAlbum());
+    dispatch(closeModalNewAlbum());
+  },
+  addingNewAlbumToMyList: () => {
+    dispatch(addingNewAlbumToMyList());
     dispatch(closeModalNewAlbum());
   },
 });

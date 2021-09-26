@@ -16,21 +16,13 @@ const Album = ({
   deleteAlbumByID,
 }) => {
   useEffect((albumId) => {
-    console.log(albumId);
+    /*     console.log(albumId); */
     getAlbumByID(albumId);
   }, []);
 
   const deleteAlbum = (albumId) => () => {
     console.log(albumId);
     deleteAlbumByID(albumId);
-  };
-
-  const closeAlbumDetails = () => {
-    setAlbumDetailsIsOpen(false);
-  };
-
-  const handleUpdateAlbumDetails = () => {
-    console.log("je modifierais les infos de l'album");
   };
 
   const ImgNotDefined =

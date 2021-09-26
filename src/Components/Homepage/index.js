@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import Footer from "../Footer";
 import Header from "../Header";
 import { connect } from "react-redux";
-import { Flip, toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "../../Styles/homepage.scss";
 
 const Homepage = ({ logged, successMessage, errorMessage }) => {

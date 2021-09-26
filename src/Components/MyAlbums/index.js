@@ -3,10 +3,9 @@ import { connect } from "react-redux";
 //import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 import { Card, Spinner, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 import {
-  getAllAlbums,
   openModalNewAlbum,
   changeLoading,
   getAlbumByID,
@@ -17,28 +16,46 @@ import {
 import Header from "../Header";
 import Footer from "../Footer";
 import ModalAddNewAlbum from "../ModalAddNewAlbum";
-
 import "../../Styles/album.scss";
 
-const Albums = ({
+const MyAlbums = ({
   isLoading,
   modalNewAlbumIsOpen,
   openModalNewAlbum,
-  getAllAlbums,
+  changeLoading,
+  successMessage,
+  errorMessage,
   listAlbums,
   albumId,
   logged,
   email,
   _id,
   getAlbumID,
+  getAlbumsList,
 }) => {
   useEffect(() => {
-    if (logged) {
-      getAlbumsList();
-    } else {
-      getAllAlbums();
-    }
-
+    getAlbumsList((err, res) => {
+      console.log(res);
+      if (!err && listAlbums.length) {
+        toast.success(
+          console.log("liste récupérée"),
+          { successMessage },
+          {
+            position: toast.POSITION.TOP_LEFT,
+            duration: 2000,
+          }
+        );
+      } else {
+        toast.error(
+          { errorMessage },
+          {
+            position: toast.POSITION.TOP_LEFT,
+            duration: 2000,
+          }
+        );
+        console.log(res);
+      }
+    });
     console.log("sucess de récupération");
   }, []);
 
@@ -60,35 +77,31 @@ const Albums = ({
       <Header />
       <ToastContainer />
       <main className="albums-main">
-        Albums publics
+        Ma liste d'albums
         <div className="btn-add-new-album">
-          {/*  {isLoading ? (
-            <Button>
-              <Spinner
-                as="span"
-                animation="grow"
-                size="xl"
-                role="status"
-                aria-hidden="true"
-              />
-            </Button>
-          ) : ( */}
-          {isLoading ? (
+          {isLoading && (
+            <Card>
+              <div>
+                liste d'albums en cours de chargement...
+                <span>
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </span>
+              </div>
+            </Card>
+          )}
+          {logged && !isLoading && (
             <Button
               onClick={handleOpeningModalNewAlbum}
               className="button btn-new-album"
               variant="success"
               type="primary"
             >
-              <Spinner
-                as="span"
-                animation="grow"
-                size="xl"
-                role="status"
-                aria-hidden="true"
-              />
+              Ajouter un nouvel album à ma collection
             </Button>
-          ) : (
+          )}
+          {!logged && !isLoading && (
             <Button
               onClick={handleOpeningModalNewAlbum}
               className="button btn-new-album"
@@ -96,6 +109,40 @@ const Albums = ({
               type="primary"
             >
               Ajouter un nouvel album
+            </Button>
+          )}
+          {logged && isLoading && (
+            <Button
+              onClick={handleOpeningModalNewAlbum}
+              className="button btn-new-album"
+              variant="success"
+              type="primary"
+            >
+              ...Chargement
+              <Spinner
+                as="span"
+                animation="grow"
+                size="xl"
+                role="status"
+                aria-hidden="true"
+              />
+            </Button>
+          )}
+          {!logged && isLoading && (
+            <Button
+              onClick={handleOpeningModalNewAlbum}
+              className="button btn-new-album"
+              variant="success"
+              type="primary"
+            >
+              ...Chargement
+              <Spinner
+                as="span"
+                animation="grow"
+                size="xl"
+                role="status"
+                aria-hidden="true"
+              />
             </Button>
           )}
         </div>
@@ -141,7 +188,14 @@ const Albums = ({
             ))
           ) : (
             <Card>
-              <div>Erreur de récupération ou base de données vide...</div>
+              <div>
+                <span>Base de données vide :'(</span>
+                <span>
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </span>
+              </div>
             </Card>
           )}
         </div>
@@ -162,15 +216,14 @@ const mapState = (state) => ({
   email: state.user.loggedUser.email,
   logged: state.user.loggedUser.logged,
   _id: state.user.loggedUser._id,
-  isloading: state.albumReducer.isLoading,
 });
 
 const mapDispatch = (dispatch) => ({
   openModalNewAlbum: () => {
     dispatch(openModalNewAlbum());
   },
-  getAllAlbums: () => {
-    dispatch(getAllAlbums());
+  getAlbumsList: () => {
+    dispatch(getAlbumsList());
   },
   changeLoading: () => {
     dispatch(changeLoading());
@@ -181,9 +234,6 @@ const mapDispatch = (dispatch) => ({
   getAlbumID: (_id) => {
     dispatch(getAlbumID(_id));
   },
-  getAlbumsList: () => {
-    dispatch(getAlbumsList());
-  },
 });
 
-export default connect(mapState, mapDispatch)(Albums);
+export default connect(mapState, mapDispatch)(MyAlbums);

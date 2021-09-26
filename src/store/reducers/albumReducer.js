@@ -13,6 +13,12 @@ import {
   SUCCESS_GET_ALBUM_BY_ID,
   ERROR_GET_ALBUM_BY_ID,
   GET_ALBUM_ID,
+  ADDING_NEW_ALBUM_TO_MY_LIST,
+  ERROR_ADDING_NEW_ALBUM_TO_MY_LIST,
+  SUCCESS_ADDING_NEW_ALBUM_TO_MY_LIST,
+  GET_ALBUMS_LIST,
+  ERROR_GET_ALBUMS_LIST,
+  SUCCESS_GET_ALBUMS_LIST,
 } from "../action";
 
 const initialState = {
@@ -41,7 +47,6 @@ const initialState = {
     format: "",
     style: "",
   },
-  userListAlbums: [],
 };
 
 const album = (state = initialState, action = {}) => {
@@ -79,7 +84,7 @@ const album = (state = initialState, action = {}) => {
     case GET_ALL_ALBUMS:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
       };
 
     case SUCCESS_GET_ALL_ALBUMS:
@@ -87,14 +92,14 @@ const album = (state = initialState, action = {}) => {
         ...state,
         listAlbums: [...action.payload],
         successMessage: "les albums sont récupérés",
-        loading: false,
+        isLoading: false,
       };
 
     case ERROR_GET_ALL_ALBUMS:
       return {
         ...state,
         errorMessage: action.payload,
-        loading: false,
+        isLoading: false,
         listAlbums: [],
       };
 
@@ -127,6 +132,35 @@ const album = (state = initialState, action = {}) => {
         //modalNewAlbumIsOpen: false,
       };
 
+    case ADDING_NEW_ALBUM_TO_MY_LIST:
+      return {
+        ...state,
+        /*     inputChangeCreateNewAlbum: {
+          name: ,
+          artist: "",
+          cover: "",
+          gencode: "",
+          year: "",
+          format: "",
+          style: "",
+        }, */
+        /* loggedUser: {
+          ...state.loggedUser,
+        }, */
+      };
+    case ERROR_ADDING_NEW_ALBUM_TO_MY_LIST:
+      return {
+        ...state,
+        errorMessage: action.payload,
+        //modalNewAlbumIsOpen: false,
+      };
+    case SUCCESS_ADDING_NEW_ALBUM_TO_MY_LIST:
+      return {
+        ...state,
+        successMessage: action.payload,
+        //modalNewAlbumIsOpen: false,
+      };
+
     case CHANGE_LOADING:
       return {
         ...state,
@@ -136,6 +170,20 @@ const album = (state = initialState, action = {}) => {
       return {
         ...state,
         albumId: action.payload,
+      };
+    case GET_ALBUMS_LIST:
+      return {
+        ...state,
+      };
+    case ERROR_GET_ALBUMS_LIST:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+    case SUCCESS_GET_ALBUMS_LIST:
+      return {
+        ...state,
+        successMessage: action.payload,
       };
 
     default:

@@ -7,9 +7,6 @@ import {
   SUBMIT_LOGIN,
   errorLogin,
   successLogin,
-  DELETE_ACCOUNT,
-  errorDeletedAccount,
-  successDeletedAccount,
 } from "../action";
 
 const userMiddleware = (store) => (next) => (action) => {
@@ -30,7 +27,7 @@ const userMiddleware = (store) => (next) => (action) => {
             store.dispatch(errorCreateAccount(res.data));
             return;
           }
-          console.log(res.data);
+
           store.dispatch(successCreateAccount(res.data));
         })
         .catch((err) => {
@@ -49,25 +46,10 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((err) => {
           store.dispatch(errorLogin(err));
-          console.log(err);
         });
       break;
     }
-    /*  case DELETE_ACCOUNT: {
-      axios({
-        method: "delete",
-        url: `${url}/delete/user/:id`,
-      })
-        .then((res) => {
-          console.log(res);
-          store.dispatch(successDeletedAccount(res.data));
-        })
-        .catch((err) => {
-          console.log(err);
-          store.dispatch(errorDeletedAccount(err));
-        });
-      break;
-    } */
+
     default:
       return;
   }

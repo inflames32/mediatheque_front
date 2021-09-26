@@ -4,7 +4,7 @@ import Header from "../Header";
 import { connect } from "react-redux";
 import { deleteAccount } from "../../store/action";
 
-import { Card, Button, Spinner } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "../../Styles/user.scss";
 
 const User = ({ _id, email, deleteAccount, isLoading }) => {

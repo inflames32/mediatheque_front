@@ -13,7 +13,12 @@ import {
   DELETE_ALBUM_BY_ID,
   errorDeleteAlbumByID,
   successDeleteAlbumByID,
-  successDeletedAccount,
+  ADDING_NEW_ALBUM_TO_MY_LIST,
+  successAddingNewAlbumToMyList,
+  errorAddingNewAlbumToMyList,
+  GET_ALBUMS_LIST,
+  successGetAlbumsList,
+  errorGetAlbumsList,
 } from "../action";
 
 const albumsMiddleware = (store) => (next) => (action) => {
@@ -28,14 +33,29 @@ const albumsMiddleware = (store) => (next) => (action) => {
         url: `${url}/albums/`,
       })
         .then((res) => {
-          console.log(res);
-          console.log("albumsMiddleware", res.data);
           store.dispatch(successGetAllAlbums(res.data));
         })
         .catch((err) => {
-          console.log(err);
           store.dispatch(
             errorGetAllAlbums("Impossible de récupérer les albums")
+          );
+        });
+      break;
+    }
+    case GET_ALBUMS_LIST: {
+      const userId = store.getState().user.loggedUser._id;
+      axios({
+        method: "GET'",
+        url: `${url}/user/${userId}/mes-albums/`,
+      })
+        .then((res) => {
+          store.dispatch(successGetAlbumsList(res.data));
+        })
+        .catch((err) => {
+          store.dispatch(
+            errorGetAlbumsList(
+              "Impossible de récupérer les albums de l'utilisateur"
+            )
           );
         });
       break;
@@ -43,14 +63,12 @@ const albumsMiddleware = (store) => (next) => (action) => {
 
     case GET_ALBUM_BY_ID: {
       const albumId = store.getState().albumReducer.albumId;
-      console.log("albumMiddleware", albumId);
+
       axios({
         method: "get",
         url: `${url}/album/:${albumId}`,
       })
         .then((res) => {
-          console.log(res);
-          console.log(res.data);
           store.dispatch(successGetAlbumByID(res.data));
         })
         .catch((err) => {
@@ -60,14 +78,12 @@ const albumsMiddleware = (store) => (next) => (action) => {
     }
     case DELETE_ALBUM_BY_ID: {
       const albumId = store.getState().albumReducer.albumId;
-      console.log("albumMiddleware", albumId);
+
       axios({
         method: "delete",
         url: `${url}/album/:${albumId}`,
       })
         .then((res) => {
-          console.log(res);
-          console.log(res.data);
           store.dispatch(successDeleteAlbumByID(res.data));
         })
         .catch((err) => {
@@ -84,14 +100,33 @@ const albumsMiddleware = (store) => (next) => (action) => {
       })
         .then((res) => {
           if (res.data.length) {
-            console.log(res.data);
             store.dispatch(errorAddingNewAlbum(res.data));
             return;
           }
           store.dispatch(successAddingNewAlbum(res.data));
         })
         .catch((err) => {
-          console.log(err);
+          store.dispatch(errorAddingNewAlbum(err));
+        });
+      break;
+    }
+    case ADDING_NEW_ALBUM_TO_MY_LIST: {
+      const data = store.getState().albumReducer.inputChangeCreateNewAlbum;
+      const id = store.getState().user.loggedUser._id;
+
+      axios({
+        method: "post",
+        url: `${url}/user/${id}/mes-albums/add-album`,
+        data: data,
+      })
+        .then((res) => {
+          if (res.data.length) {
+            store.dispatch(errorAddingNewAlbumToMyList(res.data));
+            return;
+          }
+          store.dispatch(successAddingNewAlbumToMyList(res.data));
+        })
+        .catch((err) => {
           store.dispatch(errorAddingNewAlbum(err));
         });
       break;
@@ -102,43 +137,3 @@ const albumsMiddleware = (store) => (next) => (action) => {
 };
 
 export default albumsMiddleware;
-
-// quand on clique sur un album de la page Albums
-/* const getOneAlbum = async (albumId) => {
-    try {
-      const res = await axios({
-        method: "get",
-        url: `${url}/album/${albumId}`,
-      });
-      setAlbum(res.data);
-    } catch (e) {
-      console.error(e);
-    }
-  }; */
-
-// supprimer un ablum quand on est dans les détails d'un album
-/* const deleteAlbumByID = async (albumID) => {
-    console.log("deleteAlbumByID");
-    try {
-      const res = await axios({
-        method: "delete",
-        url: `${url}/album/${albumID}`,
-      });
-      console.log(res.data);
-    } catch (e) {
-      console.error(e);
-    }
-  }; */
-
-// quand on valide l'ajout d'un album
-
-/* const deleteAlbumByName = async (albumName) => {
-    try {
-      await axios({
-        method: "delete",
-        url: `${url}/album/${albumName}`,
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  }; */
