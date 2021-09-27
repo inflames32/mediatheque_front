@@ -1,5 +1,6 @@
 import { React } from "react";
 import { connect } from "react-redux";
+
 import Footer from "../Footer";
 import Header from "../Header";
 
@@ -17,6 +18,9 @@ const Signup = ({
   inputChangeCreateAccount,
   submitCreateAccount,
   isloading,
+  email,
+  password_validation,
+  password,
 }) => {
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -73,29 +77,37 @@ const Signup = ({
                 placeholder="Retaper votre mot de passe"
                 onChange={handleInputChange}
                 className="user-input"
-                value={inputChangeCreateAccount.password_valdiation}
+                value={inputChangeCreateAccount.password_validation}
               />
             </Form.Group>
             <div>
-              <Button
-                className="no_account not_allowed"
-                variant="primary"
-                type="submit"
-                onClick={onFormSubmit}
-              >
-                Créer
-              </Button>
+              {email && password && password_validation ? (
+                <Button
+                  className="no_account not_allowed"
+                  variant="primary"
+                  type="submit"
+                  onClick={onFormSubmit}
+                >
+                  Créer
+                </Button>
+              ) : (
+                <Button
+                  className="no_account not_allowed"
+                  variant="primary"
+                  type="submit"
+                  onClick={onFormSubmit}
+                  disabled
+                >
+                  Créer
+                </Button>
+              )}
             </div>
           </Form>
-          {/* {errorMessage &&
-            errorMessage.forEach((message) => {
-              console.log(message);
-              <div>{message}</div>;
-            })} */}
           {errorMessage && <div>{errorMessage}</div>}
           {successMessage && <div>{successMessage}</div>}
         </Card>
       </main>
+
       <Footer />
     </div>
   );
@@ -105,6 +117,9 @@ const mapState = (state) => ({
   errorMessage: state.user.errorMessage,
   successMessage: state.user.successMessage,
   isLoading: state.user.isLoading,
+  email: state.user.inputChangeCreateAccount.email,
+  password: state.user.inputChangeCreateAccount.password,
+  password_validation: state.user.inputChangeCreateAccount.password_validation,
 });
 
 const mapDispatch = (dispatch) => ({

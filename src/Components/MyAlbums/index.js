@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 //import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 import { Card, Spinner, Button } from "react-bootstrap";
+
 import { GrCaretNext } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -37,18 +38,14 @@ const MyAlbums = ({
 }) => {
   useEffect(() => {
     getAlbumsList();
-    console.log("_id", _id);
-    console.log("useEffect > Myalbums >sucess de récupération");
   }, []);
 
   const handleOpeningModalNewAlbum = () => {
-    console.log("je clique");
     openModalNewAlbum();
   };
 
   const handleAlbumId = (_id) => () => {
     getAlbumID(_id);
-    console.log(_id);
   };
 
   const ImgNotDefined =
@@ -160,11 +157,6 @@ const MyAlbums = ({
             <Card>
               <div>
                 <span>Base de données vide :'(</span>
-                <span>
-                  <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </span>
               </div>
             </Card>
           )}

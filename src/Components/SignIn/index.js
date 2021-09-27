@@ -30,13 +30,10 @@ const Signin = ({
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    console.log("je clique");
+
     submitLogin();
   };
 
-  /*   if (userValue.email && userValue.password === "") {
-    setBtnSubmitIsDisabled(false);
-  } */
   return (
     <div className="signin">
       <Header />
@@ -138,7 +135,6 @@ const mapDispatch = (dispatch) => ({
     dispatch(inputChangeLoginData(changeData));
   },
   submitLogin: () => {
-    console.log("je submit");
     dispatch(submitLogin());
   },
 });

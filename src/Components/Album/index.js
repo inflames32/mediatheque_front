@@ -8,21 +8,12 @@ import Footer from "../Footer";
 import { getAlbumByID, deleteAlbumByID } from "../../store/action";
 import "../../Styles/album.scss";
 
-const Album = ({
-  setAlbumDetailsIsOpen,
-  albumId,
-  album,
-  cover,
-  getAlbumByID,
-  deleteAlbumByID,
-}) => {
+const Album = ({ albumId, album, cover, getAlbumByID, deleteAlbumByID }) => {
   useEffect((albumId) => {
-    /*     console.log(albumId); */
     getAlbumByID(albumId);
   }, []);
 
   const deleteAlbum = (albumId) => () => {
-    console.log(albumId);
     deleteAlbumByID(albumId);
   };
 
@@ -142,7 +133,7 @@ const Album = ({
 const mapState = (state) => ({
   successMessage: state.user.successMessage,
   errorMessage: state.user.errorMessage,
-  message: state.user.successMessage.message,
+
   album: state.albumReducer.album,
   albumId: state.albumReducer.albumId,
   _id: state.albumReducer.albumId,

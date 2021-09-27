@@ -35,17 +35,14 @@ const AlbumsList = ({
 }) => {
   useEffect(() => {
     getAllAlbums();
-    console.log("sucess de récupération getAllAlbums();");
   }, []);
 
   const handleOpeningModalNewAlbum = () => {
-    console.log("je clique");
     openModalNewAlbum();
   };
 
   const handleAlbumId = (_id) => () => {
     getAlbumID(_id);
-    console.log(_id);
   };
 
   const ImgNotDefined =
@@ -114,7 +111,9 @@ const AlbumsList = ({
             ))
           ) : (
             <Card>
-              <div>Erreur de récupération ou base de données vide...</div>
+              <Card.Title>
+                <div>Erreur de récupération ou base de données vide...</div>
+              </Card.Title>
             </Card>
           )}
         </div>

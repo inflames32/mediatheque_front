@@ -34,23 +34,10 @@ const ModalAddNewAlbum = ({
   const onFormSubmit = (evt) => {
     evt.preventDefault();
     if (loggedUser) {
-      console.log(`je crée dans la liste de l'utilisateur`);
       addingNewAlbumToMyList();
     } else {
-      console.log(`je crée dans la liste public`);
       addingNewAlbum();
     }
-
-    // collection user
-    // const { albumPossédé } = await tacollection.getOne({ _id: iduser })
-    // getOneAlbum(id)
-    // {
-    //  id: 'sonid'
-    //  name: 'toto',
-    //  albumPossédé : [
-    //    'idalbum1', 'idalbum2'
-    //  ]
-    // }
   };
 
   return (

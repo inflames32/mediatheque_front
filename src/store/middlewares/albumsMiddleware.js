@@ -44,19 +44,15 @@ const albumsMiddleware = (store) => (next) => (action) => {
     }
     case GET_ALBUMS_LIST: {
       const userId = store.getState().user.loggedUser._id;
-      console.log("47", userId);
+
       axios({
         method: "get",
         url: `${url}/user/${userId}/mes-albums`,
       })
         .then((res) => {
-          //console.log("53");
-          console.log(res);
           store.dispatch(successGetAlbumsList(res.data));
         })
         .catch((err) => {
-          console.log("57");
-
           store.dispatch(errorGetAlbumsList(err));
         });
       break;

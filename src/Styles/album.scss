@@ -1,10 +1,10 @@
 @media screen and (max-width: 1920px) {
-    .card-img {
+    .card-cover {
         box-sizing: border-box;
         height: 600px;
         width: 509px;
     }
-    .card-img {
+    .card-cover {
         box-sizing: border-box;
         height: 440px;
         width: 609px;
@@ -54,6 +54,7 @@
         }
     }
     .key {
+        padding-left: 0.5em;
         width: 40%;
     }
     .valeur {
@@ -61,6 +62,7 @@
         //padding-left: 2em;
     }
     .informations {
+        padding-right: 0.5em;
         display: flex;
     }
 }

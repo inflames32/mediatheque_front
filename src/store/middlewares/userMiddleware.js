@@ -23,12 +23,8 @@ const userMiddleware = (store) => (next) => (action) => {
         data: data,
       })
         .then((res) => {
-          if (res.data.length) {
-            store.dispatch(errorCreateAccount(res.data));
-            return;
-          }
-
-          store.dispatch(successCreateAccount(res.data));
+          console.log(res);
+          store.dispatch(successCreateAccount(res.data.successMessage));
         })
         .catch((err) => {
           store.dispatch(errorCreateAccount(err));

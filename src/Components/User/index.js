@@ -8,11 +8,6 @@ import { Card } from "react-bootstrap";
 import "../../Styles/user.scss";
 
 const User = ({ _id, email, deleteAccount, isLoading }) => {
-  /* const handleBtnDeleteAccount = (_id) => {
-    console.log("je clique sur le bouton de suppresion de compte");
-    deleteAccount();
-  }; */
-
   return (
     <div className="user">
       <Header />
