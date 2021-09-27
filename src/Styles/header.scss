@@ -1,6 +1,8 @@
 .homepage__navbar {
+    display: flex;
     background-color: transparent;
     position: sticky !important;
+    justify-content: center;
 }
 
 .navbar__logo {
@@ -43,6 +45,12 @@
 }
 
 @media screen and (min-width: 972px) {
+    .homepage__navbar {
+        display: flex;
+        background-color: transparent;
+        position: sticky !important;
+        justify-content: center;
+    }
     .header__nav {
         margin: 2em;
         display: flex;

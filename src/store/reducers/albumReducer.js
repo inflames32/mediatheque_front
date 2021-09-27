@@ -184,6 +184,7 @@ const album = (state = initialState, action = {}) => {
       return {
         ...state,
         successMessage: action.payload,
+        listAlbums: [...action.payload],
       };
 
     default:

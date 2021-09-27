@@ -231,10 +231,12 @@ export const getAlbumsList = () => ({
   type: GET_ALBUMS_LIST,
 });
 
-export const errorGetAlbumsList = () => ({
+export const errorGetAlbumsList = (payload) => ({
   type: ERROR_GET_ALBUMS_LIST,
+  payload,
 });
 
-export const successGetAlbumsList = () => ({
+export const successGetAlbumsList = (payload) => ({
   type: SUCCESS_GET_ALBUMS_LIST,
+  payload,
 });

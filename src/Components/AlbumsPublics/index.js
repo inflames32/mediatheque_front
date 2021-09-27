@@ -34,13 +34,8 @@ const AlbumsList = ({
   getAlbumID,
 }) => {
   useEffect(() => {
-    if (logged) {
-      getAlbumsList();
-    } else {
-      getAllAlbums();
-    }
-
-    console.log("sucess de récupération");
+    getAllAlbums();
+    console.log("sucess de récupération getAllAlbums();");
   }, []);
 
   const handleOpeningModalNewAlbum = () => {
@@ -61,7 +56,6 @@ const AlbumsList = ({
       <Header />
       <ToastContainer />
       <main className="albums-main">
-        Albums publics
         <div className="btn-add-new-album">
           {isLoading ? (
             <Button
@@ -96,7 +90,7 @@ const AlbumsList = ({
               <Card className="list-albums-element" key={_id}>
                 <div className="cover">
                   {cover ? (
-                    <Card.Img src={cover} />
+                    <Card.Img src={cover} className="card-cover" />
                   ) : (
                     <Card.Img src={ImgNotDefined} />
                   )}
