@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
@@ -6,7 +6,7 @@ import Footer from "../Footer";
 import Header from "../Header";
 
 import { inputChangeLoginData, submitLogin } from "../../store/action";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Spinner } from "react-bootstrap";
 import "../../Styles/signin.scss";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,6 +20,8 @@ const Signin = ({
   email,
   password,
   submitLogin,
+  isLoading,
+  loggedUser,
 }) => {
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -71,16 +73,19 @@ const Signin = ({
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Restez connecté ?" />
+                {/*  <Form.Check type="checkbox" label="Restez connecté ?" /> */}
               </Form.Group>
-              {email && password ? (
+              {isLoading ? (
                 <div>
                   <Button
+                    className="no_account not_allowed"
+                    variant="primary"
                     type="submit"
                     onClick={onFormSubmit}
-                    className="btn--ok"
                   >
-                    Connexion
+                    <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
                   </Button>
                 </div>
               ) : (
@@ -89,7 +94,6 @@ const Signin = ({
                     type="submit"
                     onClick={onFormSubmit}
                     className="btn--disabled"
-                    disabled
                   >
                     Connexion
                   </Button>
@@ -112,8 +116,6 @@ const Signin = ({
           )}
         </Card>
       </main>
-      <ToastContainer />
-      {successMessage && toast.success("Vous êtes connecté")}
       <Footer />
     </div>
   );
@@ -123,11 +125,12 @@ const mapState = (state) => ({
   email: state.user.inputChangeLoginData.email,
   password: state.user.inputChangeLoginData.password,
   inputChangeLoginData: state.user.inputChangeLoginData,
-  isLoading: state.albumReducer.isLoading,
+  isLoading: state.user.isLoading,
   successMessage: state.user.successMessage,
   errorMessage: state.user.errorMessage,
   logged: state.user.logged,
   _id: state.user._id,
+  loggedUser: state.user.loggedUser,
 });
 
 const mapDispatch = (dispatch) => ({

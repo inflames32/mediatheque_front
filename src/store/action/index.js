@@ -58,13 +58,37 @@ export const DISCONNECT_USER = "DISCONNECT_USER";
 export const GET_ALBUM_ID = "GET_ALBUM_ID";
 export const CHANGE_LOADING = "CHANGE_LOADING";
 
+// open update album by Id
+export const OPEN_UPDATE = "OPEN_ALBUM";
+export const ERROR_OPEN_UPDATE = "ERROR_OPEN_ALBUM";
+export const SUCCESS_OPEN_UPDATE = "SUCCESS_OPEN_ALBUM";
+
+// delete account
 export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
-export const ERROR_DELETED_ACCOUNT = "ERROR_DELETED_ACCOUNT";
-export const SUCCESS_DELETED_ACCOUNT = "SUCCESS_DELETED_ACCOUNT";
+export const ERROR_DELETE_ACCOUNT = "ERROR_DELETE_ACCOUNT";
+export const SUCCESS_DELETE_ACCOUNT = "SUCCESS_DELETE_ACCOUNT";
+
+// delete album by id
 export const DELETE_ALBUM_BY_ID = "DELETE_ALBUM_BY_ID";
 export const ERROR_DELETE_ALBUM_BY_ID = "ERROR_DELETE_ALBUM_BY_ID";
 export const SUCCESS_DELETE_ALBUM_BY_ID = "SUCCESS_DELETE_ALBUM_BY_ID";
 
+export const CLEAR_STATE = "CLEAR_STATE";
+
+export const clearState = () => ({
+  type: CLEAR_STATE,
+});
+export const openUpdate = () => ({
+  type: OPEN_UPDATE,
+});
+export const ErrorOpenUpdate = (payload) => ({
+  type: ERROR_OPEN_UPDATE,
+  payload,
+});
+export const SuccessOpenUpdate = (payload) => ({
+  type: SUCCESS_OPEN_UPDATE,
+  payload,
+});
 export const changeLoading = (payload) => ({
   type: CHANGE_LOADING,
   payload,
@@ -205,13 +229,13 @@ export const deleteAccount = () => ({
   type: DELETE_ACCOUNT,
 });
 
-export const errorDeletedAccount = (payload) => ({
-  type: ERROR_DELETED_ACCOUNT,
+export const errorDeleteAccount = (payload) => ({
+  type: ERROR_DELETE_ACCOUNT,
   payload,
 });
 
 export const successDeletedAccount = (payload) => ({
-  type: SUCCESS_DELETED_ACCOUNT,
+  type: SUCCESS_DELETE_ACCOUNT,
   payload,
 });
 

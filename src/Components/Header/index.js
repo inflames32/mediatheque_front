@@ -2,20 +2,30 @@ import { Link } from "react-router-dom";
 import { Button, Nav, Navbar } from "react-bootstrap";
 import { connect } from "react-redux";
 import "../../Styles/header.scss";
-import { disconnectUser } from "../../store/action";
+import { disconnectUser, clearState } from "../../store/action";
 
-const Header = ({ logged, _id, email, disconnectUser }) => {
+const Header = ({ logged, _id, email, disconnectUser, clearState }) => {
   const handleDisconnect = () => {
     disconnectUser();
+  };
+  const handleClearState = () => {
+    clearState();
   };
   return (
     <Navbar expand="lg" className="homepage__navbar">
       <Navbar.Brand>
-        <Link to="/" className="navbar__logo header__logo">
+        <Link
+          to="/"
+          className="navbar__logo header__logo"
+          onClick={handleClearState}
+        >
           Ma médiathèque
         </Link>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav " />
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        className="navbar__burger"
+      />
       <Navbar.Collapse id="basic-navbar-nav header__nav">
         <Nav className="me-auto navbar-btn header__btn">
           {!logged ? (
@@ -78,6 +88,9 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   disconnectUser: () => {
     dispatch(disconnectUser());
+  },
+  clearState: () => {
+    dispatch(clearState());
   },
 });
 

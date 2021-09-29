@@ -115,50 +115,39 @@ const album = (state = initialState, action = {}) => {
     case ADDING_NEW_ALBUM:
       return {
         ...state,
-        //isLoading: true,
+        isLoading: true,
       };
 
     case SUCCESS_ADDING_NEW_ALBUM:
       return {
         ...state,
         successMessage: action.payload,
-        //modalNewAlbumIsOpen: false,
+        isLoading: false,
       };
 
     case ERROR_ADDING_NEW_ALBUM:
       return {
         ...state,
         errorMessage: action.payload,
-        //modalNewAlbumIsOpen: false,
+        isLoading: false,
       };
 
     case ADDING_NEW_ALBUM_TO_MY_LIST:
       return {
         ...state,
-        /*     inputChangeCreateNewAlbum: {
-          name: ,
-          artist: "",
-          cover: "",
-          gencode: "",
-          year: "",
-          format: "",
-          style: "",
-        }, */
-        /* loggedUser: {
-          ...state.loggedUser,
-        }, */
+        isLoading: true,
       };
     case ERROR_ADDING_NEW_ALBUM_TO_MY_LIST:
       return {
         ...state,
         errorMessage: action.payload,
-        //modalNewAlbumIsOpen: false,
+        isLoading: false,
       };
     case SUCCESS_ADDING_NEW_ALBUM_TO_MY_LIST:
       return {
         ...state,
         successMessage: action.payload,
-        //modalNewAlbumIsOpen: false,
+        isLoading: false,
       };
 
     case CHANGE_LOADING:
@@ -174,17 +163,20 @@ const album = (state = initialState, action = {}) => {
     case GET_ALBUMS_LIST:
       return {
         ...state,
+        isLoading: true,
       };
     case ERROR_GET_ALBUMS_LIST:
       return {
         ...state,
         errorMessage: action.payload,
+        isLoading: false,
       };
     case SUCCESS_GET_ALBUMS_LIST:
       return {
         ...state,
         successMessage: action.payload,
         listAlbums: [...action.payload],
+        isLoading: false,
       };
 
     default:

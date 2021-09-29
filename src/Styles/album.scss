@@ -1,4 +1,10 @@
 @media screen and (max-width: 1920px) {
+    .album {
+        height: 100vh;
+    }
+    .input_album {
+        color: black;
+    }
     .card-cover {
         box-sizing: border-box;
         height: 600px;
@@ -71,7 +77,7 @@
     .card-img {
         box-sizing: border-box;
         height: 410px;
-        width: 509px;
+        width: 100%;
     }
     .album__main {
         height: 88vh;
@@ -79,6 +85,7 @@
     .album__card {
         padding: 0 !important;
         height: 88vh;
+        max-height: 88vh;
         &__body {
             height: 88vh;
         }
@@ -113,5 +120,26 @@
     }
     .informations {
         display: flex;
+    }
+}
+
+@media screen and (height: 762px) {
+    .album {
+        height: 100vh;
+        &__main {
+            height: 87vh;
+        }
+        &__card {
+            height: 87vh;
+            &__content {
+                height: 87vh;
+                &__cover {
+                    height: 47vh;
+                }
+            }
+        }
+    }
+    .card-img {
+        max-height: 100%;
     }
 } ;

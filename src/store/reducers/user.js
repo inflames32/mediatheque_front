@@ -1,3 +1,4 @@
+import { TimestreamQuery } from "aws-sdk";
 import {
   SUBMIT_CREATE_ACCOUNT,
   INPUT_CHANGE_CREATE_ACCOUNT,
@@ -9,8 +10,9 @@ import {
   INPUT_CHANGE_LOGIN_DATA,
   DISCONNECT_USER,
   DELETE_ACCOUNT,
-  ERROR_DELETED_ACCOUNT,
-  SUCCESS_DELETED_ACCOUNT,
+  ERROR_DELETE_ACCOUNT,
+  SUCCESS_DELETE_ACCOUNT,
+  CLEAR_STATE,
 } from "../action";
 
 const initialState = {
@@ -25,14 +27,31 @@ const initialState = {
   },
   errorMessage: "",
   successMessage: "",
-
   loggedUser: "",
   isLoading: false,
   listAlbums: [],
+  message: "",
 };
 
 const user = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLEAR_STATE:
+      return {
+        ...state,
+        inputChangeLoginData: {
+          email: "",
+          password: "",
+        },
+        inputChangeCreateAccount: {
+          email: "",
+          password: "",
+          password_validation: "",
+        },
+        errorMessage: "",
+        successMessage: "",
+        isLoading: false,
+        message: "",
+      };
     case INPUT_CHANGE_CREATE_ACCOUNT:
       return {
         ...state,
@@ -54,12 +73,16 @@ const user = (state = initialState, action = {}) => {
     case ERROR_CREATE_ACCOUNT:
       return {
         ...state,
-        errorMessage: action.payload,
+        errorMessage:
+          "Une erreur c'est produite pendant la création de votre compte",
+        isLoading: false,
       };
     case SUCCESS_CREATE_ACCOUNT:
       return {
         ...state,
-        successMessage: action.payload,
+        successMessage: "Votre compte a été crée avec succès!",
+
+        isLoading: false,
       };
     case INPUT_CHANGE_LOGIN_DATA:
       return {
@@ -72,18 +95,22 @@ const user = (state = initialState, action = {}) => {
     case SUBMIT_LOGIN:
       return {
         ...state,
+        isLoading: true,
       };
 
     case ERROR_LOGIN:
       return {
         ...state,
-        errorMessage: action.payload,
+        isLoading: false,
+        errorMessage: "Une erreur c'est produite pendant la connexion",
       };
     case SUCCESS_LOGIN:
       return {
         ...state,
         loggedUser: action.payload,
         logged: true,
+        isLoading: false,
+        successMessage: "Vous êtes connecté",
       };
     case DISCONNECT_USER:
       return {
@@ -99,20 +126,22 @@ const user = (state = initialState, action = {}) => {
           email: "",
           password: "",
         },
+        message: "Vous êtes déconnecté",
       };
     case DELETE_ACCOUNT:
       return {
         ...state,
         isloading: true,
+        logged: true,
       };
-    case SUCCESS_DELETED_ACCOUNT:
+    case SUCCESS_DELETE_ACCOUNT:
       return {
         ...state,
         successMessage: "votre compte a été supprimé",
         isloading: false,
         logged: false,
       };
-    case ERROR_DELETED_ACCOUNT:
+    case ERROR_DELETE_ACCOUNT:
       return {
         ...state,
         successMessage:

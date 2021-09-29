@@ -1,13 +1,20 @@
 .homepage__navbar {
     display: flex;
-    background-color: transparent;
+    background-color: #3f434d;
     position: sticky !important;
-    justify-content: center;
+    z-index: 1050;
+    top: 0;
+    width: 100% !important;
+}
+.navbar__burger {
+    margin-right: 2em !important;
+    margin-top: 15px;
 }
 
 .navbar__logo {
     text-decoration: none;
-    padding-left: 5%;
+    margin-left: 2em;
+    margin-top: 15px;
 }
 
 .signin-btn_connect,
@@ -19,7 +26,7 @@
 .signin-btn_connect:hover,
 .btn_albumslist:hover {
     text-decoration: none;
-    background-color: rgb(55, 55, 221) !important;
+    background-color: rgb(0, 0, 0) !important;
 }
 
 .header__btn_disconnect:hover {
@@ -49,5 +56,6 @@
         margin: 2em;
         display: flex;
         justify-content: space-around;
+        position: sticky !important;
     }
 } ;

@@ -61,13 +61,9 @@ const AlbumsList = ({
               variant="success"
               type="primary"
             >
-              <Spinner
-                as="span"
-                animation="grow"
-                size="xl"
-                role="status"
-                aria-hidden="true"
-              />
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
             </Button>
           ) : (
             <Button
@@ -112,7 +108,7 @@ const AlbumsList = ({
           ) : (
             <Card>
               <Card.Title>
-                <div>Erreur de récupération ou base de données vide...</div>
+                <div>En cours de récupération ou base de données vide...</div>
               </Card.Title>
             </Card>
           )}
@@ -134,7 +130,7 @@ const mapState = (state) => ({
   email: state.user.loggedUser.email,
   logged: state.user.loggedUser.logged,
   _id: state.user.loggedUser._id,
-  isloading: state.albumReducer.isLoading,
+  isLoading: state.albumReducer.isLoading,
 });
 
 const mapDispatch = (dispatch) => ({

@@ -7,9 +7,11 @@ import Header from "../Header";
 import {
   inputChangeCreateAccount,
   submitCreateAccount,
+  successCreateAccount,
+  errorCreateAccount,
 } from "../../store/action";
 
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Spinner } from "react-bootstrap";
 import "../../Styles/signup.scss";
 
 const Signup = ({
@@ -17,10 +19,11 @@ const Signup = ({
   successMessage,
   inputChangeCreateAccount,
   submitCreateAccount,
-  isloading,
+  isLoading,
   email,
   password_validation,
   password,
+  successCreateAccount,
 }) => {
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -81,7 +84,7 @@ const Signup = ({
               />
             </Form.Group>
             <div>
-              {email && password && password_validation ? (
+              {!isLoading ? (
                 <Button
                   className="no_account not_allowed"
                   variant="primary"
@@ -96,9 +99,10 @@ const Signup = ({
                   variant="primary"
                   type="submit"
                   onClick={onFormSubmit}
-                  disabled
                 >
-                  Créer
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
                 </Button>
               )}
             </div>
@@ -113,6 +117,7 @@ const Signup = ({
   );
 };
 const mapState = (state) => ({
+  isloading: state.user.isLoading,
   inputChangeCreateAccount: state.user.inputChangeCreateAccount,
   errorMessage: state.user.errorMessage,
   successMessage: state.user.successMessage,

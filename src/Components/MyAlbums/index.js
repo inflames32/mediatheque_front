@@ -170,7 +170,7 @@ const MyAlbums = ({
 
 const mapState = (state) => ({
   modalNewAlbumIsOpen: state.albumReducer.modalNewAlbumIsOpen,
-  //isLoading: state.albumMiddleware.isLoading,
+  isLoading: state.albumReducer.isLoading,
   successMessage: state.albumReducer.successMessage,
   errorMessage: state.user.errorMessage,
   listAlbums: state.albumReducer.listAlbums,

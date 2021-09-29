@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Spinner } from "react-bootstrap";
+import { AiOutlineClose } from "react-icons/ai";
 
 import {
   closeModalNewAlbum,
@@ -19,6 +20,7 @@ const ModalAddNewAlbum = ({
   addingNewAlbum,
   loggedUser,
   addingNewAlbumToMyList,
+  isLoading,
 }) => {
   const handleCloseModal = () => {
     closeModalNewAlbum();
@@ -43,7 +45,9 @@ const ModalAddNewAlbum = ({
   return (
     <div className="modal-form-add-album">
       <Card className="modal-content-albumDetails">
-        {loggedUser.logged && <span>{loggedUser._id}</span>}
+        <div className="modal-close" onClick={handleCloseModal}>
+          <AiOutlineClose />
+        </div>
         <Form className="form-add-album" onSubmit={onFormSubmit}>
           <Form.Group className="mb-3" controlId="formBasicAlbum">
             <Form.Label className="label-input">Nom de l'album</Form.Label>
@@ -122,21 +126,47 @@ const ModalAddNewAlbum = ({
             />
           </Form.Group>
           <div className="btn-action">
-            <Button
-              type="primary"
-              className="button is-success"
-              onClick={onFormSubmit}
-            >
-              Enregistrer
-            </Button>
-            <Button
-              type="danger"
-              onClick={handleCloseModal}
-              variant="danger"
-              className="button is-cancel"
-            >
-              Annuler
-            </Button>
+            {isLoading ? (
+              <div>
+                <Button
+                  type="primary"
+                  className="button is-success"
+                  onClick={onFormSubmit}
+                >
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </Button>
+                <Button
+                  type="danger"
+                  onClick={handleCloseModal}
+                  variant="danger"
+                  className="button is-cancel"
+                >
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <Button
+                  type="primary"
+                  className="button is-success"
+                  onClick={onFormSubmit}
+                >
+                  Enregistrer
+                </Button>
+                <Button
+                  type="danger"
+                  onClick={handleCloseModal}
+                  variant="danger"
+                  className="button is-cancel"
+                >
+                  Annuler
+                </Button>
+              </div>
+            )}
           </div>
         </Form>
       </Card>
@@ -151,6 +181,7 @@ const mapState = (state) => ({
   successMessage: state.albumReducer.successMessage,
   loggedUser: state.user.loggedUser,
   _id: state.user.loggedUser._id,
+  isLoading: state.albumReducer.isLoading,
 });
 
 const mapDispatch = (dispatch) => ({
@@ -162,11 +193,11 @@ const mapDispatch = (dispatch) => ({
   },
   addingNewAlbum: () => {
     dispatch(addingNewAlbum());
-    dispatch(closeModalNewAlbum());
+    //dispatch(closeModalNewAlbum());
   },
   addingNewAlbumToMyList: () => {
     dispatch(addingNewAlbumToMyList());
-    dispatch(closeModalNewAlbum());
+    //dispatch(closeModalNewAlbum());
   },
 });
 

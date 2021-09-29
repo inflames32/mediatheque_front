@@ -7,15 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { Card } from "react-bootstrap";
 import "../../Styles/homepage.scss";
 
-const Homepage = ({ logged, successMessage, errorMessage }) => {
-  useEffect(() => {
-    if (logged) {
-      toast.success("Vous êtes identifié", {
-        position: "top-right",
-      });
-    }
-  }, [logged]);
-
+const Homepage = ({ loggedUser }) => {
   return (
     <div className="homepage">
       <Header />
@@ -43,9 +35,7 @@ const Homepage = ({ logged, successMessage, errorMessage }) => {
 };
 
 const mapState = (state) => ({
-  successMessage: state.user.successMessage,
-  errorMessage: state.user.errorMessage,
-  logged: state.user.logged,
+  loggedUser: state.user.loggedUser,
 });
 
 const mapDispatch = (dispatch) => ({});

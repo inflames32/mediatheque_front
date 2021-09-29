@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import "../../Styles/footer.scss";
+import { clearState } from "../../store/action";
 
-const Footer = () => {
+const Footer = ({ clearState }) => {
+  const handleClearState = () => {
+    clearState();
+  };
   return (
     <div className="footer">
-      <Link to="/" className="footer__home">
+      <Link to="/" className="footer__home" onClick={handleClearState}>
         Accueil
       </Link>
 
@@ -15,4 +20,12 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+const mapState = () => ({});
+
+const mapDispatch = (dispatch) => ({
+  clearState: () => {
+    dispatch(clearState());
+  },
+});
+
+export default connect(mapState, mapDispatch)(Footer);

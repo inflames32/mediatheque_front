@@ -5,10 +5,17 @@ import { BsPencil, BsTrash, BsInfoCircle } from "react-icons/bs";
 import { connect } from "react-redux";
 import Header from "../Header";
 import Footer from "../Footer";
-import { getAlbumByID, deleteAlbumByID } from "../../store/action";
+import { getAlbumByID, deleteAlbumByID, openUpdate } from "../../store/action";
 import "../../Styles/album.scss";
 
-const Album = ({ albumId, album, cover, getAlbumByID, deleteAlbumByID }) => {
+const Album = ({
+  albumId,
+  album,
+  cover,
+  getAlbumByID,
+  deleteAlbumByID,
+  loggedUser,
+}) => {
   useEffect((albumId) => {
     getAlbumByID(albumId);
   }, []);
@@ -16,6 +23,10 @@ const Album = ({ albumId, album, cover, getAlbumByID, deleteAlbumByID }) => {
   const deleteAlbum = (albumId) => () => {
     deleteAlbumByID(albumId);
   };
+
+  /* const handleUpdateAlbum = () => {
+    //openUpdate();
+  }; */
 
   const ImgNotDefined =
     "https://image.flaticon.com/icons/png/128/376/376819.png";
@@ -46,72 +57,72 @@ const Album = ({ albumId, album, cover, getAlbumByID, deleteAlbumByID }) => {
                     <div className="informations">
                       <div className="key">Nom de l'album :</div>
                       <div className="valeur">{album.name}</div>
-                      <div>
+                      {/* <div>
                         <BsPencil
                           className="pencil-icon"
-                          //onClick={handleUpdateAlbumDetails}
+                          onClick={handleUpdateAlbum(albumId)}
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </li>
                   <li className="album__card__content__details__artist">
                     <div className="informations">
                       <div className="key">Nom de l'artiste :</div>{" "}
                       <div className="valeur">{album.artist}</div>
-                      <div>
+                      {/* <div>
                         <BsPencil
                           className="pencil-icon"
-                          //onClick={handleUpdateAlbumDetails}
+                          onClick={handleUpdateAlbum(albumId)}
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </li>
                   <li className="album__card__content__details__style">
                     <div className="informations">
                       <div className="key">Style :</div>{" "}
                       <div className="valeur">{album.style}</div>
-                      <div>
+                      {/* <div>
                         <BsPencil
                           className="pencil-icon"
-                          //onClick={handleUpdateAlbumDetails}
+                          onClick={handleUpdateAlbum(albumId)}
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </li>
                   <li className="album__card__content__details__year">
                     <div className="informations">
                       <div className="key">Année :</div>{" "}
                       <div className="valeur">{album.year}</div>
-                      <div>
+                      {/* <div>
                         <BsPencil
                           className="pencil-icon"
-                          //onClick={handleUpdateAlbumDetails}
+                          onClick={handleUpdateAlbum(albumId)}
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </li>
                   <li className="album__card__content__details__format">
                     <div className="informations">
                       <div className="key">Format :</div>
                       <div className="valeur">{album.format}</div>
-                      <div>
+                      {/* <div>
                         <BsPencil
                           className="pencil-icon"
-                          //onClick={handleUpdateAlbumDetails}
+                          onClick={handleUpdateAlbum(albumId)}
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </li>
                   <li className="album__card__content__details__gencode">
                     <div className="informations">
                       <div className="key">Codebarre :</div>
                       <div className="valeur">{album.gencode}</div>
-                      <div>
+                      {/* <div>
                         <BsPencil
                           className="pencil-icon"
-                          //onClick={handleUpdateAlbumDetails}
+                          onClick={handleUpdateAlbum(albumId)}
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </li>
                   <li className="album__card__content__details__delete">
@@ -133,7 +144,7 @@ const Album = ({ albumId, album, cover, getAlbumByID, deleteAlbumByID }) => {
 const mapState = (state) => ({
   successMessage: state.user.successMessage,
   errorMessage: state.user.errorMessage,
-
+  loggedUser: state.user.loggedUser,
   album: state.albumReducer.album,
   albumId: state.albumReducer.albumId,
   _id: state.albumReducer.albumId,
@@ -147,6 +158,9 @@ const mapDispatch = (dispatch) => ({
   deleteAlbumByID: (albumId) => {
     dispatch(deleteAlbumByID(albumId));
   },
+  /*  openUpdate: (albumId) => {
+    dispatch(openUpdate(albumId));
+  }, */
 });
 
 export default connect(mapState, mapDispatch)(Album);

@@ -2,12 +2,17 @@ import React from "react";
 import Footer from "../Footer";
 import Header from "../Header";
 import { connect } from "react-redux";
+import { BsPencil } from "react-icons/bs";
 import { deleteAccount } from "../../store/action";
+import { Button } from "react-bootstrap";
 
 import { Card } from "react-bootstrap";
 import "../../Styles/user.scss";
 
 const User = ({ _id, email, deleteAccount, isLoading }) => {
+  const handleDeleteAccount = () => {
+    deleteAccount();
+  };
   return (
     <div className="user">
       <Header />
@@ -22,8 +27,15 @@ const User = ({ _id, email, deleteAccount, isLoading }) => {
                 <div>Votre email : {email}</div>
               </div>
             </Card.Text>
+
             <Card.Text>
-              {/*  <Button variant="danger" onClick={handleBtnDeleteAccount(_id)}>
+              <div>
+                <BsPencil
+                  className="pencil-icon"
+                  //onClick={handleUpdateAlbum(albumId)}
+                />
+              </div>
+              {/*  <Button variant="danger" onClick={handleDeleteAccount()}>
                 Supprimer mon compte
               </Button> */}
               {/* {isLoading ? (
