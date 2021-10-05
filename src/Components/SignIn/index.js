@@ -54,10 +54,7 @@ const Signin = ({
                   onChange={handleInputChange}
                   autoComplete="current-email"
                 />
-                <Form.Text className="text-muted">
-                  Votre email sera utilisé que pour vous connecter à votre
-                  compte.
-                </Form.Text>
+                <Form.Text className="text-muted"></Form.Text>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">

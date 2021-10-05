@@ -16,10 +16,10 @@
         width: 609px;
     }
     .album__main {
-        height: 88vh;
+        min-height: 88vh;
     }
     .album__card {
-        height: 88vh;
+        min-height: 88vh;
         &__body {
             padding: 0 !important;
             display: flex;

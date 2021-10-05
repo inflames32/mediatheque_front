@@ -11,15 +11,20 @@
         color: rgb(17, 17, 100);
     }
     .list-albums {
+        display: flex;
+        flex-direction: column;
         margin-top: 2em;
         width: 100%;
-        height: 84vh;
+        min-height: 84vh;
+        align-items: center;
     }
     .list-albums-element {
         display: flex !important;
         flex-direction: row !important;
         height: 150px !important;
-        width: 100% !important;
+        width: 90% !important;
+        margin: 2px 0 2px 0;
+        border: none !important;
     }
     .card-cover {
         box-sizing: border-box;

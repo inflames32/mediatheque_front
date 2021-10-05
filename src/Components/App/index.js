@@ -13,7 +13,7 @@ import MyAlbums from "../MyAlbums";
 import error404 from "../404error";
 
 import store from "../../store";
-//import "../../Styles/reset.scss";
+import "../../Styles/reset.scss";
 import "../../Styles/app.scss";
 
 // == Composant
