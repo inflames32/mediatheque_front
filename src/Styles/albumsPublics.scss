@@ -1,4 +1,8 @@
 @media screen and (max-width: 1920px) {
+    .albums-main {
+        min-height: 80vh;
+        max-height: auto;
+    }
     .btn-add-new-album {
         display: flex !important;
         justify-content: center;
@@ -15,7 +19,8 @@
         flex-direction: column;
         margin-top: 2em;
         width: 100%;
-        min-height: 84vh;
+        min-height: 80vh;
+        max-height: auto;
         align-items: center;
     }
     .list-albums-element {

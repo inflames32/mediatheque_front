@@ -1,9 +1,10 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import Footer from "../Footer";
 import Header from "../Header";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 import { inputChangeLoginData, submitLogin } from "../../store/action";
 import { Form, Button, Card, Spinner } from "react-bootstrap";
@@ -23,6 +24,7 @@ const Signin = ({
   isLoading,
   loggedUser,
 }) => {
+  const [passwordReveal, setPasswordReveal] = useState(false);
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
     inputChangeLoginData({
@@ -36,17 +38,22 @@ const Signin = ({
     submitLogin();
   };
 
+  const handlePasswordReveal = () => {
+    setPasswordReveal(!passwordReveal);
+    console.log(passwordReveal);
+  };
+
   return (
     <div className="signin">
       <Header />
       <main className="signin-main">
         <Card className="signin-card ">
           {!logged ? (
-            <Form>
+            <Form className="signin-card-form">
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Adresse e-mail</Form.Label>
                 <Form.Control
-                  className="user-input"
+                  className="signin-card-form-email-input user-input"
                   type="email"
                   name="email"
                   value={inputChangeLoginData.email}
@@ -59,19 +66,42 @@ const Signin = ({
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Mot de passe</Form.Label>
-                <Form.Control
-                  className="user-input"
-                  type="password"
-                  name="password"
-                  value={inputChangeLoginData.password}
-                  placeholder="Mot de passe"
-                  onChange={handleInputChange}
-                  autoComplete="current-password"
-                />
+                <div>
+                  {passwordReveal ? (
+                    <div className="signin-card-form-password-input user-input">
+                      <Form.Control
+                        type="text"
+                        name="password"
+                        value={inputChangeLoginData.password}
+                        placeholder="Mot de passe"
+                        onChange={handleInputChange}
+                        autoComplete="current-password"
+                      />
+                      <div className="signin-card-form-password-eye">
+                        <FiEye onClick={handlePasswordReveal} />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="signin-card-form-password-input user-input">
+                      <Form.Control
+                        type="password"
+                        name="password"
+                        value={inputChangeLoginData.password}
+                        placeholder="Mot de passe"
+                        onChange={handleInputChange}
+                        autoComplete="current-password"
+                      />
+                      <div className="signin-card-form-password-eye">
+                        <FiEyeOff onClick={handlePasswordReveal} />
+                      </div>
+                    </div>
+                  )}
+                </div>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                {/*  <Form.Check type="checkbox" label="Restez connecté ?" /> */}
-              </Form.Group>
+
+              {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                 <Form.Check type="checkbox" label="Restez connecté ?" /> 
+              </Form.Group>*/}
               {isLoading ? (
                 <div>
                   <Button
