@@ -5,7 +5,6 @@ import { Card, Spinner, Button } from "react-bootstrap";
 
 import { GrCaretNext } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 
 import {
   openModalNewAlbum,
@@ -18,8 +17,6 @@ import {
 import Header from "../Header";
 import Footer from "../Footer";
 import ModalAddNewAlbum from "../ModalAddNewAlbum";
-
-import "../../Styles/albumsPublics.scss";
 
 const MyAlbums = ({
   isLoading,
@@ -54,7 +51,7 @@ const MyAlbums = ({
   return (
     <div className="albums">
       <Header />
-      <ToastContainer />
+
       <main className="albums-main">
         <div className="btn-add-new-album">
           {isLoading && (
@@ -162,7 +159,7 @@ const MyAlbums = ({
           )}
         </div>
       </main>
-      <ToastContainer />
+
       <Footer />
     </div>
   );

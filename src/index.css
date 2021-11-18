@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply min-h-screen;
+    @apply box-border;
+  }
+  body {
+    @apply h-screen;
+  }
+  #root {
+    @apply h-screen;
+    @apply w-screen;
+  }
+}

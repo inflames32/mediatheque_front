@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Card, Spinner, Button } from "react-bootstrap";
 import { GrCaretNext } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 
 import {
   getAllAlbums,
@@ -18,8 +17,6 @@ import {
 import Header from "../Header";
 import Footer from "../Footer";
 import ModalAddNewAlbum from "../ModalAddNewAlbum";
-
-import "../../Styles/albumsPublics.scss";
 
 const AlbumsList = ({
   isLoading,
@@ -51,7 +48,7 @@ const AlbumsList = ({
   return (
     <div className="albums">
       <Header />
-      <ToastContainer />
+
       <main className="albums-main">
         <div className="btn-add-new-album">
           {isLoading ? (
@@ -114,7 +111,6 @@ const AlbumsList = ({
           )}
         </div>
       </main>
-      <ToastContainer />
       <Footer />
     </div>
   );

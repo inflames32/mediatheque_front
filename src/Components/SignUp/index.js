@@ -12,9 +12,8 @@ import {
 } from "../../store/action";
 
 import { Form, Button, Card, Spinner } from "react-bootstrap";
-import "../../Styles/signup.scss";
 
-const Signup = ({
+const SignUp = ({
   errorMessage,
   successMessage,
   inputChangeCreateAccount,
@@ -136,4 +135,4 @@ const mapDispatch = (dispatch) => ({
   },
 });
 
-export default connect(mapState, mapDispatch)(Signup);
+export default connect(mapState, mapDispatch)(SignUp);

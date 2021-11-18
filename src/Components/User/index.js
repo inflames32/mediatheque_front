@@ -7,7 +7,6 @@ import { deleteAccount } from "../../store/action";
 import { Button } from "react-bootstrap";
 
 import { Card } from "react-bootstrap";
-import "../../Styles/user.scss";
 
 const User = ({ _id, email, deleteAccount, isLoading }) => {
   const handleDeleteAccount = () => {

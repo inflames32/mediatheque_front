@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import Header from "../Header";
 import Footer from "../Footer";
 import { getAlbumByID, deleteAlbumByID, openUpdate } from "../../store/action";
-import "../../Styles/album.scss";
 
 const Album = ({
   albumId,

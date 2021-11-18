@@ -1,5 +1,3 @@
-import "../../Styles/footer.scss";
-
 import Footer from "../Footer";
 import Header from "../Header";
 

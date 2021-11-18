@@ -5,16 +5,14 @@ import { Route, Switch } from "react-router-dom";
 // == Import components
 import Homepage from "../Homepage";
 import AlbumsPublics from "../AlbumsPublics";
-import SignUp from "../Signup";
-import SignIn from "../Signin";
+import SignUp from "../SignUp";
+import SignIn from "../SignIn";
 import User from "../User";
 import Album from "../Album";
 import MyAlbums from "../MyAlbums";
 import error404 from "../404error";
 
 import store from "../../store";
-import "../../Styles/reset.scss";
-import "../../Styles/app.scss";
 
 // == Composant
 const App = () => {

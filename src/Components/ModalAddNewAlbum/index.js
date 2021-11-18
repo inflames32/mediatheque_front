@@ -9,8 +9,6 @@ import {
   addingNewAlbumToMyList,
 } from "../../store/action";
 
-import "../../Styles/add_new_album.scss";
-
 const ModalAddNewAlbum = ({
   closeModalNewAlbum,
   modalNewAlbumIsOpen,

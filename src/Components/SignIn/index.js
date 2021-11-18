@@ -1,15 +1,12 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
 import Footer from "../Footer";
 import Header from "../Header";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
 import { inputChangeLoginData, submitLogin } from "../../store/action";
-import { Form, Button, Card, Spinner } from "react-bootstrap";
-import "../../Styles/signin.scss";
-import "react-toastify/dist/ReactToastify.css";
+import { Form, Spinner } from "react-bootstrap";
 
 const Signin = ({
   inputChangeLoginData,
@@ -46,10 +43,10 @@ const Signin = ({
   return (
     <div className="signin">
       <Header />
-      <main className="signin-main">
-        <Card className="signin-card ">
+      <div className="flex flex-col w-full h-screen items-center justify-center">
+        <div className=" flex w-4/5 justify-center items-center ">
           {!logged ? (
-            <Form className="signin-card-form">
+            <form className="w-4/5">
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Adresse e-mail</Form.Label>
                 <Form.Control
@@ -99,13 +96,10 @@ const Signin = ({
                 </div>
               </Form.Group>
 
-              {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                 <Form.Check type="checkbox" label="Restez connecté ?" /> 
-              </Form.Group>*/}
               {isLoading ? (
                 <div>
-                  <Button
-                    className="no_account not_allowed"
+                  <button
+                    className="bg-green-400"
                     variant="primary"
                     type="submit"
                     onClick={onFormSubmit}
@@ -113,23 +107,23 @@ const Signin = ({
                     <Spinner animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
                     </Spinner>
-                  </Button>
+                  </button>
                 </div>
               ) : (
                 <div>
-                  <Button
+                  <button
                     type="submit"
                     onClick={onFormSubmit}
-                    className="btn--disabled"
+                    className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300 no-underline"
                   >
                     Connexion
-                  </Button>
+                  </button>
                 </div>
               )}
               <Link to="/signup">
                 <div className="no_account">Vous n'avez pas de compte ?</div>
               </Link>
-            </Form>
+            </form>
           ) : (
             <div>
               <Redirect to="/">Retour à l'accueil</Redirect>
@@ -141,8 +135,8 @@ const Signin = ({
               <p>{id}</p>
             </div>
           )}
-        </Card>
-      </main>
+        </div>
+      </div>
       <Footer />
     </div>
   );
