@@ -11,8 +11,6 @@ import {
   errorCreateAccount,
 } from "../../store/action";
 
-import { Form, Button, Card, Spinner } from "react-bootstrap";
-
 const SignUp = ({
   errorMessage,
   successMessage,
@@ -39,77 +37,73 @@ const SignUp = ({
   return (
     <div className="signup">
       <Header />
-      <main className="signup-main">
-        <Card className="signup-card">
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Adresse e-mail</Form.Label>
-              <Form.Control
+      <div className="flex flex-col w-full h-screen items-center justify-center">
+        <div className=" flex flex-col w-5/6 justify-center items-center border-none">
+          <form className="flex flex-col w-4/5">
+            <div className="mb-3" controlId="formBasicEmail">
+              <label>Adresse e-mail</label>
+              <input
+                className="flex flex-col w-4/5"
                 type="email"
                 name="email"
                 placeholder="Entrez votre email"
                 onChange={handleInputChange}
-                className="user-input"
                 value={inputChangeCreateAccount.email}
               />
-              <Form.Text className="text-muted">
+              {/* <div className="text-muted">
                 Votre email sera utilisé que pour vous connecter à votre compte.
-              </Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control
+              </div> */}
+            </div>
+            <div className="mb-3" controlId="formBasicPassword">
+              <label>Mot de passe</label>
+              <input
                 type="password"
                 name="password"
                 placeholder="Mot de passe"
                 onChange={handleInputChange}
-                className="user-input"
+                className="flex flex-col w-4/5"
                 value={inputChangeCreateAccount.password}
               />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="formBasicPasswordValidation"
-            >
-              <Form.Label>Retaper votre mot de passe</Form.Label>
-              <Form.Control
+            </div>
+            <div className="mb-3" controlId="formBasicPasswordValidation">
+              <label>Retaper votre mot de passe</label>
+              <input
                 type="password"
                 name="password_validation"
                 placeholder="Retaper votre mot de passe"
                 onChange={handleInputChange}
-                className="user-input"
+                className="flex flex-col w-4/5"
                 value={inputChangeCreateAccount.password_validation}
               />
-            </Form.Group>
-            <div>
+            </div>
+            <div className="flex justify-center">
               {!isLoading ? (
-                <Button
+                <button
                   className="no_account not_allowed"
                   variant="primary"
                   type="submit"
                   onClick={onFormSubmit}
                 >
                   Créer
-                </Button>
+                </button>
               ) : (
-                <Button
+                <button
                   className="no_account not_allowed"
                   variant="primary"
                   type="submit"
                   onClick={onFormSubmit}
                 >
-                  <Spinner animation="border" role="status">
+                  <div animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </Button>
+                  </div>
+                </button>
               )}
             </div>
-          </Form>
+          </form>
           {errorMessage && <div>{errorMessage}</div>}
           {successMessage && <div>{successMessage}</div>}
-        </Card>
-      </main>
+        </div>
+      </div>
 
       <Footer />
     </div>

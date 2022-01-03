@@ -1,6 +1,11 @@
 export const OPEN_MODAL_NEW_ALBUM = "OPEN_MODAL_NEW_ALBUM";
 export const CLOSE_MODAL_NEW_ALBUM = "CLOSE_MODAL_NEW_ALBUM";
 export const INPUT_CHANGE_CREATE_NEW_ALBUM = "INPUT_CHANGE_CREATE_NEW_ALBUM";
+
+// open/close Menu
+export const OPEN_MENU = "OPEN_MENU";
+export const CLOSE_MENU = "CLOSE_MENU";
+
 // Middleware
 
 export const SUCCESS_GETTING_ALL_ALBUMS = "SUCCESS_GETTING_ALL_ALBUMS";
@@ -77,6 +82,12 @@ export const CLEAR_STATE = "CLEAR_STATE";
 
 export const clearState = () => ({
   type: CLEAR_STATE,
+});
+export const openMenu = () => ({
+  type: OPEN_MENU,
+});
+export const closeMenu = () => ({
+  type: CLOSE_MENU,
 });
 export const openUpdate = () => ({
   type: OPEN_UPDATE,

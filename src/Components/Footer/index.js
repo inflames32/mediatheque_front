@@ -8,7 +8,7 @@ const Footer = ({ clearState }) => {
     clearState();
   };
   return (
-    <div className="w-full  text-xl fixed bottom-0 left-0 bg-white text-black-400 h-10 flex justify-around items-center border-t-2">
+    <div className="w-full  text-xl fixed-bottom bg-white text-black-400 h-10 flex justify-around items-center border-t-2">
       <Link
         to="/"
         className="no-underline text-black-400 hover:text-blue-400  text-current"

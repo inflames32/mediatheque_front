@@ -1,4 +1,3 @@
-import { TimestreamQuery } from "aws-sdk";
 import {
   SUBMIT_CREATE_ACCOUNT,
   INPUT_CHANGE_CREATE_ACCOUNT,
@@ -13,6 +12,8 @@ import {
   ERROR_DELETE_ACCOUNT,
   SUCCESS_DELETE_ACCOUNT,
   CLEAR_STATE,
+  OPEN_MENU,
+  CLOSE_MENU,
 } from "../action";
 
 const initialState = {
@@ -31,10 +32,21 @@ const initialState = {
   isLoading: false,
   listAlbums: [],
   message: "",
+  menuIsOpen: false,
 };
 
 const user = (state = initialState, action = {}) => {
   switch (action.type) {
+    case OPEN_MENU:
+      return {
+        ...state,
+        menuIsOpen: !state.menuIsOpen,
+      };
+    case CLOSE_MENU:
+      return {
+        ...state,
+        menuIsOpen: !state.menuIsOpen,
+      };
     case CLEAR_STATE:
       return {
         ...state,
@@ -49,7 +61,9 @@ const user = (state = initialState, action = {}) => {
         },
         errorMessage: "",
         successMessage: "",
+        loggedUser: "",
         isLoading: false,
+        listAlbums: [],
         message: "",
       };
     case INPUT_CHANGE_CREATE_ACCOUNT:

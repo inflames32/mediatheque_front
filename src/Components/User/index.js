@@ -4,9 +4,6 @@ import Header from "../Header";
 import { connect } from "react-redux";
 import { BsPencil } from "react-icons/bs";
 import { deleteAccount } from "../../store/action";
-import { Button } from "react-bootstrap";
-
-import { Card } from "react-bootstrap";
 
 const User = ({ _id, email, deleteAccount, isLoading }) => {
   const handleDeleteAccount = () => {
@@ -16,18 +13,18 @@ const User = ({ _id, email, deleteAccount, isLoading }) => {
     <div className="user">
       <Header />
       <div className="user__main">
-        <Card className="user__main__card">
-          <Card.Header>Mon profil</Card.Header>
-          <Card.Body>
-            <Card.Title>Informations de mon profil</Card.Title>
-            <Card.Text>
+        <div className="user__main__card">
+          <div>Mon profil</div>
+          <div>
+            <div>Informations de mon profil</div>
+            <div>
               <div>
                 <div>Votre id: {_id}</div>
                 <div>Votre email : {email}</div>
               </div>
-            </Card.Text>
+            </div>
 
-            <Card.Text>
+            <div>
               <div>
                 <BsPencil
                   className="pencil-icon"
@@ -46,9 +43,9 @@ const User = ({ _id, email, deleteAccount, isLoading }) => {
                   Supprimer mon compte
                 </Button>
               )} */}
-            </Card.Text>
-          </Card.Body>
-        </Card>
+            </div>
+          </div>
+        </div>
       </div>
       <Footer />
     </div>

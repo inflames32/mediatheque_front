@@ -1,23 +1,42 @@
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import Fade from "react-reveal/Fade";
 
-import { disconnectUser, clearState } from "../../store/action";
+import {
+  disconnectUser,
+  clearState,
+  openModalNewAlbum,
+  openMenu,
+  closeMenu,
+} from "../../store/action";
 
-const Header = ({ logged, _id, email, disconnectUser, clearState }) => {
-  const handleDisconnect = () => {
+const Header = ({
+  logged,
+  _id,
+  email,
+  disconnectUser,
+  clearState,
+  openMenu,
+  closeMenu,
+  menuIsOpen,
+}) => {
+  /*  const handleDisconnect = () => {
     disconnectUser();
-  };
+  }; */
   const handleClearState = () => {
     clearState();
   };
+
+  const handleMenu = () => {
+    openMenu();
+    console.log("jouvre le menu");
+  };
   return (
-    <nav className="bg-white shadow-lg w-full h-15">
+    <nav className="bg-white shadow-lg w-full h-15 fixed-top">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between">
           <div className="flex space-x-7">
             <div className="flex items-center justify-center box-border">
-              {/* 	<!-- Website Logo --> */}
-
               <Link
                 to="/"
                 onClick={handleClearState}
@@ -36,28 +55,18 @@ const Header = ({ logged, _id, email, disconnectUser, clearState }) => {
                 Connexion
               </button>
             </Link>
-
             <Link to="/albums-publics">
               <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
                 Albums publics
               </button>
             </Link>
-            <a
-              href=""
-              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
-            >
-              Log In
-            </a>
-            <a
-              href=""
-              className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300 no-underline"
-            >
-              Sign Up
-            </a>
           </div>
           {/* 	<!-- Mobile menu button --> */}
           <div className="md:hidden flex items-center">
-            <button className="outline-none mobile-menu-button">
+            <button
+              className="outline-none mobile-menu-button"
+              onClick={handleMenu}
+            >
               <svg
                 className=" w-6 h-6 text-gray-500 hover:text-green-500 "
                 x-show="!showMenu"
@@ -74,33 +83,26 @@ const Header = ({ logged, _id, email, disconnectUser, clearState }) => {
           </div>
         </div>
       </div>
-      {/* mobile menu */}
-      <div className="hidden mobile-menu">
-        <Link to="/signin">
-          <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
-            Connexion
-          </button>
-        </Link>
 
-        <Link to="/albums-publics">
-          <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
-            Albums publics
-          </button>
-        </Link>
-        <a
-          href=""
-          className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
-        >
-          Log In
-        </a>
-        <a
-          href=""
-          className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300 no-underline"
-        >
-          Sign Up
-        </a>
-      </div>
+      {/* mobile menu  */}
+      {menuIsOpen && (
+        <Fade down>
+          <div className="mobile-menu flex justify-around md:hidden duration-300 shadow-md">
+            <Link to="/signin">
+              <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+                Connexion
+              </button>
+            </Link>
+            <Link to="/albums-publics">
+              <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+                Albums publics
+              </button>
+            </Link>
+          </div>
+        </Fade>
+      )}
     </nav>
+
     /* {<div>
       // est loggué
 
@@ -230,6 +232,7 @@ const mapState = (state) => ({
   message: state.user.loggedUser.message,
   _id: state.user.loggedUser._id,
   email: state.user.loggedUser.email,
+  menuIsOpen: state.user.menuIsOpen,
 });
 
 const mapDispatch = (dispatch) => ({
@@ -238,6 +241,12 @@ const mapDispatch = (dispatch) => ({
   },
   clearState: () => {
     dispatch(clearState());
+  },
+  openMenu: () => {
+    dispatch(openMenu());
+  },
+  closeMenu: () => {
+    dispatch(closeMenu());
   },
 });
 

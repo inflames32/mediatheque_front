@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { Form, Button, Card, Spinner } from "react-bootstrap";
+
 import { AiOutlineClose } from "react-icons/ai";
 
 import {
@@ -41,133 +41,129 @@ const ModalAddNewAlbum = ({
   };
 
   return (
-    <div className="modal-form-add-album">
-      <Card className="modal-content-albumDetails">
+    <div className="lg:w-full">
+      <div className="modal-content-albumDetails">
         <div className="modal-close" onClick={handleCloseModal}>
           <AiOutlineClose />
         </div>
-        <Form className="form-add-album" onSubmit={onFormSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicAlbum">
-            <Form.Label className="label-input">Nom de l'album</Form.Label>
-            <Form.Control
+        <form className="form-add-album" onSubmit={onFormSubmit}>
+          <div className="mb-3" controlId="formBasicAlbum">
+            <label className="label-input">Nom de l'album</label>
+            <input
               type="text"
               placeholder="Nom de l'album"
               name="name"
               value={inputChangeCreateNewAlbum.album}
               onChange={handleInputChange}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicArtist">
-            <Form.Label className="label-input">Nom de l'artiste</Form.Label>
-            <Form.Control
+          </div>
+          <div className="mb-3" controlId="formBasicArtist">
+            <label className="label-input">Nom de l'artiste</label>
+            <input
               type="text"
               placeholder="Nom de l'artiste"
               name="artist"
               value={inputChangeCreateNewAlbum.artist}
               onChange={handleInputChange}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCover">
-            <Form.Label className="label-input">Jaquette de l'album</Form.Label>
-            <Form.Control
+          </div>
+          <div className="mb-3" controlId="formBasicCover">
+            <label className="label-input">Jaquette de l'album</label>
+            <input
               type="text"
               placeholder="(URL de l'image"
               name="cover"
               value={inputChangeCreateNewAlbum.cover}
               onChange={handleInputChange}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicGencode">
-            <Form.Label className="label-input">
-              Code barre (si existant)
-            </Form.Label>
-            <Form.Control
+          </div>
+          <div className="mb-3" controlId="formBasicGencode">
+            <label className="label-input">Code barre (si existant)</label>
+            <input
               type="number"
               placeholder="Code barre"
               name="gencode"
               value={inputChangeCreateNewAlbum.gencode}
               onChange={handleInputChange}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicYear">
-            <Form.Label className="label-input">Année de sortie</Form.Label>
-            <Form.Control
+          </div>
+          <div className="mb-3" controlId="formBasicYear">
+            <label className="label-input">Année de sortie</label>
+            <input
               type="number"
               placeholder="Année de sortie de l'album"
               name="year"
               value={inputChangeCreateNewAlbum.year}
               onChange={handleInputChange}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicFormat">
-            <Form.Label className="label-input">
-              Format (CD, vinyle, K7...)
-            </Form.Label>
-            <Form.Control
+          </div>
+          <div className="mb-3" controlId="formBasicFormat">
+            <label className="label-input">Format (CD, vinyle, K7...)</label>
+            <input
               type="text"
               placeholder="Format de l'album"
               name="format"
               value={inputChangeCreateNewAlbum.format}
               onChange={handleInputChange}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicStyle">
-            <Form.Label className="label-input">
+          </div>
+          <div className="mb-3" controlId="formBasicStyle">
+            <label className="label-input">
               Style (rock, métal, classique, jazz...)
-            </Form.Label>
-            <Form.Control
+            </label>
+            <input
               type="text"
               placeholder="Style de l'album"
               name="style"
               value={inputChangeCreateNewAlbum.style}
               onChange={handleInputChange}
             />
-          </Form.Group>
+          </div>
           <div className="btn-action">
             {isLoading ? (
               <div>
-                <Button
+                <button
                   type="primary"
                   className="button is-success"
                   onClick={onFormSubmit}
                 >
-                  <Spinner animation="border" role="status">
+                  <div animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </Button>
-                <Button
+                  </div>
+                </button>
+                <button
                   type="danger"
                   onClick={handleCloseModal}
                   variant="danger"
                   className="button is-cancel"
                 >
-                  <Spinner animation="border" role="status">
+                  <div animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </Button>
+                  </div>
+                </button>
               </div>
             ) : (
               <div>
-                <Button
+                <button
                   type="primary"
                   className="button is-success"
                   onClick={onFormSubmit}
                 >
                   Enregistrer
-                </Button>
-                <Button
+                </button>
+                <button
                   type="danger"
                   onClick={handleCloseModal}
                   variant="danger"
                   className="button is-cancel"
                 >
                   Annuler
-                </Button>
+                </button>
               </div>
             )}
           </div>
-        </Form>
-      </Card>
+        </form>
+      </div>
     </div>
   );
 };

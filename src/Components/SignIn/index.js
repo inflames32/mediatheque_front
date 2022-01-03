@@ -6,7 +6,6 @@ import Header from "../Header";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
 import { inputChangeLoginData, submitLogin } from "../../store/action";
-import { Form, Spinner } from "react-bootstrap";
 
 const Signin = ({
   inputChangeLoginData,
@@ -37,50 +36,51 @@ const Signin = ({
 
   const handlePasswordReveal = () => {
     setPasswordReveal(!passwordReveal);
-    console.log(passwordReveal);
   };
 
   return (
-    <div className="signin">
+    <div className="h-screen">
       <Header />
-      <div className="flex flex-col w-full h-screen items-center justify-center">
+      <div className="flex flex-col w-full h-full pt-16 items-center justify-center">
         <div className=" flex w-4/5 justify-center items-center ">
           {!logged ? (
             <form className="w-4/5">
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Adresse e-mail</Form.Label>
-                <Form.Control
-                  className="signin-card-form-email-input user-input"
+              <div className="flex flex-col" controlId="formBasicEmail">
+                <label for="email">Adresse e-mail</label>
+                <input
                   type="email"
                   name="email"
                   value={inputChangeLoginData.email}
                   placeholder="Entrez votre email"
                   onChange={handleInputChange}
                   autoComplete="current-email"
+                  className="bg-slate-400"
                 />
-                <Form.Text className="text-muted"></Form.Text>
-              </Form.Group>
+                <div className="text-muted"></div>
+              </div>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Mot de passe</Form.Label>
-                <div>
+              <div className="mt-2 mb-2" controlId="formBasicPassword">
+                <form className="">
                   {passwordReveal ? (
-                    <div className="signin-card-form-password-input user-input">
-                      <Form.Control
+                    <div className="flex flex-col">
+                      <label for="password">Mot de passe</label>
+                      <input
                         type="text"
                         name="password"
                         value={inputChangeLoginData.password}
                         placeholder="Mot de passe"
                         onChange={handleInputChange}
                         autoComplete="current-password"
+                        className="bg-slate-400"
                       />
                       <div className="signin-card-form-password-eye">
                         <FiEye onClick={handlePasswordReveal} />
                       </div>
                     </div>
                   ) : (
-                    <div className="signin-card-form-password-input user-input">
-                      <Form.Control
+                    <div className="flex flex-col">
+                      <label for="password">Mot de passe</label>
+                      <input
                         type="password"
                         name="password"
                         value={inputChangeLoginData.password}
@@ -93,8 +93,8 @@ const Signin = ({
                       </div>
                     </div>
                   )}
-                </div>
-              </Form.Group>
+                </form>
+              </div>
 
               {isLoading ? (
                 <div>
@@ -104,9 +104,9 @@ const Signin = ({
                     type="submit"
                     onClick={onFormSubmit}
                   >
-                    <Spinner animation="border" role="status">
+                    <div animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
-                    </Spinner>
+                    </div>
                   </button>
                 </div>
               ) : (

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 //import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
-import { Card, Spinner, Button } from "react-bootstrap";
 
 import { GrCaretNext } from "react-icons/gr";
 import { Link } from "react-router-dom";
@@ -55,88 +54,88 @@ const MyAlbums = ({
       <main className="albums-main">
         <div className="btn-add-new-album">
           {isLoading && (
-            <Card>
+            <div>
               <div>
                 liste d'albums en cours de chargement...
                 <span>
-                  <Spinner animation="border" role="status">
+                  <div animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
-                  </Spinner>
+                  </div>
                 </span>
               </div>
-            </Card>
+            </div>
           )}
           {logged && !isLoading && (
-            <Button
+            <button
               onClick={handleOpeningModalNewAlbum}
               className="button btn-new-album"
               variant="success"
               type="primary"
             >
               Ajouter un nouvel album à ma collection
-            </Button>
+            </button>
           )}
           {!logged && !isLoading && (
-            <Button
+            <button
               onClick={handleOpeningModalNewAlbum}
               className="button btn-new-album"
               variant="success"
               type="primary"
             >
               Ajouter un nouvel album
-            </Button>
+            </button>
           )}
           {logged && isLoading && (
-            <Button
+            <button
               onClick={handleOpeningModalNewAlbum}
               className="button btn-new-album"
               variant="success"
               type="primary"
             >
               ...Chargement
-              <Spinner
+              <div
                 as="span"
                 animation="grow"
                 size="xl"
                 role="status"
                 aria-hidden="true"
               />
-            </Button>
+            </button>
           )}
           {!logged && isLoading && (
-            <Button
+            <button
               onClick={handleOpeningModalNewAlbum}
               className="button btn-new-album"
               variant="success"
               type="primary"
             >
               ...Chargement
-              <Spinner
+              <div
                 as="span"
                 animation="grow"
                 size="xl"
                 role="status"
                 aria-hidden="true"
               />
-            </Button>
+            </button>
           )}
         </div>
         {modalNewAlbumIsOpen && <ModalAddNewAlbum />}
         <div className="list-albums">
           {listAlbums.length ? (
             listAlbums.map(({ _id, cover, artist, name, year }) => (
-              <Card className="list-albums-element" key={_id}>
+              <div className="list-albums-element" key={_id}>
                 <div className="cover">
                   {cover ? (
-                    <Card.Img src={cover} className="card-cover" />
+                    <img src={cover} className="card-cover" />
                   ) : (
-                    <Card.Img src={ImgNotDefined} />
+                    <img src={ImgNotDefined} />
                   )}
                 </div>
                 <div className="infos">
-                  <Card.Title>{artist}</Card.Title>
-                  <Card.Title>{name}</Card.Title>
-                  <Card.Title>{year}</Card.Title>
+                  <div>{artist}</div>
+                  <div>{name}</div>
+                  <div>{year}</div>
                 </div>
 
                 <Link
@@ -148,14 +147,14 @@ const MyAlbums = ({
                 >
                   <GrCaretNext />
                 </Link>
-              </Card>
+              </div>
             ))
           ) : (
-            <Card>
+            <div>
               <div>
                 <span>Base de données vide :'(</span>
               </div>
-            </Card>
+            </div>
           )}
         </div>
       </main>
