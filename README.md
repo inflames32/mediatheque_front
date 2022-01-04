@@ -1,1 +1,1 @@
-Porjet déployé sur https://mamediatheque.netlify.app/
+Projet déployé sur https://mamediatheque.netlify.app/
