@@ -1,1 +1,1 @@
-Projet déployé sur https://mamediatheque.netlify.app/
+Projet déployé sur http://jegeremacollection.com/
