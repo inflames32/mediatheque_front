@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import Fade from "react-reveal/Fade";
 
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -37,27 +38,34 @@ const ModalAddNewAlbum = ({
       addingNewAlbumToMyList();
     } else {
       addingNewAlbum();
+      closeModalNewAlbum();
     }
   };
 
   return (
-    <div className="lg:w-full">
-      <div className="modal-content-albumDetails">
-        <div className="modal-close" onClick={handleCloseModal}>
-          <AiOutlineClose />
-        </div>
-        <form className="form-add-album" onSubmit={onFormSubmit}>
-          <div className="mb-3" controlId="formBasicAlbum">
+    <Fade down>
+      <div className="w-full m-auto h-auto rounded-md border-2 z-50 shadow-xl p-4">
+        <form
+          className="flex flex-col justify-center w-11/12 m-auto"
+          onSubmit={onFormSubmit}
+        >
+          <div
+            className="mb-3 flex flex-col w-11/12 m-auto"
+            controlId="formBasicAlbum"
+          >
             <label className="label-input">Nom de l'album</label>
             <input
               type="text"
-              placeholder="Nom de l'album"
+              placeholder="Nom de l'album "
               name="name"
               value={inputChangeCreateNewAlbum.album}
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-3" controlId="formBasicArtist">
+          <div
+            className="mb-3 flex flex-col w-11/12 m-auto"
+            controlId="formBasicArtist"
+          >
             <label className="label-input">Nom de l'artiste</label>
             <input
               type="text"
@@ -67,7 +75,10 @@ const ModalAddNewAlbum = ({
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-3" controlId="formBasicCover">
+          <div
+            className="mb-3 flex flex-col w-11/12 m-auto"
+            controlId="formBasicCover"
+          >
             <label className="label-input">Jaquette de l'album</label>
             <input
               type="text"
@@ -77,7 +88,10 @@ const ModalAddNewAlbum = ({
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-3" controlId="formBasicGencode">
+          <div
+            className="mb-3 flex flex-col w-11/12 m-auto"
+            controlId="formBasicGencode"
+          >
             <label className="label-input">Code barre (si existant)</label>
             <input
               type="number"
@@ -87,7 +101,10 @@ const ModalAddNewAlbum = ({
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-3" controlId="formBasicYear">
+          <div
+            className="mb-3 flex flex-col w-11/12 m-auto"
+            controlId="formBasicYear"
+          >
             <label className="label-input">Année de sortie</label>
             <input
               type="number"
@@ -97,7 +114,10 @@ const ModalAddNewAlbum = ({
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-3" controlId="formBasicFormat">
+          <div
+            className="mb-3 flex flex-col w-11/12 m-auto"
+            controlId="formBasicFormat"
+          >
             <label className="label-input">Format (CD, vinyle, K7...)</label>
             <input
               type="text"
@@ -107,7 +127,10 @@ const ModalAddNewAlbum = ({
               onChange={handleInputChange}
             />
           </div>
-          <div className="mb-3" controlId="formBasicStyle">
+          <div
+            className="mb-3 flex flex-col w-11/12 m-auto"
+            controlId="formBasicStyle"
+          >
             <label className="label-input">
               Style (rock, métal, classique, jazz...)
             </label>
@@ -143,10 +166,10 @@ const ModalAddNewAlbum = ({
                 </button>
               </div>
             ) : (
-              <div>
+              <div className="flex justify-around">
                 <button
                   type="primary"
-                  className="button is-success"
+                  className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
                   onClick={onFormSubmit}
                 >
                   Enregistrer
@@ -155,7 +178,7 @@ const ModalAddNewAlbum = ({
                   type="danger"
                   onClick={handleCloseModal}
                   variant="danger"
-                  className="button is-cancel"
+                  className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300 no-underline"
                 >
                   Annuler
                 </button>
@@ -164,7 +187,7 @@ const ModalAddNewAlbum = ({
           </div>
         </form>
       </div>
-    </div>
+    </Fade>
   );
 };
 

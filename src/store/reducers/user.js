@@ -17,6 +17,13 @@ import {
 } from "../action";
 
 const initialState = {
+  errorMessage: "",
+  successMessage: "",
+  loggedUser: "",
+  isLoading: false,
+  listAlbums: [],
+  message: "",
+  menuIsOpen: false,
   inputChangeLoginData: {
     email: "",
     password: "",
@@ -26,13 +33,6 @@ const initialState = {
     password: "",
     password_validation: "",
   },
-  errorMessage: "",
-  successMessage: "",
-  loggedUser: "",
-  isLoading: false,
-  listAlbums: [],
-  message: "",
-  menuIsOpen: false,
 };
 
 const user = (state = initialState, action = {}) => {
@@ -79,8 +79,8 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         inputChangeCreateAccount: {
-          ...state.createAccount,
-          ...action.payload,
+          ...state.inputChangeCreateAccount,
+          /* ...action.payload, */
         },
         isLoading: true,
       };

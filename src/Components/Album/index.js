@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import { Redirect } from "react-router-dom";
 import { BsPencil, BsTrash, BsInfoCircle } from "react-icons/bs";
 
 import { connect } from "react-redux";
@@ -14,6 +14,7 @@ const Album = ({
   getAlbumByID,
   deleteAlbumByID,
   loggedUser,
+  redirect,
 }) => {
   useEffect((albumId) => {
     getAlbumByID(albumId);
@@ -21,6 +22,9 @@ const Album = ({
 
   const deleteAlbum = (albumId) => () => {
     deleteAlbumByID(albumId);
+    if (redirect) {
+      <Redirect to="/albums-publics" />;
+    }
   };
 
   /* const handleUpdateAlbum = () => {
@@ -28,25 +32,24 @@ const Album = ({
   }; */
 
   const ImgNotDefined =
-    "https://image.flaticon.com/icons/png/128/376/376819.png";
+    "https://static.fnac-static.com/multimedia/Images/FR/MC/02/ff/82/42139394/1507-1/tsp20191127035829/Album-Cover-TS.jpg#077cc621-26af-4063-80bb-5e90c07a92b5";
 
   return (
-    <div className="album box-border">
+    <div className="h-screen justify-center mb-10 mt-15">
       <Header />
-      <div className="pt-16 flex justify-center lg:h-4/5 lg:w-full items-center m-auto">
-        <div className="h-full flex sm:flex-col md:flex-col lg:flex-row lg:justify-center lg:item-center lg:w-11/12">
-          <div className="lg:w-1/3">
+      <div className="flex w-11/12 h-full justify-center pt-16 text-center m-auto items-center">
+        <div className="lg:h-1/2 xs:w-11/12 xs:flex-col h-3/4 md:flex-col lg:w-11/12 lg:flex-col">
+          <div className="lg:w-1/2 lg:h-full lg:shadows-2xl flex justify-center">
             {album.cover ? (
-              <img src={cover} alt="cover" />
+              <img src={cover} alt="cover" className="max-w-lg w-full" />
             ) : (
               <img src={ImgNotDefined} alt="no-cover" />
             )}
           </div>
-          <div className="flex flex-col item-center justify-center">
-            <div className="content__details__title"></div>
-            <ul className="content__details__list">
-              <li className="content__details__name">
-                <div className="flex ">
+          <div className="flex flex-col lg:w-3/4 lg:h-full  ">
+            <ul className="font-bold flex flex-col m-auto ">
+              <li className="">
+                <div className="flex items-center p-2">
                   <BsInfoCircle />
                   Informations sur l'album
                 </div>
@@ -61,9 +64,9 @@ const Album = ({
                       </div> */}
                 </div>
               </li>
-              <li className="album__card__content__details__artist">
+              <li className="">
                 <div className="flex flex-row">
-                  <div className="key">Nom de l'artiste :</div>{" "}
+                  <div className="key">Nom de l'artiste :</div>
                   <div className="valeur">{album.artist}</div>
                   {/* <div>
                         <BsPencil
@@ -73,7 +76,7 @@ const Album = ({
                       </div> */}
                 </div>
               </li>
-              <li className="album__card__content__details__style">
+              <li className="">
                 <div className="flex flex-row">
                   <div className="key">Style :</div>{" "}
                   <div className="valeur">{album.style}</div>
@@ -85,7 +88,7 @@ const Album = ({
                       </div> */}
                 </div>
               </li>
-              <li className="album__card__content__details__year">
+              <li className="">
                 <div className="flex flex-row">
                   <div className="key">Année :</div>{" "}
                   <div className="valeur">{album.year}</div>
@@ -97,7 +100,7 @@ const Album = ({
                       </div> */}
                 </div>
               </li>
-              <li className="album__card__content__details__format">
+              <li className="">
                 <div className="flex flex-row">
                   <div className="key">Format :</div>
                   <div className="valeur">{album.format}</div>
@@ -109,7 +112,7 @@ const Album = ({
                       </div> */}
                 </div>
               </li>
-              <li className="album__card__content__details__gencode">
+              <li className="">
                 <div className="flex flex-row">
                   <div className="key">Codebarre :</div>
                   <div className="valeur">{album.gencode}</div>
@@ -121,8 +124,8 @@ const Album = ({
                       </div> */}
                 </div>
               </li>
-              <li className="album__card__content__details__delete">
-                <div>
+              <li className="">
+                <div title="Supprimer l'album?">
                   <BsTrash onClick={deleteAlbum(albumId)} />
                 </div>
               </li>
@@ -143,6 +146,7 @@ const mapState = (state) => ({
   albumId: state.albumReducer.albumId,
   _id: state.albumReducer.albumId,
   cover: state.albumReducer.album.cover,
+  redirect: state.albumReducer.redirect,
 });
 
 const mapDispatch = (dispatch) => ({
@@ -152,6 +156,7 @@ const mapDispatch = (dispatch) => ({
   deleteAlbumByID: (albumId) => {
     dispatch(deleteAlbumByID(albumId));
   },
+
   /*  openUpdate: (albumId) => {
     dispatch(openUpdate(albumId));
   }, */

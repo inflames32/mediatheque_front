@@ -48,11 +48,11 @@ const MyAlbums = ({
     "https://image.flaticon.com/icons/png/256/376/376819.png";
 
   return (
-    <div className="albums">
+    <div className="h-screen box-border bg-slate-200">
       <Header />
 
-      <main className="albums-main">
-        <div className="btn-add-new-album">
+      <main className="albums-main pt-16 h-full">
+        <div className="flex justify-center p-2">
           {isLoading && (
             <div>
               <div>
@@ -68,7 +68,7 @@ const MyAlbums = ({
           {logged && !isLoading && (
             <button
               onClick={handleOpeningModalNewAlbum}
-              className="button btn-new-album"
+              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
               variant="success"
               type="primary"
             >
@@ -78,7 +78,7 @@ const MyAlbums = ({
           {!logged && !isLoading && (
             <button
               onClick={handleOpeningModalNewAlbum}
-              className="button btn-new-album"
+              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
               variant="success"
               type="primary"
             >
@@ -88,7 +88,7 @@ const MyAlbums = ({
           {logged && isLoading && (
             <button
               onClick={handleOpeningModalNewAlbum}
-              className="button btn-new-album"
+              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
               variant="success"
               type="primary"
             >
@@ -105,7 +105,7 @@ const MyAlbums = ({
           {!logged && isLoading && (
             <button
               onClick={handleOpeningModalNewAlbum}
-              className="button btn-new-album"
+              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
               variant="success"
               type="primary"
             >
@@ -121,21 +121,24 @@ const MyAlbums = ({
           )}
         </div>
         {modalNewAlbumIsOpen && <ModalAddNewAlbum />}
-        <div className="list-albums">
+        <div className="sm:w-full flex flex-wrap justify-center">
           {listAlbums.length ? (
             listAlbums.map(({ _id, cover, artist, name, year }) => (
-              <div className="list-albums-element" key={_id}>
-                <div className="cover">
+              <div
+                className="sm:w-80 md:w-80 lg:w-1/4 shadow-md mb-2 mt-2 ml-2 mr-2 rounded-sm hover:shadow-2xl hover:duration-1000 bg-gray-50"
+                key={_id}
+              >
+                <div className="cover flex justify-center">
                   {cover ? (
-                    <img src={cover} className="card-cover" />
+                    <img src={cover} className="card-cover" alt="cover" />
                   ) : (
-                    <img src={ImgNotDefined} />
+                    <img src={ImgNotDefined} alt="cover not found" />
                   )}
                 </div>
                 <div className="infos">
-                  <div>{artist}</div>
-                  <div>{name}</div>
-                  <div>{year}</div>
+                  <p className="font-mono text-lg">{artist}</p>
+                  <p className="font-mono text-lg">{name}</p>
+                  <p className="font-mono text-lg">{year}</p>
                 </div>
 
                 <Link

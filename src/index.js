@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "./Components/App";
 import store from "../src/store";
 import "./index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 //import reportWebVitals from "./reportWebVitals";
 

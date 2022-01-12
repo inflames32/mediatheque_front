@@ -4,14 +4,15 @@
 
 @layer base {
   html {
-    @apply min-h-screen;
     @apply box-border;
+    @apply w-full;
   }
   body {
     @apply h-screen;
+    @apply w-full;
   }
   #root {
-    @apply h-screen;
-    @apply w-screen;
+    @apply w-11/12;
+    @apply m-auto;
   }
 }

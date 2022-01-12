@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import { FaSpinner } from "react-icons/fa";
+
 //import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 
 import { GrCaretNext } from "react-icons/gr";
@@ -39,48 +41,43 @@ const AlbumsList = ({
   };
 
   const handleAlbumId = (_id) => () => {
+    console.log("click");
     getAlbumID(_id);
   };
 
   const ImgNotDefined =
-    "https://image.flaticon.com/icons/png/256/376/376819.png";
+    "https://static.fnac-static.com/multimedia/Images/FR/MC/02/ff/82/42139394/1507-1/tsp20191127035829/Album-Cover-TS.jpg#077cc621-26af-4063-80bb-5e90c07a92b5";
+  /* "https://image.flaticon.com/icons/png/256/376/376819.png"; */
 
   return (
-    <div className="albums-public box-border">
+    <div className="h-screen  box-border bg-slate-200 m-auto">
       <Header />
-      <div className="pt-16 pb-16">
-        <div className="flex justify-center">
-          {isLoading ? (
-            <button
-              onClick={handleOpeningModalNewAlbum}
-              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
-              type="button"
-            >
-              <div animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            </button>
-          ) : (
-            <button
-              onClick={handleOpeningModalNewAlbum}
-              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
-              type="button"
-            >
-              Ajouter un nouvel album
-            </button>
-          )}
+      <div className="h-full pt-16 pb-16 xs:w-5/6 xs:flex xs:flex-col  m-auto">
+        <div className="flex justify-center p-2">
+          <button
+            onClick={handleOpeningModalNewAlbum}
+            className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
+            type="button"
+          >
+            Ajouter un nouvel album
+          </button>
         </div>
+        {isLoading && (
+          <div>
+            <FaSpinner />
+          </div>
+        )}
         {modalNewAlbumIsOpen && <ModalAddNewAlbum />}
         <div className="sm:w-full flex flex-wrap justify-center">
           {listAlbums.length ? (
             listAlbums.map(({ _id, cover, artist, name, year }) => (
               <div
-                className="sm:w-80 md:w-80 lg:w-1/4 shadow-md mb-2 mt-2 ml-2 mr-2"
+                className="sm:w-80 md:w-80 lg:w-1/4 shadow-md mb-2 mt-2 ml-2 mr-2 rounded-sm hover:shadow-2xl hover:duration-1000 bg-gray-50"
                 key={_id}
               >
-                <div className="cover flex justify-center">
+                <div className="flex justify-center">
                   {cover ? (
-                    <img src={cover} className="card-cover" alt="cover" />
+                    <img src={cover} className="card-cover" alt="cover album" />
                   ) : (
                     <img src={ImgNotDefined} alt="no-cover" />
                   )}

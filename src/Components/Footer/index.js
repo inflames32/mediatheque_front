@@ -8,19 +8,12 @@ const Footer = ({ clearState }) => {
     clearState();
   };
   return (
-    <div className="w-full  text-xl fixed-bottom bg-white text-black-400 h-10 flex justify-around items-center border-t-2">
-      <Link
-        to="/"
-        className="no-underline text-black-400 hover:text-blue-400  text-current"
-        onClick={handleClearState}
-      >
-        Accueil
-      </Link>
+    <div className="w-full  text-xl fixed bottom-0 left-0 bg-white text-black-400 h-10 flex justify-around items-center border-t-2">
       <a
         href="https://github.com/inflames32"
-        className="no-underline hover:text-blue-400 text-current"
+        className=" hover:text-blue-400 text-current"
       >
-        Me contacter
+        Crée par Pierre Cahuzac
       </a>
     </div>
   );

@@ -10,10 +10,10 @@ const User = ({ _id, email, deleteAccount, isLoading }) => {
     deleteAccount();
   };
   return (
-    <div className="user">
+    <div className="h-full">
       <Header />
-      <div className="user__main">
-        <div className="user__main__card">
+      <div className="flex justify-center items-center pt-16 h-full">
+        <div className="">
           <div>Mon profil</div>
           <div>
             <div>Informations de mon profil</div>

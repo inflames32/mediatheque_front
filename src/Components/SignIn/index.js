@@ -41,10 +41,10 @@ const Signin = ({
   return (
     <div className="h-screen">
       <Header />
-      <div className="flex flex-col w-full h-full pt-16 items-center justify-center">
+      <div className="flex flex-col w-full h-screen items-center justify-center">
         <div className=" flex w-4/5 justify-center items-center ">
           {!logged ? (
-            <form className="w-4/5">
+            <form className="w-4/5 shadow-2xl p-10">
               <div className="flex flex-col" controlId="formBasicEmail">
                 <label for="email">Adresse e-mail</label>
                 <input
@@ -104,8 +104,18 @@ const Signin = ({
                     type="submit"
                     onClick={onFormSubmit}
                   >
-                    <div animation="border" role="status">
-                      <span className="visually-hidden">Loading...</span>
+                    <div
+                      animation="border"
+                      role="status"
+                      className="py-2 px-2 font-medium text-white bg-green-400 rounded  transition duration-300 no-underline"
+                    >
+                      <span>
+                        <svg
+                          className="animate-spin h-5 w-5 mr-3 ..."
+                          viewBox="0 0 24 24"
+                        ></svg>
+                        Chargement...
+                      </span>
                     </div>
                   </button>
                 </div>
@@ -118,6 +128,7 @@ const Signin = ({
                   >
                     Connexion
                   </button>
+                  {errorMessage}
                 </div>
               )}
               <Link to="/signup">
@@ -129,6 +140,7 @@ const Signin = ({
               <Redirect to="/">Retour à l'accueil</Redirect>
             </div>
           )}
+
           {logged && (
             <div>
               <p>{message}</p>

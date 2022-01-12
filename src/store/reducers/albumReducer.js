@@ -19,9 +19,12 @@ import {
   GET_ALBUMS_LIST,
   ERROR_GET_ALBUMS_LIST,
   SUCCESS_GET_ALBUMS_LIST,
+  DELETE_ALBUM_BY_ID,
+  SUCCESS_DELETE_ALBUM_BY_ID,
 } from "../action";
 
 const initialState = {
+  redirect: false,
   modalNewAlbumIsOpen: false,
   isLoading: false,
   inputChangeCreateNewAlbum: {
@@ -177,6 +180,12 @@ const album = (state = initialState, action = {}) => {
         successMessage: action.payload,
         listAlbums: [...action.payload],
         isLoading: false,
+      };
+    case SUCCESS_DELETE_ALBUM_BY_ID:
+      return {
+        ...state,
+        albumId: "",
+        redirect: true,
       };
 
     default:
