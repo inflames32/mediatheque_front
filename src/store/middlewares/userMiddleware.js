@@ -10,6 +10,9 @@ import {
   DELETE_ACCOUNT,
   successDeletedAccount,
   errorDeleteAccount,
+  SUBMIT_DISCONNECT_USER,
+  disconnectUser,
+  errorDisconnectUser,
 } from "../action";
 
 const userMiddleware = (store) => (next) => (action) => {
@@ -27,7 +30,6 @@ const userMiddleware = (store) => (next) => (action) => {
       })
         .then((res) => {
           console.log("res.data", res.data);
-          console.log("res", res);
           store.dispatch(successDeletedAccount(res));
         })
         .catch((err) => {
@@ -58,10 +60,26 @@ const userMiddleware = (store) => (next) => (action) => {
         data: store.getState().user.inputChangeLoginData,
       })
         .then((res) => {
+          console.log(res.data);
           store.dispatch(successLogin(res.data));
         })
         .catch((err) => {
-          store.dispatch(errorLogin(err));
+          store.dispatch(errorLogin(err, "utilisateur non reconnu"));
+        });
+      break;
+    }
+
+    case SUBMIT_DISCONNECT_USER: {
+      axios({
+        method: "post",
+        url: `${url}/logout`,
+      })
+        .then((res) => {
+          console.log(res.data);
+          store.dispatch(disconnectUser());
+        })
+        .catch((err) => {
+          store.dispatch(errorDisconnectUser());
         });
       break;
     }

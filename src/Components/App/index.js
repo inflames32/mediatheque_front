@@ -11,6 +11,7 @@ import User from "../User";
 import Album from "../Album";
 import MyAlbums from "../MyAlbums";
 import error404 from "../404error";
+import DeleteAccount from "../DeleteAccount";
 
 import store from "../../store";
 
@@ -26,6 +27,12 @@ const App = () => {
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/user/:_id/mon-compte" component={User} />
         <Route exact path="/album/:_id" component={Album} />
+        <Route
+          exact
+          path="/user/:_id/supprimer-mon-compte"
+          component={DeleteAccount}
+        />
+
         <Route component={error404} />
       </Switch>
     </Provider>

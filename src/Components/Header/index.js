@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Fade from "react-reveal/Fade";
 import { ImCross } from "react-icons/im";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Redirect } from "react-router-dom";
 
 import {
   disconnectUser,
@@ -22,25 +23,27 @@ const Header = ({
   closeMenu,
   menuIsOpen,
 }) => {
-  /*  const handleDisconnect = () => {
+  const handleDisconnectButton = () => {
     disconnectUser();
-  }; */
-  const handleClearState = () => {
-    clearState();
+    console.log("click");
+    <Redirect to="/" />;
   };
+  /* const handleClearState = () => {
+    clearState();
+  }; */
 
   const handleMenu = () => {
     openMenu();
-    console.log("jouvre le menu");
   };
+
   return (
     <nav className="bg-white  w-11/12 h-15 fixed  border-b border-gray-900/1">
-      <div className="flex justify-between w-full pl-10 pr-10">
+      <div className="flex justify-between w-full pl-2 pr-2">
         <div className="flex space-x-7">
           <div className="flex items-center justify-center box-border">
             <Link
               to="/"
-              onClick={handleClearState}
+              /* onClick={handleClearState} */
               className="py-2 px-2 font-medium text-white  rounded  transition duration-300 no-underline"
             >
               <div className="box-border w-20 h-10">
@@ -67,6 +70,12 @@ const Header = ({
                   Ma collection
                 </button>
               </Link>
+              <button
+                className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300 no-underline"
+                onClick={handleDisconnectButton}
+              >
+                Déconnexion
+              </button>
             </div>
           ) : (
             <div>
@@ -93,7 +102,6 @@ const Header = ({
           </button>
         </div>
       </div>
-      {/* </div> */}
 
       {/* mobile menu  */}
       {menuIsOpen && (
@@ -112,8 +120,33 @@ const Header = ({
           </div>
         </Fade>
       )}
+      {menuIsOpen && logged && (
+        <Fade down>
+          <div>
+            <Link to={{ pathname: `/user/${_id}/mon-compte` }}>
+              <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+                {email}
+              </button>
+            </Link>
+            <Link to={{ pathname: `/user/${_id}/mes-albums` }}>
+              <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+                Ma collection
+              </button>
+            </Link>
+            <button
+              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300 no-underline"
+              onClick={handleDisconnectButton}
+            >
+              Déconnexion
+            </button>
+          </div>
+        </Fade>
+      )}
     </nav>
   );
+};
+export const MenuTest = () => {
+  return <div>TEST</div>;
 };
 
 const mapState = (state) => ({

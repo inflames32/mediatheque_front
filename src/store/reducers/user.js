@@ -19,7 +19,7 @@ import {
 const initialState = {
   errorMessage: "",
   successMessage: "",
-  loggedUser: "",
+  loggedUser: {},
   isLoading: false,
   listAlbums: [],
   message: "",
@@ -130,7 +130,7 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: false,
-        loggedUser: "",
+        loggedUser: {},
         inputChangeCreateAccount: {
           email: "",
           password: "",

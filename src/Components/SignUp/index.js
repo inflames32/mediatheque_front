@@ -79,7 +79,7 @@ const SignUp = ({
             <div className="flex justify-center">
               {!isLoading ? (
                 <button
-                  className="no_account not_allowed"
+                  className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
                   variant="primary"
                   type="submit"
                   onClick={onFormSubmit}

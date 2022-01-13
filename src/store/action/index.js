@@ -57,8 +57,11 @@ export const ERROR_GET_ALL_MY_ALBUMS = "ERROR_GET_ALL_MY_ALBUMS";
 
 // Open album
 export const OPEN_ALBUM_BY_ID = "OPEN_ALBUM_BY_ID";
+
 // Disconnetc User
+export const SUBMIT_DISCONNECT_USER = "SUBMIT_DISCONNECT_USER";
 export const DISCONNECT_USER = "DISCONNECT_USER";
+export const ERROR_DISCONNECT_USER = "ERROR_DISCONNECT_USER";
 // Get album ID
 export const GET_ALBUM_ID = "GET_ALBUM_ID";
 export const CHANGE_LOADING = "CHANGE_LOADING";
@@ -228,6 +231,16 @@ export const errorGetAlbumByID = (payload) => ({
 
 export const disconnectUser = (payload) => ({
   type: DISCONNECT_USER,
+  payload,
+});
+
+export const submitDisconnectUser = (payload) => ({
+  type: SUBMIT_DISCONNECT_USER,
+  payload,
+});
+
+export const errorDisconnectUser = (payload) => ({
+  type: ERROR_DISCONNECT_USER,
   payload,
 });
 

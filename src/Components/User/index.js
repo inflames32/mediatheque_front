@@ -4,11 +4,9 @@ import Header from "../Header";
 import { connect } from "react-redux";
 import { BsPencil } from "react-icons/bs";
 import { deleteAccount } from "../../store/action";
+import { Link } from "react-router-dom";
 
 const User = ({ _id, email, deleteAccount, isLoading }) => {
-  const handleDeleteAccount = () => {
-    deleteAccount();
-  };
   return (
     <div className="h-full">
       <Header />
@@ -31,19 +29,12 @@ const User = ({ _id, email, deleteAccount, isLoading }) => {
                   //onClick={handleUpdateAlbum(albumId)}
                 />
               </div>
-              {/*  <Button variant="danger" onClick={handleDeleteAccount()}>
-                Supprimer mon compte
-              </Button> */}
-              {/* {isLoading ? (
-                <Button variant="danger">
-                  <Spinner>...chargement </Spinner>
-                </Button>
-              ) : (
-                <Button variant="danger" onClick={handleBtnDeleteAccount(_id)}>
-                  Supprimer mon compte
-                </Button>
-              )} */}
             </div>
+            <Link to={{ pathname: `/user/${_id}/supprimer-mon-compte` }}>
+              <div className="underline hover:text-red-800 font-bold">
+                Supprimer mon compte
+              </div>
+            </Link>
           </div>
         </div>
       </div>

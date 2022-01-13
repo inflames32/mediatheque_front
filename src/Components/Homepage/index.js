@@ -15,10 +15,13 @@ const Homepage = ({ loggedUser }) => {
             collection de médias audios. Les prochaines versions proposeront
             d'autres supports à collectionner (livres, mangas, comics...). Vous
             pouvez consulter les albums publics. Pour commncer votre collection,
-            merci de vous identifier en
+            merci de vous identifier en créant un compte
             <span>
               <Link to="/signUp">
-                <span>créant un compte.</span>
+                <span className="text-blue-900 font-bold underline pl-1">
+                  ici
+                </span>
+                .
               </Link>
             </span>
           </p>
