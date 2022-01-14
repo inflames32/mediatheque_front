@@ -19,11 +19,12 @@ import {
   GET_ALBUMS_LIST,
   ERROR_GET_ALBUMS_LIST,
   SUCCESS_GET_ALBUMS_LIST,
-  DELETE_ALBUM_BY_ID,
+  /* DELETE_ALBUM_BY_ID, */
   SUCCESS_DELETE_ALBUM_BY_ID,
 } from "../action";
 
 const initialState = {
+  userAlbums: [],
   redirect: false,
   modalNewAlbumIsOpen: false,
   isLoading: false,
@@ -36,7 +37,7 @@ const initialState = {
     format: "",
     style: "",
   },
-  successMessage: "",
+  /* successMessage: "", */
   errorMessage: "",
   albumId: "",
   listAlbums: [],
@@ -94,7 +95,7 @@ const album = (state = initialState, action = {}) => {
       return {
         ...state,
         listAlbums: [...action.payload],
-        successMessage: "les albums sont récupérés",
+        /* successMessage: "les albums sont récupérés", */
         isLoading: false,
       };
 
@@ -179,6 +180,7 @@ const album = (state = initialState, action = {}) => {
         ...state,
         successMessage: action.payload,
         listAlbums: [...action.payload],
+        userAlbums: [...action.payload],
         isLoading: false,
       };
     case SUCCESS_DELETE_ALBUM_BY_ID:

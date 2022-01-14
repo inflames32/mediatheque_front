@@ -1,9 +1,10 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Footer from "../Footer";
 import Header from "../Header";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import validator from "email-validator";
 
 import { inputChangeLoginData, submitLogin } from "../../store/action";
 
@@ -30,13 +31,31 @@ const Signin = ({
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-
     submitLogin();
+    /*  const emailIsValidate = validator.validate(inputChangeLoginData.email);
+    console.log(emailIsValidate);
+     if (emailIsValidate) {
+      
+      return;
+      /* s
+    } else {
+      console.log("email non reconnu");
+      return;
+    } */
+  };
+
+  const preventDefault = (evt) => {
+    evt.preventDefault();
+    console.log("click");
   };
 
   const handlePasswordReveal = () => {
     setPasswordReveal(!passwordReveal);
   };
+
+  useEffect(() => {
+    document.title = "Connexion";
+  }, []);
 
   return (
     <div className="h-screen">
@@ -56,9 +75,9 @@ const Signin = ({
                   autoComplete="current-email"
                   className="bg-slate-400"
                 />
+                {email && <div>V</div>}
                 <div className="text-muted"></div>
               </div>
-
               <div className="mt-2 mb-2" controlId="formBasicPassword">
                 <form className="">
                   {passwordReveal ? (
@@ -73,6 +92,7 @@ const Signin = ({
                         autoComplete="current-password"
                         className="bg-slate-400"
                       />
+                      {password && <div>V</div>}
                       <div className="signin-card-form-password-eye">
                         <FiEye onClick={handlePasswordReveal} />
                       </div>
@@ -80,6 +100,7 @@ const Signin = ({
                   ) : (
                     <div className="flex flex-col">
                       <label for="password">Mot de passe</label>
+
                       <input
                         type="password"
                         name="password"
@@ -88,6 +109,7 @@ const Signin = ({
                         onChange={handleInputChange}
                         autoComplete="current-password"
                       />
+                      {password && <div>V</div>}
                       <div className="signin-card-form-password-eye">
                         <FiEyeOff onClick={handlePasswordReveal} />
                       </div>
@@ -121,14 +143,33 @@ const Signin = ({
                 </div>
               ) : (
                 <div>
-                  <button
-                    type="submit"
-                    onClick={onFormSubmit}
-                    className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300 no-underline"
-                  >
-                    Connexion
-                  </button>
-                  {errorMessage}
+                  <div>
+                    {!email && password === "" && (
+                      <button
+                        type="submit"
+                        onClick={preventDefault}
+                        /*  onClick={onFormSubmit}*/
+                        className="py-2 px-2 font-medium text-white bg-red-600 rounded hover:bg-red-400 transition duration-300 no-underline"
+                      >
+                        Email/mot de passe vide(s)
+                      </button>
+                    )}
+                    {email && password && (
+                      <button
+                        type="submit"
+                        onClick={onFormSubmit}
+                        className="py-2 px-2 font-medium text-white bg-green-600 rounded hover:bg-green-400 transition duration-300 no-underline"
+                      >
+                        Connexion
+                      </button>
+                    )}
+                  </div>
+                  {errorMessage && (
+                    <div className="text-red-600">{errorMessage}</div>
+                  )}
+                  {successMessage && (
+                    <div className="text-green-900">{successMessage}</div>
+                  )}
                 </div>
               )}
               <Link to="/signup">

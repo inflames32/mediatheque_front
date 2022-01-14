@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Header from "../Header";
 import Footer from "../Footer";
 import { getAlbumByID, deleteAlbumByID, openUpdate } from "../../store/action";
+import { upperCase } from "lodash";
 
 const Album = ({
   albumId,
@@ -16,7 +17,10 @@ const Album = ({
   loggedUser,
   redirect,
 }) => {
+  const albumArtistName = album.artist;
+  const albumName = album.name;
   useEffect((albumId) => {
+    document.title = albumName + " - " + upperCase(albumArtistName);
     getAlbumByID(albumId);
   }, []);
 
@@ -37,13 +41,17 @@ const Album = ({
   return (
     <div className="h-full justify-center mb-10 mt-15">
       <Header />
-      <div className="flex w-11/12 h-auto justify-center text-center m-auto pt-16">
-        <div className="card lg:h-1/2 xs:w-11/12 xs:flex-col h-auto md:flex-col lg:w-11/12 lg:flex-col border-2 rounded-md pb-2 ">
+      <div className="flex w-11/12 h-full justify-center items-center text-center m-auto pt-16">
+        <div className="card lg:h-1/2 xs:w-11/12 xs:flex-col md:h-auto md:flex-col lg:w-11/12 lg:flex-col border-2 rounded-md pb-2 ">
           {/* <div className="lg:w-1/2 lg:h-full lg:shadows-2xl flex justify-center"> */}
           {album.cover ? (
-            <img src={cover} alt="cover" className="w-full" />
+            <img src={cover} alt="cover" className="w-full m-auto" />
           ) : (
-            <img src={ImgNotDefined} alt="no-cover" />
+            <img
+              src={ImgNotDefined}
+              alt="no-cover"
+              className="max-w-1/2 m-auto"
+            />
           )}
           {/* </div> */}
 

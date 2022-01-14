@@ -19,9 +19,10 @@ import {
 const initialState = {
   errorMessage: "",
   successMessage: "",
-  loggedUser: {},
+  loggedUser: { UserAlbums: [] },
+  userAlbums: [],
   isLoading: false,
-  listAlbums: [],
+  logged: false,
   message: "",
   menuIsOpen: false,
   inputChangeLoginData: {
@@ -61,7 +62,6 @@ const user = (state = initialState, action = {}) => {
         },
         errorMessage: "",
         successMessage: "",
-        loggedUser: "",
         isLoading: false,
         listAlbums: [],
         message: "",
@@ -80,7 +80,6 @@ const user = (state = initialState, action = {}) => {
         ...state,
         inputChangeCreateAccount: {
           ...state.inputChangeCreateAccount,
-          /* ...action.payload, */
         },
         isLoading: true,
       };
@@ -105,6 +104,8 @@ const user = (state = initialState, action = {}) => {
           ...state.inputChangeLoginData,
           ...action.payload,
         },
+        errorMessage: "",
+        successMessage: "",
       };
     case SUBMIT_LOGIN:
       return {
@@ -125,6 +126,9 @@ const user = (state = initialState, action = {}) => {
         logged: true,
         isLoading: false,
         successMessage: "Vous êtes connecté",
+        inputChangeLoginData: {
+          password: "",
+        },
       };
     case DISCONNECT_USER:
       return {
@@ -154,13 +158,28 @@ const user = (state = initialState, action = {}) => {
         successMessage: "votre compte a été supprimé",
         isloading: false,
         logged: false,
+        inputChangeLoginData: {
+          email: "",
+          password: "",
+        },
+        inputChangeCreateAccount: {
+          email: "",
+          password: "",
+          password_validation: "",
+        },
+        loggedUser: {
+          _id: "",
+          email: "",
+          logged: "",
+          message: "votre compte a été supprimé",
+        },
       };
     case ERROR_DELETE_ACCOUNT:
       return {
         ...state,
         successMessage:
           "une erreur est survenu pendant la suppression de votre compte",
-        logged: false,
+        logged: true,
       };
 
     default:

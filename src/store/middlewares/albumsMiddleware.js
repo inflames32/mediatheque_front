@@ -26,7 +26,7 @@ const albumsMiddleware = (store) => (next) => (action) => {
 
   next(action);
   switch (action.type) {
-    // getting all albums
+    // get all publics albums
     case GET_ALL_ALBUMS: {
       axios({
         method: "get",
@@ -42,9 +42,9 @@ const albumsMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
+    // get user albums
     case GET_ALBUMS_LIST: {
       const userId = store.getState().user.loggedUser._id;
-
       axios({
         method: "get",
         url: `${url}/user/${userId}/mes-albums`,
@@ -57,10 +57,9 @@ const albumsMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
-
+    //get one album by id
     case GET_ALBUM_BY_ID: {
       const albumId = store.getState().albumReducer.albumId;
-
       axios({
         method: "get",
         url: `${url}/album/:${albumId}`,
@@ -73,9 +72,9 @@ const albumsMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
+    // delete album by id
     case DELETE_ALBUM_BY_ID: {
       const albumId = store.getState().albumReducer.albumId;
-
       axios({
         method: "delete",
         url: `${url}/album/:${albumId}`,
@@ -107,6 +106,8 @@ const albumsMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
+
+    // adding new album on user list
     case ADDING_NEW_ALBUM_TO_MY_LIST: {
       const data = store.getState().albumReducer.inputChangeCreateNewAlbum;
       const id = store.getState().user.loggedUser._id;

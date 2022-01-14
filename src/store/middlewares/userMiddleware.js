@@ -24,6 +24,7 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     //delete account
     case DELETE_ACCOUNT: {
+      console.log("ici");
       axios({
         method: "delete",
         url: `${url}/user/${id}/supprimer-mon-compte`,
@@ -53,6 +54,8 @@ const userMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
+
+    // submit login
     case SUBMIT_LOGIN: {
       axios({
         method: "post",
@@ -68,7 +71,7 @@ const userMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
-
+    // submit logout
     case SUBMIT_DISCONNECT_USER: {
       axios({
         method: "post",
@@ -80,6 +83,7 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((err) => {
           store.dispatch(errorDisconnectUser());
+          console.log(err);
         });
       break;
     }

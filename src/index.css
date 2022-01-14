@@ -14,5 +14,6 @@
   #root {
     @apply w-11/12;
     @apply m-auto;
+    @apply h-full;
   }
 }

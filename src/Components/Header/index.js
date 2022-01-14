@@ -26,11 +26,12 @@ const Header = ({
   const handleDisconnectButton = () => {
     disconnectUser();
     console.log("click");
+    clearState();
     <Redirect to="/" />;
   };
-  /* const handleClearState = () => {
+  const handleClearState = () => {
     clearState();
-  }; */
+  };
 
   const handleMenu = () => {
     openMenu();
@@ -43,7 +44,7 @@ const Header = ({
           <div className="flex items-center justify-center box-border">
             <Link
               to="/"
-              /* onClick={handleClearState} */
+              onClick={handleClearState}
               className="py-2 px-2 font-medium text-white  rounded  transition duration-300 no-underline"
             >
               <div className="box-border w-20 h-10">
@@ -104,7 +105,7 @@ const Header = ({
       </div>
 
       {/* mobile menu  */}
-      {menuIsOpen && (
+      {menuIsOpen && !logged && (
         <Fade down>
           <div className="mobile-menu flex justify-around md:hidden duration-300 p-2 h-full">
             <Link to="/signin">
@@ -122,7 +123,7 @@ const Header = ({
       )}
       {menuIsOpen && logged && (
         <Fade down>
-          <div>
+          <div className="mobile-menu flex justify-around md:hidden duration-300 p-2 h-full">
             <Link to={{ pathname: `/user/${_id}/mon-compte` }}>
               <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
                 {email}

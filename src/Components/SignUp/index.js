@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useEffect } from "react";
 import { connect } from "react-redux";
 
 import Footer from "../Footer";
@@ -22,6 +22,9 @@ const SignUp = ({
   password,
   successCreateAccount,
 }) => {
+  useEffect(() => {
+    document.title = "Création de compte";
+  }, []);
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
     inputChangeCreateAccount({
@@ -100,8 +103,10 @@ const SignUp = ({
               )}
             </div>
           </form>
-          {errorMessage && <div>{errorMessage}</div>}
-          {successMessage && <div>{successMessage}</div>}
+          {errorMessage && <div className="text-red-600">{errorMessage}</div>}
+          {successMessage && (
+            <div className="text-green-900">{successMessage}</div>
+          )}
         </div>
       </div>
 

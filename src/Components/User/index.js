@@ -1,14 +1,27 @@
-import React from "react";
-import Footer from "../Footer";
-import Header from "../Header";
+import { React, useEffect } from "react";
 import { connect } from "react-redux";
 import { BsPencil } from "react-icons/bs";
-import { deleteAccount } from "../../store/action";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
-const User = ({ _id, email, deleteAccount, isLoading }) => {
+import Footer from "../Footer";
+import Header from "../Header";
+import { deleteAccount } from "../../store/action";
+import { AiFillFilter } from "react-icons/ai";
+
+const User = ({ _id, email, deleteAccount, isLoading, logged }) => {
+  useEffect(() => {
+    document.title = "Mon compte";
+  }, []);
+
+  const handleDeleteAccount = (id) => {
+    deleteAccount(id);
+    <Redirect to="/" />;
+    console.log("click");
+  };
+
   return (
     <div className="h-full">
+      {!logged && <Redirect to="/" />}
       <Header />
       <div className="flex justify-center items-center pt-16 h-full">
         <div className="">
@@ -21,7 +34,6 @@ const User = ({ _id, email, deleteAccount, isLoading }) => {
                 <div>Votre email : {email}</div>
               </div>
             </div>
-
             <div>
               <div>
                 <BsPencil
@@ -30,11 +42,15 @@ const User = ({ _id, email, deleteAccount, isLoading }) => {
                 />
               </div>
             </div>
-            <Link to={{ pathname: `/user/${_id}/supprimer-mon-compte` }}>
-              <div className="underline hover:text-red-800 font-bold">
+            <div className="mt-32 flex justify-center">
+              <button
+                type="button"
+                className="no-underline text-red-500 font-bold cursor-pointer  ease-linear duration-200 hover:bg-red-600 hover:text-white border-red-600 border-2 rounded-md p-2"
+                onClick={handleDeleteAccount}
+              >
                 Supprimer mon compte
-              </div>
-            </Link>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -47,6 +63,7 @@ const mapState = (state) => ({
   _id: state.user.loggedUser._id,
   email: state.user.loggedUser.email,
   isLoading: state.user.isLoading,
+  logged: state.user.logged,
 });
 
 const mapDispatch = (dispatch) => ({

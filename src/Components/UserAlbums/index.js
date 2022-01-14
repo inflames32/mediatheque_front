@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 //import { AlbumsMiddleware } from "../../Middleware/albumMiddleware";
 import { FaSpinner } from "react-icons/fa";
 import { GrCaretNext } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import {
   isLoading,
@@ -18,7 +18,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import ModalAddNewAlbum from "../ModalAddNewAlbum";
 
-const MyAlbums = ({
+const UserAlbums = ({
   isLoading,
   modalNewAlbumIsOpen,
   openModalNewAlbum,
@@ -26,6 +26,7 @@ const MyAlbums = ({
   successMessage,
   errorMessage,
   listAlbums,
+  albumsList,
   albumId,
   logged,
   email,
@@ -34,6 +35,7 @@ const MyAlbums = ({
   getAlbumsList,
 }) => {
   useEffect(() => {
+    document.title = "J'ai " + listAlbums.length + " albums dans ma collection";
     getAlbumsList();
   }, []);
 
@@ -51,13 +53,19 @@ const MyAlbums = ({
   return (
     <div className="h-screen box-border bg-slate-200">
       <Header />
+      {!logged && <Redirect to="/" />}
       {isLoading ? (
         <div className="h-full pt-16 pb-16 xs:w-5/6 xs:flex xs:flex-col justify-center items-center m-auto">
-          <FaSpinner />
+          <FaSpinner className="animate-spin w-1/3 h-1/3" />
         </div>
       ) : (
-        <div className="albums-main pt-16 h-full">
+        <main className="albums-main pt-16 h-full">
           <div className="flex justify-center p-2">
+            {isLoading && (
+              <div className="h-full pt-16 pb-16 xs:w-5/6 xs:flex xs:flex-col justify-center items-center m-auto">
+                <FaSpinner className="animate-spin w-1/3 h-1/3" />
+              </div>
+            )}
             {logged && !isLoading && (
               <button
                 onClick={handleOpeningModalNewAlbum}
@@ -153,9 +161,8 @@ const MyAlbums = ({
               </div>
             )}
           </div>
-        </div>
+        </main>
       )}
-
       <Footer />
     </div>
   );
@@ -191,4 +198,4 @@ const mapDispatch = (dispatch) => ({
   },
 });
 
-export default connect(mapState, mapDispatch)(MyAlbums);
+export default connect(mapState, mapDispatch)(UserAlbums);

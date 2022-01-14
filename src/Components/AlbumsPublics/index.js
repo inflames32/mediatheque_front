@@ -33,6 +33,7 @@ const AlbumsList = ({
   getAlbumID,
 }) => {
   useEffect(() => {
+    document.title = "Il y'a " + listAlbums.length + " albums publics";
     getAllAlbums();
   }, []);
 
@@ -53,7 +54,7 @@ const AlbumsList = ({
       <Header />
       {isLoading ? (
         <div className="h-full pt-16 pb-16 xs:w-5/6 xs:flex xs:flex-col justify-center items-center m-auto">
-          <FaSpinner />
+          <FaSpinner className="animate-spin w-1/3 h-1/3" />
         </div>
       ) : (
         <div className="h-full pt-16 pb-16 xs:w-5/6 xs:flex xs:flex-col  m-auto">
@@ -121,7 +122,6 @@ const AlbumsList = ({
 
 const mapState = (state) => ({
   modalNewAlbumIsOpen: state.albumReducer.modalNewAlbumIsOpen,
-  //isLoading: state.albumMiddleware.isLoading,
   successMessage: state.albumReducer.successMessage,
   errorMessage: state.user.errorMessage,
   listAlbums: state.albumReducer.listAlbums,

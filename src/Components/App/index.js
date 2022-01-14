@@ -9,7 +9,7 @@ import SignUp from "../SignUp";
 import SignIn from "../SignIn";
 import User from "../User";
 import Album from "../Album";
-import MyAlbums from "../MyAlbums";
+import UserAlbums from "../UserAlbums";
 import error404 from "../404error";
 import DeleteAccount from "../DeleteAccount";
 
@@ -22,7 +22,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/albums-publics" component={AlbumsPublics} />
-        <Route exact path="/user/:_id/mes-albums" component={MyAlbums} />
+        <Route exact path="/user/:_id/mes-albums" component={UserAlbums} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/user/:_id/mon-compte" component={User} />
