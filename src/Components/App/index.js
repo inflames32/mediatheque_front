@@ -12,6 +12,8 @@ import Album from "../Album";
 import UserAlbums from "../UserAlbums";
 import error404 from "../404error";
 import DeleteAccount from "../DeleteAccount";
+import Header from "../Header";
+import Footer from "../Footer";
 
 import store from "../../store";
 
@@ -19,6 +21,7 @@ import store from "../../store";
 const App = () => {
   return (
     <Provider store={store}>
+      <Header />
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/albums-publics" component={AlbumsPublics} />
@@ -32,9 +35,9 @@ const App = () => {
           path="/user/:_id/supprimer-mon-compte"
           component={DeleteAccount}
         />
-
         <Route component={error404} />
       </Switch>
+      <Footer />
     </Provider>
   );
 };

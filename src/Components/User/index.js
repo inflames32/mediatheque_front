@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { BsPencil } from "react-icons/bs";
 import { Link, Redirect } from "react-router-dom";
 
-import Footer from "../Footer";
-import Header from "../Header";
 import { deleteAccount } from "../../store/action";
 import { AiFillFilter } from "react-icons/ai";
 
@@ -22,16 +20,15 @@ const User = ({ _id, email, deleteAccount, isLoading, logged }) => {
   return (
     <div className="h-full">
       {!logged && <Redirect to="/" />}
-      <Header />
-      <div className="flex justify-center items-center pt-16 h-full">
+
+      <div className="flex h-full items-center justify-center pt-16">
         <div className="">
-          <div>Mon profil</div>
           <div>
             <div>Informations de mon profil</div>
             <div>
               <div>
-                <div>Votre id: {_id}</div>
-                <div>Votre email : {email}</div>
+                <div>Mon id: {_id}</div>
+                <div>Mon email : {email}</div>
               </div>
             </div>
             <div>
@@ -45,7 +42,7 @@ const User = ({ _id, email, deleteAccount, isLoading, logged }) => {
             <div className="mt-32 flex justify-center">
               <button
                 type="button"
-                className="no-underline text-red-500 font-bold cursor-pointer  ease-linear duration-200 hover:bg-red-600 hover:text-white border-red-600 border-2 rounded-md p-2"
+                className="cursor-pointer rounded-md border-2 border-red-600  p-2 font-bold text-red-500 no-underline duration-200 ease-linear hover:bg-red-600 hover:text-white"
                 onClick={handleDeleteAccount}
               >
                 Supprimer mon compte
@@ -54,7 +51,6 @@ const User = ({ _id, email, deleteAccount, isLoading, logged }) => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

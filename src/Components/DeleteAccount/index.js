@@ -1,6 +1,5 @@
 import React from "react";
-import Footer from "../Footer";
-import Header from "../Header";
+
 import { connect } from "react-redux";
 
 import { deleteAccount } from "../../store/action";
@@ -12,16 +11,14 @@ const DeleteAccount = ({ deleteAccount }) => {
   };
   return (
     <div>
-      <Header />
       <div className="pt-16">
         <div
-          className="underline hover:text-red-800 font-bold"
+          className="font-bold underline hover:text-red-800"
           onClick={handleDeleteAccount()}
         >
           Supprimer mon compte
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -1,9 +1,6 @@
 import { React, useEffect } from "react";
 import { connect } from "react-redux";
 
-import Footer from "../Footer";
-import Header from "../Header";
-
 import {
   inputChangeCreateAccount,
   submitCreateAccount,
@@ -39,14 +36,13 @@ const SignUp = ({
 
   return (
     <div className="signup">
-      <Header />
-      <div className="flex flex-col w-full h-screen items-center justify-center">
-        <div className=" flex flex-col w-5/6 justify-center items-center border-none">
-          <form className="flex flex-col w-4/5">
+      <div className="flex h-screen w-full flex-col items-center justify-center">
+        <div className=" flex w-5/6 flex-col items-center justify-center border-none">
+          <form className="flex w-4/5 flex-col">
             <div className="mb-3" controlId="formBasicEmail">
               <label>Adresse e-mail</label>
               <input
-                className="flex flex-col w-4/5"
+                className="flex w-4/5 flex-col"
                 type="email"
                 name="email"
                 placeholder="Entrez votre email"
@@ -64,7 +60,7 @@ const SignUp = ({
                 name="password"
                 placeholder="Mot de passe"
                 onChange={handleInputChange}
-                className="flex flex-col w-4/5"
+                className="flex w-4/5 flex-col"
                 value={inputChangeCreateAccount.password}
               />
             </div>
@@ -75,14 +71,14 @@ const SignUp = ({
                 name="password_validation"
                 placeholder="Retaper votre mot de passe"
                 onChange={handleInputChange}
-                className="flex flex-col w-4/5"
+                className="flex w-4/5 flex-col"
                 value={inputChangeCreateAccount.password_validation}
               />
             </div>
             <div className="flex justify-center">
               {!isLoading ? (
                 <button
-                  className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
+                  className="rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white"
                   variant="primary"
                   type="submit"
                   onClick={onFormSubmit}
@@ -109,8 +105,6 @@ const SignUp = ({
           )}
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

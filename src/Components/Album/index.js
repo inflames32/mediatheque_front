@@ -3,8 +3,7 @@ import { Redirect } from "react-router-dom";
 import { BsPencil, BsTrash, BsInfoCircle } from "react-icons/bs";
 
 import { connect } from "react-redux";
-import Header from "../Header";
-import Footer from "../Footer";
+
 import { getAlbumByID, deleteAlbumByID, openUpdate } from "../../store/action";
 import { upperCase } from "lodash";
 
@@ -39,13 +38,12 @@ const Album = ({
     "https://static.fnac-static.com/multimedia/Images/FR/MC/02/ff/82/42139394/1507-1/tsp20191127035829/Album-Cover-TS.jpg#077cc621-26af-4063-80bb-5e90c07a92b5";
 
   return (
-    <div className="h-full justify-center mb-10 mt-15">
-      <Header />
-      <div className="flex w-11/12 h-full justify-center items-center text-center m-auto pt-16">
-        <div className="card lg:h-1/2 xs:w-11/12 xs:flex-col md:h-auto md:flex-col lg:w-11/12 lg:flex-col border-2 rounded-md pb-2 ">
+    <div className="mt-15 mb-10 h-full justify-center">
+      <div className="m-auto flex h-full w-11/12 items-center justify-center pt-16 text-center">
+        <div className="card rounded-md border-2 pb-2 md:h-auto md:flex-col lg:h-1/2 lg:w-11/12 lg:flex-col xs:w-11/12 xs:flex-col ">
           {/* <div className="lg:w-1/2 lg:h-full lg:shadows-2xl flex justify-center"> */}
           {album.cover ? (
-            <img src={cover} alt="cover" className="w-full m-auto" />
+            <img src={cover} alt="cover" className="m-auto w-full" />
           ) : (
             <img
               src={ImgNotDefined}
@@ -55,7 +53,7 @@ const Album = ({
           )}
           {/* </div> */}
 
-          <ul className="font-bold flex flex-col m-auto w-10/12">
+          <ul className="m-auto flex w-10/12 flex-col font-bold">
             <li className="">
               <div className="flex items-center p-2">
                 <BsInfoCircle />
@@ -140,7 +138,6 @@ const Album = ({
           </ul>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

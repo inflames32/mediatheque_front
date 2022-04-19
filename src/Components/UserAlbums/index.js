@@ -14,8 +14,6 @@ import {
   getAlbumsList,
 } from "../../store/action";
 
-import Header from "../Header";
-import Footer from "../Footer";
 import ModalAddNewAlbum from "../ModalAddNewAlbum";
 
 const UserAlbums = ({
@@ -51,25 +49,24 @@ const UserAlbums = ({
     "https://static.fnac-static.com/multimedia/Images/FR/MC/02/ff/82/42139394/1507-1/tsp20191127035829/Album-Cover-TS.jpg#077cc621-26af-4063-80bb-5e90c07a92b5";
 
   return (
-    <div className="h-screen box-border bg-slate-200">
-      <Header />
+    <div className="bg-slate-200 box-border h-screen">
       {!logged && <Redirect to="/" />}
       {isLoading ? (
-        <div className="h-full pt-16 pb-16 xs:w-5/6 xs:flex xs:flex-col justify-center items-center m-auto">
-          <FaSpinner className="animate-spin w-1/3 h-1/3" />
+        <div className="m-auto h-full items-center justify-center pt-16 pb-16 xs:flex xs:w-5/6 xs:flex-col">
+          <FaSpinner className="h-1/3 w-1/3 animate-spin" />
         </div>
       ) : (
-        <main className="albums-main pt-16 h-full">
+        <main className="albums-main h-full pt-16">
           <div className="flex justify-center p-2">
             {isLoading && (
-              <div className="h-full pt-16 pb-16 xs:w-5/6 xs:flex xs:flex-col justify-center items-center m-auto">
-                <FaSpinner className="animate-spin w-1/3 h-1/3" />
+              <div className="m-auto h-full items-center justify-center pt-16 pb-16 xs:flex xs:w-5/6 xs:flex-col">
+                <FaSpinner className="h-1/3 w-1/3 animate-spin" />
               </div>
             )}
             {logged && !isLoading && (
               <button
                 onClick={handleOpeningModalNewAlbum}
-                className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
+                className="rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white"
                 variant="success"
                 type="primary"
               >
@@ -79,7 +76,7 @@ const UserAlbums = ({
             {!logged && !isLoading && (
               <button
                 onClick={handleOpeningModalNewAlbum}
-                className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
+                className="rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white"
                 variant="success"
                 type="primary"
               >
@@ -89,7 +86,7 @@ const UserAlbums = ({
             {logged && isLoading && (
               <button
                 onClick={handleOpeningModalNewAlbum}
-                className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
+                className="rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white"
                 variant="success"
                 type="primary"
               >
@@ -106,7 +103,7 @@ const UserAlbums = ({
             {!logged && isLoading && (
               <button
                 onClick={handleOpeningModalNewAlbum}
-                className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline"
+                className="rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white"
                 variant="success"
                 type="primary"
               >
@@ -122,11 +119,11 @@ const UserAlbums = ({
             )}
           </div>
           {modalNewAlbumIsOpen && <ModalAddNewAlbum />}
-          <div className="sm:w-full flex flex-wrap justify-center">
+          <div className="flex flex-wrap justify-center sm:w-full">
             {listAlbums.length ? (
               listAlbums.map(({ _id, cover, artist, name, year }) => (
                 <div
-                  className="sm:w-80 md:w-80 lg:w-1/4 shadow-md mb-2 mt-2 ml-2 mr-2 rounded-sm hover:shadow-2xl hover:duration-1000 bg-gray-50"
+                  className="mb-2 mt-2 ml-2 mr-2 rounded-sm bg-gray-50 shadow-md hover:shadow-2xl hover:duration-1000 sm:w-80 md:w-80 lg:w-1/4"
                   key={_id}
                 >
                   <div className="cover flex justify-center">
@@ -163,7 +160,6 @@ const UserAlbums = ({
           </div>
         </main>
       )}
-      <Footer />
     </div>
   );
 };

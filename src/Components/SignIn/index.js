@@ -1,8 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import Footer from "../Footer";
-import Header from "../Header";
+
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import validator from "email-validator";
 
@@ -59,11 +58,10 @@ const Signin = ({
 
   return (
     <div className="h-screen">
-      <Header />
-      <div className="flex flex-col w-full h-screen items-center justify-center">
-        <div className=" flex w-4/5 justify-center items-center ">
+      <div className="flex h-screen w-full flex-col items-center justify-center">
+        <div className=" flex w-4/5 items-center justify-center ">
           {!logged ? (
-            <form className="w-4/5 shadow-2xl p-10">
+            <form className="w-4/5 p-10 shadow-2xl">
               <div className="flex flex-col" controlId="formBasicEmail">
                 <label for="email">Adresse e-mail</label>
                 <input
@@ -129,11 +127,11 @@ const Signin = ({
                     <div
                       animation="border"
                       role="status"
-                      className="py-2 px-2 font-medium text-white bg-green-400 rounded  transition duration-300 no-underline"
+                      className="rounded bg-green-400 py-2 px-2 font-medium text-white  no-underline transition duration-300"
                     >
                       <span>
                         <svg
-                          className="animate-spin h-5 w-5 mr-3 ..."
+                          className="... mr-3 h-5 w-5 animate-spin"
                           viewBox="0 0 24 24"
                         ></svg>
                         Chargement...
@@ -149,7 +147,7 @@ const Signin = ({
                         type="submit"
                         onClick={preventDefault}
                         /*  onClick={onFormSubmit}*/
-                        className="py-2 px-2 font-medium text-white bg-red-600 rounded hover:bg-red-400 transition duration-300 no-underline"
+                        className="rounded bg-red-600 py-2 px-2 font-medium text-white no-underline transition duration-300 hover:bg-red-400"
                       >
                         Email/mot de passe vide(s)
                       </button>
@@ -158,7 +156,7 @@ const Signin = ({
                       <button
                         type="submit"
                         onClick={onFormSubmit}
-                        className="py-2 px-2 font-medium text-white bg-green-600 rounded hover:bg-green-400 transition duration-300 no-underline"
+                        className="rounded bg-green-600 py-2 px-2 font-medium text-white no-underline transition duration-300 hover:bg-green-400"
                       >
                         Connexion
                       </button>
@@ -190,7 +188,6 @@ const Signin = ({
           )}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
