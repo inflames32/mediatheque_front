@@ -1,0 +1,17 @@
+.navigation {
+  width: 100%;
+  background-color: rgb(112, 112, 112);
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+}
+
+.button {
+  background-color: white;
+}
+
+.button:hover {
+  background-color: rgb(184, 181, 181);
+  transition: 0.5s;
+  color: black;
+}

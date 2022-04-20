@@ -2,16 +2,17 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { clearState } from "../../store/action";
+import "../../styles/footer.css";
 
 const Footer = ({ clearState }) => {
   const handleClearState = () => {
     clearState();
   };
   return (
-    <div className="w-full  text-xl fixed bottom-0 left-0 bg-white text-black-400 h-10 flex justify-around items-center border-t-2">
+    <div className="text-black-400  footer fixed bottom-0 left-0 flex h-10 w-full items-center justify-around border-t-2 bg-white text-xl">
       <a
         href="https://github.com/inflames32"
-        className=" hover:text-blue-400 text-current"
+        className=" text-current hover:text-blue-400"
       >
         Crée par Pierre Cahuzac
       </a>

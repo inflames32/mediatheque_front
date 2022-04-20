@@ -4,7 +4,7 @@ import Fade from "react-reveal/Fade";
 import { ImCross } from "react-icons/im";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Redirect } from "react-router-dom";
-
+import "../../styles/header.css";
 import {
   disconnectUser,
   clearState,
@@ -38,19 +38,19 @@ const Header = ({
   };
 
   return (
-    <nav className="bg-white  w-11/12 h-15 fixed  border-b border-gray-900/1">
-      <div className="flex justify-between w-full pl-2 pr-2">
+    <nav className="h-15  border-gray-900/1 navigation fixed  z-50 w-11/12 border-b bg-white">
+      <div className="flex w-full justify-between pl-2 pr-2">
         <div className="flex space-x-7">
-          <div className="flex items-center justify-center box-border">
+          <div className="box-border flex items-center justify-center">
             <Link
               to="/"
               onClick={handleClearState}
-              className="py-2 px-2 font-medium text-white  rounded  transition duration-300 no-underline"
+              className="rounded py-2 px-2 font-medium  text-white  no-underline transition duration-300"
             >
-              <div className="box-border w-20 h-10">
+              <div className="box-border h-10 w-20">
                 <img
                   src="/images/logo.jpg"
-                  className="border rounded-lg border-gray-900/1"
+                  className="border-gray-900/1 rounded-lg border"
                   alt="ma_mediatheque_logo"
                 />
               </div>
@@ -58,21 +58,21 @@ const Header = ({
           </div>
         </div>
         {/* 	<!-- Secondary Navbar items --> */}
-        <div className="hidden md:flex items-center space-x-3 ">
+        <div className="hidden items-center space-x-3 md:flex ">
           {logged ? (
             <div>
               <Link to={{ pathname: `/user/${_id}/mon-compte` }}>
-                <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+                <button className="hover:bg-white-500 button rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:text-white">
                   {email}
                 </button>
               </Link>
               <Link to={{ pathname: `/user/${_id}/mes-albums` }}>
-                <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+                <button className="button rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white">
                   Ma collection
                 </button>
               </Link>
               <button
-                className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300 no-underline"
+                className="button rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-red-500 hover:text-white"
                 onClick={handleDisconnectButton}
               >
                 Déconnexion
@@ -81,12 +81,12 @@ const Header = ({
           ) : (
             <div>
               <Link to="/signin">
-                <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+                <button className="button rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white">
                   Connexion
                 </button>
               </Link>
               <Link to="/albums-publics">
-                <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+                <button className="button rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white">
                   Albums publics
                 </button>
               </Link>
@@ -94,7 +94,7 @@ const Header = ({
           )}
         </div>
         {/* 	<!-- Mobile menu button --> */}
-        <div className="md:hidden flex items-center">
+        <div className="flex items-center md:hidden">
           <button
             className="outline-none mobile-menu-button"
             onClick={handleMenu}
@@ -107,14 +107,14 @@ const Header = ({
       {/* mobile menu  */}
       {menuIsOpen && !logged && (
         <Fade down>
-          <div className="mobile-menu flex justify-around md:hidden duration-300 p-2 h-full">
+          <div className="mobile-menu flex h-full justify-around p-2 duration-300 md:hidden">
             <Link to="/signin">
-              <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+              <button className="button rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white">
                 Connexion
               </button>
             </Link>
             <Link to="/albums-publics">
-              <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+              <button className="button rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white">
                 Albums publics
               </button>
             </Link>
@@ -123,19 +123,19 @@ const Header = ({
       )}
       {menuIsOpen && logged && (
         <Fade down>
-          <div className="mobile-menu flex justify-around md:hidden duration-300 p-2 h-full">
+          <div className="mobile-menu flex h-full justify-around p-2 duration-300 md:hidden">
             <Link to={{ pathname: `/user/${_id}/mon-compte` }}>
-              <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+              <button className="button rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white">
                 {email}
               </button>
             </Link>
             <Link to={{ pathname: `/user/${_id}/mes-albums` }}>
-              <button className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300 no-underline">
+              <button className="button rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-green-500 hover:text-white">
                 Ma collection
               </button>
             </Link>
             <button
-              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-500 hover:text-white transition duration-300 no-underline"
+              className="button rounded py-2 px-2 font-medium text-gray-500 no-underline transition duration-300 hover:bg-red-500 hover:text-white"
               onClick={handleDisconnectButton}
             >
               Déconnexion

@@ -17,6 +17,8 @@ import Footer from "../Footer";
 
 import store from "../../store";
 
+import "../../styles/app.css";
+
 // == Composant
 const App = () => {
   return (
