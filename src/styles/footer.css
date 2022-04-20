@@ -3,7 +3,7 @@
   justify-content: center;
   background-color: rgb(112, 112, 112);
   color: white;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
