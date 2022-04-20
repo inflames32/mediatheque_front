@@ -38,7 +38,7 @@ const Header = ({
   };
 
   return (
-    <nav className="h-15  border-gray-900/1 navigation fixed  z-50 w-11/12 border-b bg-white">
+    <nav className="navigation">
       <div className="flex w-full justify-between pl-2 pr-2">
         <div className="flex space-x-7">
           <div className="box-border flex items-center justify-center">
