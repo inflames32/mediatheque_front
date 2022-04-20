@@ -1,3 +1,11 @@
 .footer {
+  display: flex;
+  justify-content: center;
   background-color: rgb(112, 112, 112);
+  color: white;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
 }

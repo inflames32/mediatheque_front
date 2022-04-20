@@ -9,7 +9,7 @@ const Footer = ({ clearState }) => {
     clearState();
   };
   return (
-    <div className="text-black-400  footer fixed bottom-0 left-0 flex h-10 w-full items-center justify-around border-t-2 bg-white text-xl">
+    <div className="footer">
       <a
         href="https://github.com/inflames32"
         className=" text-current hover:text-blue-400"
